@@ -38,18 +38,18 @@ export default class SortableList extends WixComponent {
 
     return (
       <div>
-        {items.map(({id, ...props}, i) => (
+        {items.map((item, index) => (
           <Draggable
+            key={`${item.id}-${index}`}
+            id={item.id}
+            index={index}
+            item={item}
             listId={this.props.listId}
-            key={`${id}-${i}`}
-            data-hook={`sortable-list-item-${id}`}
-            id={id}
-            index={i}
+            groupName={this.props.groupName}
             onHover={this._onHover}
             onMove={this._onMove}
             render={render}
             withHandle={withHandle}
-            {...props}
             />
         ))}
       </div>
@@ -62,5 +62,7 @@ SortableList.displayName = 'SortableList';
 SortableList.propTypes = {
   ...Draggable.propTypes,
   /** list of items with {id: any} */
-  items: PropTypes.array
+  items: PropTypes.array,
+  listId: PropTypes.string,
+  groupName: PropTypes.string
 };

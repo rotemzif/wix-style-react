@@ -33,21 +33,36 @@ export class DraggableSource extends React.Component {
   }
 
   _renderDraggableItem() {
-    const {isDragging, connectDragSource, withHandle, render, id, ...props} = this.props;
-    return withHandle ?
+    const {isDragging, connectDragSource, withHandle, render, id, item} = this.props;
+    if (withHandle) {
+      return render({
+        id,
+        item,
+        isPlaceholder: isDragging,
+        connectHandle: handle => connectDragSource(handle)
+      });
+    }
+
+    return connectDragSource(
       render({
-        isPlaceholder: isDragging, id, connectHandle: handle => connectDragSource(handle), ...props
-      }) :
-      connectDragSource(render({
-        isPlaceholder: isDragging, id, connectHandle: noop, ...props
-      }));
+        id,
+        item,
+        isPlaceholder: isDragging,
+        connectHandle: noop
+      })
+    );
   }
 
   _renderPreviewItem() {
-    const {render, id, ...props} = this.props;
+    const {render, id, item} = this.props;
     return (
       <DragLayer
-        renderPreview={() => render({isPreview: true, connectHandle: noop, id, ...props})}
+        renderPreview={() => render({
+          id,
+          item,
+          isPreview: true,
+          connectHandle: noop
+        })}
         id={id}
         draggedType={ItemTypes.DRAGGABLE}
         />
@@ -71,6 +86,7 @@ DraggableSource.propTypes = {
   connectDragPreview: PropTypes.func,
   render: PropTypes.func,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  item: PropTypes.object,
   withHandle: PropTypes.bool
 };
 

@@ -41,7 +41,7 @@ export default class MultiAreaList extends React.Component {
   };
 
 
-  _renderItem = ({isPlaceholder, isPreview, id, connectHandle, text}) => {
+  _renderItem = ({isPlaceholder, isPreview, id, connectHandle, item}) => {
     const classes = classNames(
       styles.card,
       {
@@ -56,7 +56,7 @@ export default class MultiAreaList extends React.Component {
             <DragAndDropLarge/>
           </div>
         )}
-        {text}
+        {item.text}
       </div>
     );
   };
