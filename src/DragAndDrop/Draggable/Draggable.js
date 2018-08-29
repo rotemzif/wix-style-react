@@ -13,7 +13,7 @@ const ItemTypes = {
 
 const source = {
   beginDrag: ({id, index, listId}) => ({id, index, listId}),
-  endDrag: ({id, onMove, index}) => onMove({id, from: index}),
+  endDrag: ({item, index, onDrop}) => onDrop({payload: item, removedIndex: index}),
   isDragging: ({id, listId}, monitor) => {
     const item = monitor.getItem();
     return listId === item.listId && item.id === id;
@@ -27,9 +27,9 @@ const source = {
 }))
 export class DraggableSource extends React.Component {
   componentDidMount() {
-    const {connectDragPreview} = this.props;
-
-    connectDragPreview && connectDragPreview(getEmptyImage());
+    if (this.props.connectDragPreview) {
+      this.props.connectDragPreview(getEmptyImage());
+    }
   }
 
   _renderDraggableItem() {
@@ -139,7 +139,7 @@ Draggable.defaultPropTypes = {
 
 Draggable.propTypes = {
   /** callback when item was dropped in a new location */
-  onMove: PropTypes.func,
+  onDrop: PropTypes.func,
   /** callback when item is hovered*/
   onHover: PropTypes.func,
   /** a function to render each item in the list */

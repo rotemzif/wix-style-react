@@ -30,18 +30,16 @@ export default class SingleAreaList extends React.Component {
     ]};
   }
 
-  _onMove = ({id, from, to}) => {
-    this.setState(
-      ({items: [..._items]}) =>
-        _items.splice(to, 0, ..._items.splice(from, 1)) && {
-          items: _items
-        }, () => {
-      console.log(`onMove(id: ${id} from: ${from} to: ${to})`);
+  handleDrop = ({removedIndex, addedIndex}) => {
+    const nextItems = [...this.state.items];
+    nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+    this.setState({
+      items: nextItems
     });
   };
 
 
-  _renderItem = ({isPlaceholder, isPreview, id, connectHandle, text}) => {
+  _renderItem = ({isPlaceholder, isPreview, id, connectHandle, item}) => {
     const classes = classNames(
       styles.card,
       {
@@ -56,7 +54,7 @@ export default class SingleAreaList extends React.Component {
             <DragAndDropLarge/>
           </div>
         )}
-        {text}
+        {item.text}
       </div>
     );
   };
@@ -69,7 +67,7 @@ export default class SingleAreaList extends React.Component {
         withHandle
         items={this.state.items}
         render={this._renderItem}
-        onMove={this._onMove}
+        onDrop={this.handleDrop}
         />
     );
   }

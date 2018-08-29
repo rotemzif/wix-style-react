@@ -8,9 +8,8 @@ import styles from './MultiAreaList.scss';
  * An example for a simple drag and drop list component.
  */
 export default class MultiAreaList extends React.Component {
-  constructor() {
-    super();
-    this.state = {items: [
+  state = {
+    items: [
       {
         id: 'a',
         text: 'Item 1'
@@ -27,16 +26,40 @@ export default class MultiAreaList extends React.Component {
         id: 'd',
         text: 'Item 4'
       }
-    ]};
+    ],
+    items2: [
+      {
+        id: 'a1',
+        text: 'Item 5'
+      },
+      {
+        id: 'b1',
+        text: 'Item 6'
+      },
+      {
+        id: 'c1',
+        text: 'Item 7'
+      },
+      {
+        id: 'd1',
+        text: 'Item 8'
+      }
+    ]
   }
 
-  _onMove = ({id, from, to}) => {
-    this.setState(
-      ({items: [..._items]}) =>
-        _items.splice(to, 0, ..._items.splice(from, 1)) && {
-          items: _items
-        }, () => {
-      console.log(`onMove(id: ${id} from: ${from} to: ${to})`);
+  handleDrop = ({removedIndex, addedIndex}) => {
+    const nextItems = [...this.state.items];
+    nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+    this.setState({
+      items: nextItems
+    });
+  };
+
+  handleDrop2 = ({removedIndex, addedIndex}) => {
+    const nextItems = [...this.state.items2];
+    nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+    this.setState({
+      items2: nextItems
     });
   };
 
@@ -70,15 +93,15 @@ export default class MultiAreaList extends React.Component {
           withHandle
           items={this.state.items}
           render={this._renderItem}
-          onMove={this._onMove}
+          onDrop={this.handleDrop}
           />
         <SortableList
           listId="multi-area-2"
           dataHook="list-multi-area"
           withHandle
-          items={this.state.items}
+          items={this.state.items2}
           render={this._renderItem}
-          onMove={this._onMove}
+          onDrop={this.handleDrop2}
           />
       </div>
     );

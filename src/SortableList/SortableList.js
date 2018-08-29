@@ -17,20 +17,19 @@ export default class SortableList extends WixComponent {
     }
   }
 
-  _onHover = (dragIndex, hoverIndex) => {
-    this.setState(
-      ({items: [..._items]}) =>
-        _items.splice(hoverIndex, 0, ..._items.splice(dragIndex, 1)) && {
-          items: _items
-        }
-    );
+  handleHover = (removedIndex, addedIndex) => {
+    const nextItems = [...this.state.items];
+    nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+    this.setState({
+      items: nextItems
+    });
   };
 
-  _onMove = ({id, from}) => {
-    const to = this.state.items.findIndex(({id: _}) => _ === id);
-
-    return this.props.onMove({id, from, to});
-  };
+  handleDrop = ({payload, removedIndex}) => this.props.onDrop({
+    payload,
+    removedIndex,
+    addedIndex: this.state.items.findIndex(it => it.id === payload.id)
+  });
 
   render() {
     const {items} = this.state;
@@ -46,10 +45,10 @@ export default class SortableList extends WixComponent {
             item={item}
             listId={this.props.listId}
             groupName={this.props.groupName}
-            onHover={this._onHover}
-            onMove={this._onMove}
             render={render}
             withHandle={withHandle}
+            onHover={this.handleHover}
+            onDrop={this.handleDrop}
             />
         ))}
       </div>
@@ -64,5 +63,6 @@ SortableList.propTypes = {
   /** list of items with {id: any} */
   items: PropTypes.array,
   listId: PropTypes.string,
-  groupName: PropTypes.string
+  groupName: PropTypes.string,
+  onDrop: PropTypes.func
 };
