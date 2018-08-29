@@ -12,11 +12,31 @@ const ItemTypes = {
 };
 
 const source = {
-  beginDrag: ({id, index, containerId, groupName}) => ({id, index, containerId, groupName}),
-  endDrag: ({item, index, onDrop}) => onDrop({payload: item, removedIndex: index}),
-  isDragging: ({id, containerId}, monitor) => {
+  beginDrag: ({id, index, containerId, groupName, item, onMoveOut}) => {
+    return {
+      id,
+      index,
+      containerId,
+      groupName,
+      originalItem: item,
+      onMoveOut
+    };
+  },
+  endDrag: ({item, index, onDrop}, monitor) => {
+    if (monitor.getDropResult()) {
+      onDrop({
+        payload: item,
+        removedIndex: index,
+        addedIndex: monitor.getDropResult().index,
+        addedToContainerId: monitor.getDropResult().containerId
+      });
+    }
+  },
+  isDragging: ({id, containerId, groupName}, monitor) => {
     const item = monitor.getItem();
-    return containerId === item.containerId && item.id === id;
+    const isSameGroup = groupName && item.groupName && groupName === item.groupName;
+    const isSameContainer = containerId === item.containerId;
+    return (isSameGroup || isSameContainer) && item.id === id;
   }
 };
 
@@ -98,6 +118,12 @@ DraggableSource.propTypes = {
 };
 
 const target = {
+  drop(props) {
+    return {
+      containerId: props.containerId,
+      index: props.index
+    };
+  },
   hover(props, monitor, component) {
     const monitorItem = monitor.getItem();
     const dragIndex = monitorItem.index;
@@ -123,7 +149,15 @@ const target = {
       return;
     }
 
-    props.onHover(dragIndex, hoverIndex);
+    if (isSameGroup && !isSameContainer) {
+      monitorItem.onMoveOut(monitorItem.id);
+    }
+
+    props.onHover(dragIndex, hoverIndex, {
+      id: monitorItem.id,
+      item: monitorItem.originalItem,
+      type: isSameGroup && !isSameContainer ? 'group' : 'container'
+    });
     monitor.getItem().index = hoverIndex;
   }
 };

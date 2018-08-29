@@ -47,19 +47,25 @@ export default class MultiAreaList extends React.Component {
     ]
   }
 
-  handleDrop = ({removedIndex, addedIndex}) => {
+  handleDrop = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
+    console.log(addedIndex, removedIndex, addedToContainerId, removedFromContainerId, payload);
+    const nextItems2 = [...this.state.items2];
     const nextItems = [...this.state.items];
-    nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+    if (removedFromContainerId === 'multi-area-1') {
+      nextItems.splice(removedIndex, 1);
+    }
+    if (addedToContainerId === 'multi-area-2') {
+      nextItems2.splice(addedIndex, 0, payload);
+    }
+    if (removedFromContainerId === 'multi-area-2') {
+      nextItems2.splice(removedIndex, 1);
+    }
+    if (addedToContainerId === 'multi-area-1') {
+      nextItems.splice(addedIndex, 0, payload);
+    }
     this.setState({
-      items: nextItems
-    });
-  };
-
-  handleDrop2 = ({removedIndex, addedIndex}) => {
-    const nextItems = [...this.state.items2];
-    nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
-    this.setState({
-      items2: nextItems
+      items: nextItems,
+      items2: nextItems2
     });
   };
 
@@ -103,7 +109,7 @@ export default class MultiAreaList extends React.Component {
           withHandle
           items={this.state.items2}
           renderItem={this.renderItem}
-          onDrop={this.handleDrop2}
+          onDrop={this.handleDrop}
           />
       </div>
     );

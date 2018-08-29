@@ -19,18 +19,24 @@ export default class SortableList extends WixComponent {
 
   handleMoveOut = id => this.setState({items: this.state.items.filter(it => it.id !== id)})
 
-  handleHover = (removedIndex, addedIndex) => {
+  handleHover = (removedIndex, addedIndex, options = {}) => {
     const nextItems = [...this.state.items];
-    nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+    if (options.type === 'group' && !nextItems.find(it => it.id === options.id)) {
+      nextItems.splice(addedIndex, 0, options.item);
+    } else {
+      nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+    }
     this.setState({
       items: nextItems
     });
   };
 
-  handleDrop = ({payload, removedIndex}) => this.props.onDrop({
+  handleDrop = ({payload, addedIndex, removedIndex, addedToContainerId}) => this.props.onDrop({
     payload,
+    addedIndex,
     removedIndex,
-    addedIndex: this.state.items.findIndex(it => it.id === payload.id)
+    addedToContainerId,
+    removedFromContainerId: this.props.containerId,
   });
 
   render() {
