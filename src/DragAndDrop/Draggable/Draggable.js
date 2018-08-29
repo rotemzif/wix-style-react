@@ -12,9 +12,12 @@ const ItemTypes = {
 };
 
 const source = {
-  beginDrag: ({id, index}) => ({id, index}),
+  beginDrag: ({id, index, listId}) => ({id, index, listId}),
   endDrag: ({id, onMove, index}) => onMove({id, from: index}),
-  isDragging: ({id}, monitor) => id === monitor.getItem().id
+  isDragging: ({id, listId}, monitor) => {
+    const item = monitor.getItem();
+    return listId === item.listId && item.id === id;
+  }
 };
 
 @_DragSource(ItemTypes.DRAGGABLE, source, (connect, monitor) => ({
@@ -31,7 +34,6 @@ export class DraggableSource extends React.Component {
 
   _renderDraggableItem() {
     const {isDragging, connectDragSource, withHandle, render, id, ...props} = this.props;
-
     return withHandle ?
       render({
         isPlaceholder: isDragging, id, connectHandle: handle => connectDragSource(handle), ...props
@@ -77,6 +79,10 @@ const target = {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
 
+    if (props.listId !== monitor.getItem().listId) {
+      return;
+    }
+
     if (!component || hoverIndex === dragIndex) {
       return;
     }
@@ -111,6 +117,10 @@ export class Draggable extends WixComponent {
   }
 }
 
+Draggable.defaultPropTypes = {
+  listId: 'DraggableList'
+};
+
 Draggable.propTypes = {
   /** callback when item was dropped in a new location */
   onMove: PropTypes.func,
@@ -119,7 +129,9 @@ Draggable.propTypes = {
   /** a function to render each item in the list */
   render: PropTypes.func.isRequired,
   /** decide whether to render a handle using `connectHandle` (see below) */
-  withHandle: PropTypes.bool
+  withHandle: PropTypes.bool,
+  /** uniq id of list that contain current draggable item */
+  listId: PropTypes.string
 };
 
 export default Draggable;

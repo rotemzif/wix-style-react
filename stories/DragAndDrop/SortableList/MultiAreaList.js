@@ -2,12 +2,12 @@ import React from 'react';
 import classNames from 'classnames';
 import SortableList from 'wix-style-react/SortableList';
 import DragAndDropLarge from 'wix-style-react/new-icons/system/DragAndDropLarge';
-import styles from './SingleAreaList.scss';
+import styles from './MultiAreaList.scss';
 
 /**
  * An example for a simple drag and drop list component.
  */
-export default class SingleAreaList extends React.Component {
+export default class MultiAreaList extends React.Component {
   constructor() {
     super();
     this.state = {items: [
@@ -63,14 +63,24 @@ export default class SingleAreaList extends React.Component {
 
   render() {
     return (
-      <SortableList
-        listId="single-area-1"
-        dataHook="list-single-area"
-        withHandle
-        items={this.state.items}
-        render={this._renderItem}
-        onMove={this._onMove}
-        />
+      <div className={styles.root}>
+        <SortableList
+          listId="multi-area-1"
+          dataHook="list-multi-area"
+          withHandle
+          items={this.state.items}
+          render={this._renderItem}
+          onMove={this._onMove}
+          />
+        <SortableList
+          listId="multi-area-2"
+          dataHook="list-multi-area"
+          withHandle
+          items={this.state.items}
+          render={this._renderItem}
+          onMove={this._onMove}
+          />
+      </div>
     );
   }
 }

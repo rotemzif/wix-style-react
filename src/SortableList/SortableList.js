@@ -7,15 +7,14 @@ import PropTypes from 'prop-types';
  * Attaches Drag and Drop behavior to a list of items
  */
 export default class SortableList extends WixComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: props.items || []
-    };
+  state = {
+    items: this.props.items || []
   }
 
   componentWillReceiveProps({items}) {
-    items && this.setState({items});
+    if (items) {
+      this.setState({items});
+    }
   }
 
   _onHover = (dragIndex, hoverIndex) => {
@@ -41,7 +40,9 @@ export default class SortableList extends WixComponent {
       <div>
         {items.map(({id, ...props}, i) => (
           <Draggable
-            key={`${id}-${i}`} data-hook={`sortable-list-item-${id}`}
+            listId={this.props.listId}
+            key={`${id}-${i}`}
+            data-hook={`sortable-list-item-${id}`}
             id={id}
             index={i}
             onHover={this._onHover}
