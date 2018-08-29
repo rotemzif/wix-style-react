@@ -88,7 +88,8 @@ export default class MultiAreaList extends React.Component {
     return (
       <div className={styles.root}>
         <SortableList
-          listId="multi-area-1"
+          containerId="multi-area-1"
+          groupName="multi-area"
           dataHook="list-multi-area"
           withHandle
           items={this.state.items}
@@ -96,7 +97,8 @@ export default class MultiAreaList extends React.Component {
           onDrop={this.handleDrop}
           />
         <SortableList
-          listId="multi-area-2"
+          containerId="multi-area-2"
+          groupName="multi-area"
           dataHook="list-multi-area"
           withHandle
           items={this.state.items2}

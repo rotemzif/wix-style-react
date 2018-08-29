@@ -12,11 +12,11 @@ const ItemTypes = {
 };
 
 const source = {
-  beginDrag: ({id, index, listId}) => ({id, index, listId}),
+  beginDrag: ({id, index, containerId, groupName}) => ({id, index, containerId, groupName}),
   endDrag: ({item, index, onDrop}) => onDrop({payload: item, removedIndex: index}),
-  isDragging: ({id, listId}, monitor) => {
+  isDragging: ({id, containerId}, monitor) => {
     const item = monitor.getItem();
-    return listId === item.listId && item.id === id;
+    return containerId === item.containerId && item.id === id;
   }
 };
 
@@ -86,7 +86,7 @@ DraggableSource.propTypes = {
   connectDragPreview: PropTypes.func, // from react-dnd
 
   groupName: PropTypes.string,
-  listId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  containerId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   renderItem: PropTypes.func,
   index: PropTypes.number,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -99,10 +99,14 @@ DraggableSource.propTypes = {
 
 const target = {
   hover(props, monitor, component) {
-    const dragIndex = monitor.getItem().index;
+    const monitorItem = monitor.getItem();
+    const dragIndex = monitorItem.index;
     const hoverIndex = props.index;
 
-    if (props.listId !== monitor.getItem().listId) {
+    const isSameGroup = props.groupName && monitorItem.groupName && props.groupName === monitorItem.groupName;
+    const isSameContainer = props.containerId === monitor.getItem().containerId;
+
+    if (!isSameContainer && !isSameGroup) {
       return;
     }
 
@@ -141,7 +145,7 @@ export class Draggable extends WixComponent {
 }
 
 Draggable.defaultPropTypes = {
-  listId: 'DraggableList'
+  containerId: 'DraggableList'
 };
 
 Draggable.propTypes = {
@@ -154,7 +158,13 @@ Draggable.propTypes = {
   /** decide whether to render a handle using `connectHandle` (see below) */
   withHandle: PropTypes.bool,
   /** uniq id of list that contain current draggable item */
-  listId: PropTypes.string
+  containerId: PropTypes.string,
+  groupName: PropTypes.string,
+  renderItem: PropTypes.func,
+  index: PropTypes.number,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  item: PropTypes.object,
+  onMoveOut: PropTypes.func
 };
 
 export default Draggable;

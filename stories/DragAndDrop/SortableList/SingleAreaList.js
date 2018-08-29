@@ -62,7 +62,7 @@ export default class SingleAreaList extends React.Component {
   render() {
     return (
       <SortableList
-        listId="single-area-1"
+        containerId="single-area-1"
         dataHook="list-single-area"
         withHandle
         items={this.state.items}

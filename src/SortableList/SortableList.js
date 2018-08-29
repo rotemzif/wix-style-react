@@ -42,7 +42,7 @@ export default class SortableList extends WixComponent {
             id={item.id}
             index={index}
             item={item}
-            listId={this.props.listId}
+            containerId={this.props.containerId}
             groupName={this.props.groupName}
             renderItem={this.props.renderItem}
             withHandle={this.props.withHandle}
@@ -63,7 +63,7 @@ SortableList.propTypes = {
   /** list of items with {id: any} */
   renderItem: PropTypes.func,
   items: PropTypes.array,
-  listId: PropTypes.string,
+  containerId: PropTypes.string,
   groupName: PropTypes.string,
   onDrop: PropTypes.func
 };
