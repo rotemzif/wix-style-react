@@ -64,7 +64,7 @@ export default class MultiAreaList extends React.Component {
   };
 
 
-  _renderItem = ({isPlaceholder, isPreview, id, connectHandle, item}) => {
+  renderItem = ({isPlaceholder, isPreview, id, connectHandle, item}) => {
     const classes = classNames(
       styles.card,
       {
@@ -92,7 +92,7 @@ export default class MultiAreaList extends React.Component {
           dataHook="list-multi-area"
           withHandle
           items={this.state.items}
-          render={this._renderItem}
+          renderItem={this.renderItem}
           onDrop={this.handleDrop}
           />
         <SortableList
@@ -100,7 +100,7 @@ export default class MultiAreaList extends React.Component {
           dataHook="list-multi-area"
           withHandle
           items={this.state.items2}
-          render={this._renderItem}
+          renderItem={this.renderItem}
           onDrop={this.handleDrop2}
           />
       </div>

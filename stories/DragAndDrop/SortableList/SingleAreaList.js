@@ -39,7 +39,7 @@ export default class SingleAreaList extends React.Component {
   };
 
 
-  _renderItem = ({isPlaceholder, isPreview, id, connectHandle, item}) => {
+  renderItem = ({isPlaceholder, isPreview, id, connectHandle, item}) => {
     const classes = classNames(
       styles.card,
       {
@@ -66,7 +66,7 @@ export default class SingleAreaList extends React.Component {
         dataHook="list-single-area"
         withHandle
         items={this.state.items}
-        render={this._renderItem}
+        renderItem={this.renderItem}
         onDrop={this.handleDrop}
         />
     );

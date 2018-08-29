@@ -33,9 +33,9 @@ export class DraggableSource extends React.Component {
   }
 
   _renderDraggableItem() {
-    const {isDragging, connectDragSource, withHandle, render, id, item} = this.props;
+    const {isDragging, connectDragSource, withHandle, renderItem, id, item} = this.props;
     if (withHandle) {
-      return render({
+      return renderItem({
         id,
         item,
         isPlaceholder: isDragging,
@@ -44,7 +44,7 @@ export class DraggableSource extends React.Component {
     }
 
     return connectDragSource(
-      render({
+      renderItem({
         id,
         item,
         isPlaceholder: isDragging,
@@ -54,10 +54,10 @@ export class DraggableSource extends React.Component {
   }
 
   _renderPreviewItem() {
-    const {render, id, item} = this.props;
+    const {renderItem, id, item} = this.props;
     return (
       <DragLayer
-        renderPreview={() => render({
+        renderPreview={() => renderItem({
           id,
           item,
           isPreview: true,
@@ -81,13 +81,20 @@ export class DraggableSource extends React.Component {
 }
 
 DraggableSource.propTypes = {
-  isDragging: PropTypes.bool,
-  connectDragSource: PropTypes.func,
-  connectDragPreview: PropTypes.func,
-  render: PropTypes.func,
+  isDragging: PropTypes.bool, // from react-dnd
+  connectDragSource: PropTypes.func, // from react-dnd
+  connectDragPreview: PropTypes.func, // from react-dnd
+
+  groupName: PropTypes.string,
+  listId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  renderItem: PropTypes.func,
+  index: PropTypes.number,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   item: PropTypes.object,
-  withHandle: PropTypes.bool
+  withHandle: PropTypes.bool,
+  onDrop: PropTypes.func,
+  onHover: PropTypes.func,
+  onMoveOut: PropTypes.func
 };
 
 const target = {

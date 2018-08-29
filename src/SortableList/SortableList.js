@@ -17,6 +17,8 @@ export default class SortableList extends WixComponent {
     }
   }
 
+  handleMoveOut = id => this.setState({items: this.state.items.filter(it => it.id !== id)})
+
   handleHover = (removedIndex, addedIndex) => {
     const nextItems = [...this.state.items];
     nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
@@ -32,12 +34,9 @@ export default class SortableList extends WixComponent {
   });
 
   render() {
-    const {items} = this.state;
-    const {render, withHandle} = this.props;
-
     return (
       <div>
-        {items.map((item, index) => (
+        {this.state.items.map((item, index) => (
           <Draggable
             key={`${item.id}-${index}`}
             id={item.id}
@@ -45,9 +44,10 @@ export default class SortableList extends WixComponent {
             item={item}
             listId={this.props.listId}
             groupName={this.props.groupName}
-            render={render}
-            withHandle={withHandle}
+            renderItem={this.props.renderItem}
+            withHandle={this.props.withHandle}
             onHover={this.handleHover}
+            onMoveOut={this.handleMoveOut}
             onDrop={this.handleDrop}
             />
         ))}
@@ -61,6 +61,7 @@ SortableList.displayName = 'SortableList';
 SortableList.propTypes = {
   ...Draggable.propTypes,
   /** list of items with {id: any} */
+  renderItem: PropTypes.func,
   items: PropTypes.array,
   listId: PropTypes.string,
   groupName: PropTypes.string,
