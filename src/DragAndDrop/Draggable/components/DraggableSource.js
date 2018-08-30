@@ -73,13 +73,13 @@ export default class DraggableSource extends React.Component {
   }
 
   _renderPreviewItem() {
-    const {renderItem, id, item, classes} = this.props;
+    const {renderItem, id, item} = this.props;
     return (
       <DragLayer
-        className={classes.dragLayer}
-        renderPreview={() => renderItem({
+        renderPreview={({previewStyles}) => renderItem({
           id,
           item,
+          previewStyles,
           isPreview: true,
           connectHandle: noop
         })}
@@ -90,9 +90,9 @@ export default class DraggableSource extends React.Component {
   }
 
   render() {
-    const {connectDragSource, classes} = this.props;
+    const {connectDragSource} = this.props;
     return connectDragSource ? (
-      <div className={classes.root}>
+      <div>
         {this._renderDraggableItem()}
         {this._renderPreviewItem()}
       </div>
@@ -105,10 +105,6 @@ DraggableSource.propTypes = {
   connectDragSource: PropTypes.func, // from react-dnd
   connectDragPreview: PropTypes.func, // from react-dnd
 
-  classes: PropTypes.shape({
-    dragLayer: PropTypes.string,
-    root: PropTypes.string
-  }),
   groupName: PropTypes.string,
   containerId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   renderItem: PropTypes.func,
@@ -119,3 +115,4 @@ DraggableSource.propTypes = {
   onDrop: PropTypes.func,
   onMoveOut: PropTypes.func
 };
+

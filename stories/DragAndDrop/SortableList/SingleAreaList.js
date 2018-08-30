@@ -39,7 +39,7 @@ export default class SingleAreaList extends React.Component {
   };
 
 
-  renderItem = ({isPlaceholder, isPreview, id, connectHandle, item}) => {
+  renderItem = ({isPlaceholder, isPreview, id, connectHandle, previewStyles, item}) => {
     const classes = classNames(
       styles.card,
       {
@@ -48,7 +48,7 @@ export default class SingleAreaList extends React.Component {
       });
 
     return (
-      <div className={classes} data-hook={`item-${id}`}>
+      <div className={classes} style={previewStyles} data-hook={`item-${id}`}>
         {connectHandle(
           <div className={styles.handle} data-hook={`card-${id}-handle`}>
             <DragAndDropLarge/>

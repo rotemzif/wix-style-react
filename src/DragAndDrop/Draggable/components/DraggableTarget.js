@@ -19,7 +19,7 @@ const target = {
     const monitorItem = monitor.getItem();
     const dragIndex = monitorItem.index;
     const hoverIndex = props.index;
-
+    // console.log(component.props.containerId, monitorItem.containerId);
     const isSameGroup = props.groupName && monitorItem.groupName && props.groupName === monitorItem.groupName;
     const isSameContainer = props.containerId === monitor.getItem().containerId;
 
@@ -57,11 +57,11 @@ const target = {
 }))
 class DraggableTarget extends WixComponent {
   render() {
-    const {connectDropTarget, className, children} = this.props;
+    const {connectDropTarget, children} = this.props;
     if (!this.props.connectDropTarget) {
       return null;
     }
-    return connectDropTarget(<div className={className}>{children}</div>);
+    return connectDropTarget(<div>{children}</div>);
   }
 }
 

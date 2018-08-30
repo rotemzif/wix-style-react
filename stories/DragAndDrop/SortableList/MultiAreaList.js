@@ -32,7 +32,7 @@ export default class MultiAreaList extends React.Component {
     });
   };
 
-  renderItem = ({isPlaceholder, isPreview, id, item}) => {
+  renderItem = ({isPlaceholder, isPreview, id, item, previewStyles}) => {
     const classes = classNames(
       styles.item,
       {
@@ -41,7 +41,7 @@ export default class MultiAreaList extends React.Component {
       });
 
     return (
-      <div className={classes} data-hook={`item-${id}`}>
+      <div className={classes} style={previewStyles} data-hook={`item-${id}`}>
         {item.text}
       </div>
     );
@@ -52,26 +52,20 @@ export default class MultiAreaList extends React.Component {
       <div className={styles.root}>
         <div style={{marginTop: 150}}>
           <SortableList
-            classes={{
-              root: styles.listRoot,
-              content: styles.listContent
-            }}
+            className={styles.listRoot}
             dataHook="list-multi-area"
-            containerId="multiArea1"
             groupName="multi-area"
+            containerId="multiArea1"
             items={this.state.multiArea1}
             renderItem={this.renderItem}
             onDrop={this.handleDrop}
             />
         </div>
         <SortableList
-          classes={{
-            root: styles.listRoot,
-            content: styles.listContent
-          }}
+          className={styles.listRoot}
           dataHook="list-multi-area"
-          containerId="multiArea2"
           groupName="multi-area"
+          containerId="multiArea2"
           items={this.state.multiArea2}
           renderItem={this.renderItem}
           onDrop={this.handleDrop}

@@ -7,17 +7,8 @@ import DraggableTarget from './components/DraggableTarget';
 export class Draggable extends WixComponent {
   render() {
     return (
-      <DraggableTarget
-        {...this.props}
-        className={this.props.classes.dragTarget}
-        >
-        <DraggableSource
-          {...this.props}
-          classes={{
-            root: this.props.classes.dragSource,
-            dragLayer: this.props.classes.dragLayer
-          }}
-          />
+      <DraggableTarget {...this.props}>
+        <DraggableSource {...this.props}/>
       </DraggableTarget>
     );
   }

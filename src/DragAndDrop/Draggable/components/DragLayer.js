@@ -28,7 +28,6 @@ const dragLayerStyle = ({initialOffset, currentOffset}) => {
 };
 
 const CustomDragLayer = ({
-  className,
   item,
   itemType,
   draggedType,
@@ -39,16 +38,15 @@ const CustomDragLayer = ({
   currentOffset
 }) => {
   const shouldRenderLayer = isDragging && id === item.id && itemType === draggedType;
-  const styles = dragLayerStyle({initialOffset, currentOffset});
+  const previewStyles = dragLayerStyle({initialOffset, currentOffset});
   if (!shouldRenderLayer) {
     return null;
   }
 
-  return <div className={className} style={styles}>{renderPreview()}</div>;
+  return <div>{renderPreview({previewStyles})}</div>;
 };
 
 CustomDragLayer.propTypes = {
-  className: PropTypes.string,
   item: PropTypes.object,
   itemType: PropTypes.string,
   draggedType: PropTypes.string,

@@ -25,7 +25,7 @@ const target = {
     //   return;
     // }
     if (monitor.isOver()) {
-      return false;
+      return;
     }
     const {hoverClientY, hoverMiddleY} = dragCoordinates({monitor, component});
     const monitorItem = monitor.getItem();
@@ -42,7 +42,6 @@ const target = {
     if (!component) {
       return;
     }
-    console.log(isSameGroup, isSameContainer);
     if (isSameGroup && !isSameContainer) {
       monitorItem.onMoveOut(monitorItem.id);
     }
