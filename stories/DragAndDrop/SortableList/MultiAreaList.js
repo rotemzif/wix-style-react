@@ -15,7 +15,7 @@ const generateStateForContainer = (length, startIndex) => {
 };
 
 /**
- * An example for a simple drag and drop list component.
+ * An example multi list dnd.
  */
 export default class MultiAreaList extends React.Component {
   state = {
@@ -24,27 +24,13 @@ export default class MultiAreaList extends React.Component {
   }
 
   handleDrop = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
-    console.log(addedIndex, removedIndex, addedToContainerId, removedFromContainerId, payload);
-    const nextItems1 = [...this.state.multiArea1];
-    const nextItems2 = [...this.state.multiArea2];
-    if (removedFromContainerId === 'multiArea1') {
-      nextItems1.splice(removedIndex, 1);
-    }
-    if (addedToContainerId === 'multiArea2') {
-      nextItems2.splice(addedIndex, 0, payload);
-    }
-    if (removedFromContainerId === 'multiArea2') {
-      nextItems2.splice(removedIndex, 1);
-    }
-    if (addedToContainerId === 'multiArea1') {
-      nextItems1.splice(addedIndex, 0, payload);
-    }
+    this.state[removedFromContainerId].splice(removedIndex, 1);
+    this.state[addedToContainerId].splice(addedIndex, 0, payload);
+
     this.setState({
-      multiArea1: nextItems1,
-      multiArea2: nextItems2
+      ...JSON.parse(JSON.stringify(this.state))
     });
   };
-
 
   renderItem = ({isPlaceholder, isPreview, id, item}) => {
     const classes = classNames(

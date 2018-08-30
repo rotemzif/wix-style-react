@@ -119,8 +119,7 @@ DraggableSource.propTypes = {
 };
 
 const target = {
-  drop(props, monitor) {
-    console.log(props, monitor.getItem(), 'res');
+  drop(props) {
     return {
       containerId: props.containerId,
       index: props.index
@@ -138,16 +137,17 @@ const target = {
       return;
     }
 
-    if (!component || hoverIndex === dragIndex) {
+    if (!component || (hoverIndex === dragIndex && isSameContainer)) {
       return;
     }
 
     const {hoverClientY, hoverMiddleY} = dragCoordinates({monitor, component});
-    console.log(hoverClientY, hoverMiddleY);
     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+      console.log(dragIndex, hoverIndex, hoverClientY, hoverMiddleY);
       return;
     }
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+      console.log(dragIndex, hoverIndex, hoverClientY, hoverMiddleY);
       return;
     }
 
