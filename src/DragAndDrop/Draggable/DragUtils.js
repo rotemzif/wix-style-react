@@ -12,6 +12,6 @@ export const dragCoordinates = ({monitor, component}) => {
   // Get pixels to the top
   const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
-  return {hoverMiddleY, clientOffset, hoverClientY};
+  return {hoverMiddleY, clientOffset, hoverClientY, hoverBoundingRect};
 };
 

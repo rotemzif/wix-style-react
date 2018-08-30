@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import WixComponent from '../BaseComponents/WixComponent';
 import {Draggable} from '../DragAndDrop/Draggable';
-import PropTypes from 'prop-types';
+import Container from '../DragAndDrop/Draggable/components/Container';
 
 /**
  * Attaches Drag and Drop behavior to a list of items
@@ -13,7 +15,6 @@ export default class SortableList extends WixComponent {
 
   componentWillReceiveProps({items}) {
     if (items) {
-      console.log('RESTORED');
       this.setState({items});
     }
   }
@@ -32,7 +33,7 @@ export default class SortableList extends WixComponent {
     });
   };
 
-  handleDrop = ({payload, addedIndex, removedIndex, addedToContainerId, removedFromContainerId}) =>
+  handleDrop = ({payload, addedIndex, removedIndex, addedToContainerId, removedFromContainerId}) => {
     this.props.onDrop({
       payload,
       addedIndex,
@@ -40,41 +41,62 @@ export default class SortableList extends WixComponent {
       addedToContainerId,
       removedFromContainerId
     });
+  };
 
   render() {
+    const {classes, containerId, groupName} = this.props;
+    const common = {
+      containerId,
+      groupName,
+      onHover: this.handleHover,
+      onMoveOut: this.handleMoveOut
+    };
     return (
-      <div style={{background: '#f4fafe', border: '1px dashed #7a92a5', display: 'inline-block', minWidth: 210}}>
-        <div style={{fontSize: 14, color: '#3899ec', padding: 6}}>Draggable Area</div>
-        <div style={{padding: 24}}>
+      <Container
+        className={classes.root}
+        total={this.state.items.length}
+        {...common}
+        >
+        <div className={classes.content}>
           {this.state.items.map((item, index) => (
             <Draggable
+              {...common}
+              classes={{
+                dragSource: this.props.classes.dragSource,
+                dragTarget: this.props.classes.dragTarget,
+                dragLayer: this.props.classes.dragLayer
+              }}
               key={`${item.id}-${index}`}
               id={item.id}
               index={index}
               item={item}
-              containerId={this.props.containerId}
-              groupName={this.props.groupName}
               renderItem={this.props.renderItem}
               withHandle={this.props.withHandle}
-              onHover={this.handleHover}
-              onMoveOut={this.handleMoveOut}
               onDrop={this.handleDrop}
               />
           ))}
         </div>
-      </div>
+      </Container>
     );
   }
 }
 
 SortableList.displayName = 'SortableList';
 
+SortableList.defaultProps = {
+  classes: {}
+};
+
 SortableList.propTypes = {
   ...Draggable.propTypes,
   /** list of items with {id: any} */
-  renderItem: PropTypes.func,
   items: PropTypes.array,
-  containerId: PropTypes.string,
-  groupName: PropTypes.string,
-  onDrop: PropTypes.func
+  /** css classnames to customize board */
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    content: PropTypes.string,
+    dragSource: PropTypes.string,
+    dragTarget: PropTypes.string,
+    dragLayer: PropTypes.string
+  })
 };

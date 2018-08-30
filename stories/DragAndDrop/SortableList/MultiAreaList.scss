@@ -27,3 +27,17 @@
 .itemPreview {
   background-color: #eaf7ff;
 }
+
+.listRoot {
+  position: relative;
+  min-height: 800px;
+  background: #f4fafe;
+  border: 1px dashed #7a92a5;
+  display: inline-block;
+  min-width: 210px;
+}
+
+.listContent {
+  margin: 24px;
+  margin-top: 100px;
+}
