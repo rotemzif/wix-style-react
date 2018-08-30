@@ -13,6 +13,7 @@ export default class SortableList extends WixComponent {
 
   componentWillReceiveProps({items}) {
     if (items) {
+      console.log('RESTORED');
       this.setState({items});
     }
   }
@@ -31,32 +32,36 @@ export default class SortableList extends WixComponent {
     });
   };
 
-  handleDrop = ({payload, addedIndex, removedIndex, addedToContainerId}) => this.props.onDrop({
-    payload,
-    addedIndex,
-    removedIndex,
-    addedToContainerId,
-    removedFromContainerId: this.props.containerId,
-  });
+  handleDrop = ({payload, addedIndex, removedIndex, addedToContainerId, removedFromContainerId}) =>
+    this.props.onDrop({
+      payload,
+      addedIndex,
+      removedIndex,
+      addedToContainerId,
+      removedFromContainerId
+    });
 
   render() {
     return (
-      <div>
-        {this.state.items.map((item, index) => (
-          <Draggable
-            key={`${item.id}-${index}`}
-            id={item.id}
-            index={index}
-            item={item}
-            containerId={this.props.containerId}
-            groupName={this.props.groupName}
-            renderItem={this.props.renderItem}
-            withHandle={this.props.withHandle}
-            onHover={this.handleHover}
-            onMoveOut={this.handleMoveOut}
-            onDrop={this.handleDrop}
-            />
-        ))}
+      <div style={{background: '#f4fafe', border: '1px dashed #7a92a5', display: 'inline-block', minWidth: 210}}>
+        <div style={{fontSize: 14, color: '#3899ec', padding: 6}}>Draggable Area</div>
+        <div style={{padding: 24}}>
+          {this.state.items.map((item, index) => (
+            <Draggable
+              key={`${item.id}-${index}`}
+              id={item.id}
+              index={index}
+              item={item}
+              containerId={this.props.containerId}
+              groupName={this.props.groupName}
+              renderItem={this.props.renderItem}
+              withHandle={this.props.withHandle}
+              onHover={this.handleHover}
+              onMoveOut={this.handleMoveOut}
+              onDrop={this.handleDrop}
+              />
+          ))}
+        </div>
       </div>
     );
   }

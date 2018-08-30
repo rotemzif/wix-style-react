@@ -22,13 +22,14 @@ const source = {
       onMoveOut
     };
   },
-  endDrag: ({item, index, onDrop}, monitor) => {
-    if (monitor.getDropResult()) {
+  endDrag: ({item, index, containerId, onDrop}, monitor) => {
+    if (monitor.didDrop()) {
       onDrop({
         payload: item,
         removedIndex: index,
         addedIndex: monitor.getDropResult().index,
-        addedToContainerId: monitor.getDropResult().containerId
+        addedToContainerId: monitor.getDropResult().containerId,
+        removedFromContainerId: containerId
       });
     }
   },
@@ -118,7 +119,8 @@ DraggableSource.propTypes = {
 };
 
 const target = {
-  drop(props) {
+  drop(props, monitor) {
+    console.log(props, monitor.getItem(), 'res');
     return {
       containerId: props.containerId,
       index: props.index
@@ -141,7 +143,7 @@ const target = {
     }
 
     const {hoverClientY, hoverMiddleY} = dragCoordinates({monitor, component});
-
+    console.log(hoverClientY, hoverMiddleY);
     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
       return;
     }
