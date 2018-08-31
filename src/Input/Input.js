@@ -198,12 +198,12 @@ class Input extends Component {
       // gets the reference for the input (specifically when autoFocus
       // is on. So setTimeout ensures we have the ref.input needed in select)
       setTimeout(() => {
-        /** 
+        /**
           here we trying to cover edge case with chrome forms autofill,
           after user will trigger chrome form autofill, onFocus will be called for each input,
           each input will cause this.select, select may(mostly all time) cause new onFocus,
           which will cause new this.select, ..., we have recursion which will all time randomly cause
-          inputs to become focused. 
+          inputs to become focused.
           To prevent this, we check, that current input node is equal to focused node.
         */
         if (document && document.activeElement === this.input) {
