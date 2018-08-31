@@ -50,6 +50,11 @@ const target = {
     const hoverIndex = hoverClientY < top ? 0 : props.total; // if user drag item above other items - add to the top, otherwise - add to the bottom
     const isSameContainer = props.containerId === monitorItem.realTime.containerId; // check do we hover over same container(from which item is)
 
+    /** in case that we hover over itself - do nothing */
+    if (!component || (hoverIndex === dragIndex && isSameContainer)) {
+      return;
+    }
+
     /**
       if item is from same group but different container, thats mean that we move item
       from one container to another, and we need to move out item from previous container
