@@ -25,10 +25,6 @@ const target = {
       index: monitor.getItem().index
     };
   },
-  canDrop() {
-    /** we do not want to allow drop for container, as we are doing this in DraggableTarge and Draggable source */
-    return true;
-  },
   hover(props, monitor, component) {
     /**
       in this block we check that user dragging item over container empty pars
