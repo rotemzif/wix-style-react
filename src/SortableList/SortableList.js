@@ -23,7 +23,6 @@ export default class SortableList extends WixComponent {
   }
 
   handleMoveOut = id => {
-    console.log('remove from', this.props.containerId, 'item id', id, 'items', this.state.items);
     this.setState({items: this.state.items.filter(it => it.id !== id)});
   }
 
@@ -58,7 +57,7 @@ export default class SortableList extends WixComponent {
   }
 
   render() {
-    const {className, groupName} = this.props;
+    const {className, groupName, contentClassName} = this.props;
     const common = {
       groupName,
       containerId: this.props.containerId,
@@ -68,6 +67,7 @@ export default class SortableList extends WixComponent {
     return (
       <Container
         className={className}
+        contentClassName={contentClassName}
         total={this.state.items.length}
         {...common}
         >
@@ -94,5 +94,6 @@ SortableList.propTypes = {
   ...Draggable.propTypes,
   /** list of items with {id: any} */
   items: PropTypes.array,
-  className: PropTypes.string
+  className: PropTypes.string,
+  contentClassName: PropTypes.string
 };

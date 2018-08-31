@@ -17,7 +17,11 @@ const source = {
       containerId,
       groupName,
       originalItem: item,
-      onMoveOut
+      onMoveOut,
+      realTime: {
+        onMoveOut,
+        containerId
+      }
     };
   },
   endDrag: ({item, index, containerId, onDrop}, monitor) => {
