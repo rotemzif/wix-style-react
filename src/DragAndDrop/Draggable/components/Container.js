@@ -46,7 +46,6 @@ const target = {
       return;
     }
     /** end of block */
-
     const dragIndex = monitorItem.index; // position of item that we drag in items array
     const hoverIndex = hoverClientY < top ? 0 : props.total; // if user drag item above other items - add to the top, otherwise - add to the bottom
     const isSameContainer = props.containerId === monitorItem.realTime.containerId; // check do we hover over same container(from which item is)

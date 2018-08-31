@@ -11,6 +11,7 @@ import {ItemTypes} from './../types';
 
 const source = {
   beginDrag: ({id, index, containerId, groupName, item, onMoveOut}) => {
+    /** we setup monitor.getItem() snapshot, so we will be always able to get info about item that we drag */
     return {
       id,
       index,
@@ -25,13 +26,14 @@ const source = {
     };
   },
   endDrag: ({item, index, containerId, onDrop}, monitor) => {
+    /** if drop was called, on drop target and drag is end, then we notify parent about this */
     if (monitor.didDrop()) {
       onDrop({
-        payload: item,
-        removedIndex: index,
-        addedIndex: monitor.getDropResult().index,
-        addedToContainerId: monitor.getDropResult().containerId,
-        removedFromContainerId: containerId
+        payload: item, // original item
+        removedIndex: index, // original item index
+        addedIndex: monitor.getDropResult().index, // new item index
+        addedToContainerId: monitor.getDropResult().containerId, // new container for item
+        removedFromContainerId: containerId // original item container
       });
     }
   },
