@@ -7,12 +7,14 @@ const generateStateForContainer = (length, startIndex) => {
   const res = [];
   for (let i = 0; i < length; i++) {
     res.push({
-      id: 'item' + startIndex + i,
+      id: 'item' + (startIndex + i),
       text: `Drag object ${startIndex + i}`
     });
   }
   return res;
 };
+
+const copy = value => JSON.parse(JSON.stringify(value));
 
 /**
  * An example multi list dnd.
@@ -24,12 +26,11 @@ export default class MultiAreaList extends React.Component {
   }
 
   handleDrop = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
-    this.state[removedFromContainerId].splice(removedIndex, 1);
-    this.state[addedToContainerId].splice(addedIndex, 0, payload);
+    const nextState = copy(this.state);
+    nextState[removedFromContainerId].splice(removedIndex, 1);
+    nextState[addedToContainerId].splice(addedIndex, 0, payload);
 
-    this.setState({
-      ...JSON.parse(JSON.stringify(this.state))
-    });
+    this.setState({...nextState});
   };
 
   renderItem = ({isPlaceholder, isPreview, id, item, previewStyles}) => {

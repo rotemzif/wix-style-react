@@ -25,7 +25,6 @@ const target = {
     const hoverIndex = props.index; // position of item that we hover(want to put draggable item on it)
     const isSameGroup = props.groupName && monitorItem.groupName && props.groupName === monitorItem.groupName; // check that items from same group
     const isSameContainer = props.containerId === monitorItem.realTime.containerId; // check that items from same container
-
     /** in case that item not in same group and not from same container - do nothing */
     if (!isSameContainer && !isSameGroup) {
       return;
@@ -37,10 +36,10 @@ const target = {
 
     /** check that we hover at least half of item, if no - do nothing */
     const {hoverClientY, hoverMiddleY} = dragCoordinates({monitor, component});
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+    if (isSameContainer && dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
       return;
     }
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+    if (isSameContainer && dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
       return;
     }
 

@@ -19,9 +19,15 @@ const getRelativePositions = (child, parent) => {
 };
 
 const target = {
+  drop(props, monitor) {
+    return {
+      containerId: props.containerId,
+      index: monitor.getItem().index
+    };
+  },
   canDrop() {
     /** we do not want to allow drop for container, as we are doing this in DraggableTarge and Draggable source */
-    return false;
+    return true;
   },
   hover(props, monitor, component) {
     /**

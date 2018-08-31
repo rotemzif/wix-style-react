@@ -27,9 +27,9 @@ const source = {
   },
   endDrag: ({item, index, containerId, onDrop}, monitor) => {
     /** if drop was called, on drop target and drag is end, then we notify parent about this */
-    if (monitor.didDrop()) {
+    if (monitor.getDropResult()) {
       onDrop({
-        payload: item, // original item
+        payload: monitor.getItem().originalItem, // original item
         removedIndex: index, // original item index
         addedIndex: monitor.getDropResult().index, // new item index
         addedToContainerId: monitor.getDropResult().containerId, // new container for item
