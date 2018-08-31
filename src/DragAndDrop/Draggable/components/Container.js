@@ -21,31 +21,35 @@ const target = {
     return false;
   },
   hover(props, monitor, component) {
-    // if (props.containerId === monitor.getItem().containerId) {
-    //   return;
-    // }
-    if (monitor.isOver()) {
+    const topPositionOfItems = component.childrenNode.getBoundingClientRect().top - component.rootNode.getBoundingClientRect().top;
+    const bottomPositionOfItems = topPositionOfItems + component.childrenNode.getBoundingClientRect().height;
+    const {hoverClientY} = dragCoordinates({monitor, component});
+
+    const isInCorrectArea = hoverClientY > topPositionOfItems && hoverClientY < bottomPositionOfItems;
+    const isAlreadyOver = monitor.isOver();
+    if (isInCorrectArea || !isAlreadyOver) {
       return;
     }
-    const {hoverClientY, hoverMiddleY} = dragCoordinates({monitor, component});
+
     const monitorItem = monitor.getItem();
     const dragIndex = monitorItem.index;
-    const hoverIndex = hoverMiddleY < hoverClientY ? props.total : 0;
+    const hoverIndex = hoverClientY < topPositionOfItems ? 0 : props.total;
 
     const isSameGroup = props.groupName && monitorItem.groupName && props.groupName === monitorItem.groupName;
     const isSameContainer = props.containerId === monitor.getItem().containerId;
-
-    if (!isSameGroup) {
-      return;
-    }
-
-    if (!component) {
+    if (!isSameGroup || !component || monitorItem.alreadyMoved) {
       return;
     }
     if (isSameGroup && !isSameContainer) {
+      monitorItem.alreadyMovedTo = monitorItem.movedOutContainerId === monitorItem.currentContainerId;
       monitorItem.onMoveOut(monitorItem.id);
+      monitorItem.movedOutContainerId = props.containerId;
+    } else if (isSameGroup && monitorItem.movedOutContainerId && monitorItem.movedOutContainerId !== monitorItem.containerId) {
+      monitorItem.moveOutForCurrentContainer(monitorItem.id);
+      monitorItem.alreadyMovedTo = monitorItem.movedOutContainerId === monitorItem.currentContainerId;
     }
-
+    monitorItem.moveOutForCurrentContainer = props.onMoveOut;
+    monitorItem.currentContainerId = props.containerId;
     props.onHover(dragIndex, hoverIndex, {
       id: monitorItem.id,
       item: monitorItem.originalItem,
@@ -63,8 +67,10 @@ class Container extends WixComponent {
     const {connectDropTarget} = this.props;
     return connectDropTarget ?
       connectDropTarget(
-        <div className={this.props.className}>
-          {this.props.children}
+        <div className={this.props.className} ref={node => this.rootNode = node}>
+          <div ref={node => this.childrenNode = node}>
+            {this.props.children}
+          </div>
         </div>
       ) :
       null;

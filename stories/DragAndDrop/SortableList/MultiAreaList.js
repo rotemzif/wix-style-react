@@ -50,17 +50,15 @@ export default class MultiAreaList extends React.Component {
   render() {
     return (
       <div className={styles.root}>
-        <div style={{marginTop: 150}}>
-          <SortableList
-            className={styles.listRoot}
-            dataHook="list-multi-area"
-            groupName="multi-area"
-            containerId="multiArea1"
-            items={this.state.multiArea1}
-            renderItem={this.renderItem}
-            onDrop={this.handleDrop}
-            />
-        </div>
+        <SortableList
+          className={styles.listRoot}
+          dataHook="list-multi-area"
+          groupName="multi-area"
+          containerId="multiArea1"
+          items={this.state.multiArea1}
+          renderItem={this.renderItem}
+          onDrop={this.handleDrop}
+          />
         <SortableList
           className={styles.listRoot}
           dataHook="list-multi-area"
