@@ -23,12 +23,10 @@ export default class SortableList extends WixComponent {
   }
 
   handleMoveOut = id => {
-    console.log('remove');
     this.setState({items: this.state.items.filter(it => it.id !== id)});
   }
 
   handleHover = (removedIndex, addedIndex, options = {}) => {
-    console.log('hover');
     this.setState(prevState => {
       const nextItems = copy(prevState.items);
       if (!nextItems.find(it => it.id === options.id)) {
