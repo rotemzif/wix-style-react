@@ -38,10 +38,10 @@ const CustomDragLayer = ({
   currentOffset
 }) => {
   const shouldRenderLayer = isDragging && id === item.id && itemType === draggedType;
-  const previewStyles = dragLayerStyle({initialOffset, currentOffset});
   if (!shouldRenderLayer) {
     return null;
   }
+  const previewStyles = dragLayerStyle({initialOffset, currentOffset});
 
   return <div>{renderPreview({previewStyles})}</div>;
 };

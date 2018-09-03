@@ -14,10 +14,6 @@ export class Draggable extends WixComponent {
   }
 }
 
-Draggable.defaultPropTypes = {
-  containerId: 'DraggableList'
-};
-
 Draggable.propTypes = {
   /** a function to render each item in the list */
   render: PropTypes.func.isRequired,
