@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import SortableList from 'wix-style-react/SortableList';
 import DragAndDropLarge from 'wix-style-react/new-icons/system/DragAndDropLarge';
-import DragDropContextProvider from 'wix-style-react/DragAndDrop/DragDropContextProvider';
+import DragDropContextProvider from 'wix-style-react/DragDropContextProvider';
 import styles from './SingleAreaList.scss';
 
 /**

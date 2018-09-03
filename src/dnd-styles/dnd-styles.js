@@ -1,4 +1,4 @@
-import styles from './DNDStyles.scss';
+import styles from './dnd-styles.scss';
 
 export default {
   item: styles.item,

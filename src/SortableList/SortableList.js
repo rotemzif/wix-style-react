@@ -50,7 +50,7 @@ export default class SortableList extends WixComponent {
   };
 
   render() {
-    const {className, groupName, contentClassName} = this.props;
+    const {className, groupName} = this.props;
     const common = {
       groupName,
       containerId: this.props.containerId,

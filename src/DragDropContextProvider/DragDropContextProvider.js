@@ -13,8 +13,10 @@ function getDefaultManager() {
 
 // https://github.com/react-dnd/react-dnd/issues/186#issuecomment-110333064
 class DragDropContextProvider extends React.Component {
+  static propTypes = {
+    children: PropTypes.node
+  }
   static contextTypes = {
-    children: PropTypes.node,
     dragDropManager: PropTypes.object.isRequired
   };
 
@@ -33,4 +35,4 @@ class DragDropContextProvider extends React.Component {
   }
 }
 
-export default ({children}) => <DragDropContextProvider>{children}</DragDropContextProvider>;
+export default DragDropContextProvider;
