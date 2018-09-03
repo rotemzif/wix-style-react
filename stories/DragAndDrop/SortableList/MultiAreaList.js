@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import SortableList from 'wix-style-react/SortableList';
 import defaultDndStyles from 'wix-style-react/DragAndDrop/dnd-styles';
+import DragDropContextProvider from 'wix-style-react/DragAndDrop/DragDropContextProvider';
 import styles from './MultiAreaList.scss';
 
 const generateStateForContainer = (length, startIndex) => {
@@ -51,26 +52,28 @@ export default class MultiAreaList extends React.Component {
 
   render() {
     return (
-      <div className={styles.root}>
-        <SortableList
-          className={defaultDndStyles.list}
-          dataHook="list-multi-area"
-          groupName="multi-area"
-          containerId="multiArea1"
-          items={this.state.multiArea1}
-          renderItem={this.renderItem}
-          onDrop={this.handleDrop}
-          />
-        <SortableList
-          className={defaultDndStyles.list}
-          dataHook="list-multi-area"
-          groupName="multi-area"
-          containerId="multiArea2"
-          items={this.state.multiArea2}
-          renderItem={this.renderItem}
-          onDrop={this.handleDrop}
-          />
-      </div>
+      <DragDropContextProvider>
+        <div className={styles.root}>
+          <SortableList
+            className={defaultDndStyles.list}
+            dataHook="list-multi-area"
+            groupName="multi-area"
+            containerId="multiArea1"
+            items={this.state.multiArea1}
+            renderItem={this.renderItem}
+            onDrop={this.handleDrop}
+            />
+          <SortableList
+            className={defaultDndStyles.list}
+            dataHook="list-multi-area"
+            groupName="multi-area"
+            containerId="multiArea2"
+            items={this.state.multiArea2}
+            renderItem={this.renderItem}
+            onDrop={this.handleDrop}
+            />
+        </div>
+      </DragDropContextProvider>
     );
   }
 }

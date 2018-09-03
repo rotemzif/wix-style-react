@@ -1,9 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 
-import {DragDropContextProvider} from 'react-dnd';
-import backend from 'react-dnd-html5-backend';
-
 import Heading from 'wix-style-react/Heading';
 import Text from 'wix-style-react/Text';
 import Badge from 'wix-style-react/Badge';
@@ -55,23 +52,21 @@ const TODO = `
 
 storiesOf('WIP', module)
   .add('Drag and Drop', () => (
-    <DragDropContextProvider backend={backend}>
-      <div>
-        <Heading>
-          Drag and Drop <Badge skin="danger">Under development</Badge>
-        </Heading>
-        <Text>
-          This section will explain about D&D guidelines in the library, how it should be used and how to extend it
-        </Text>
+    <div>
+      <Heading>
+        Drag and Drop <Badge skin="danger">Under development</Badge>
+      </Heading>
+      <Text>
+        This section will explain about D&D guidelines in the library, how it should be used and how to extend it
+      </Text>
 
-        <Markdown source={SingleAreaListReadme}/>
-        <CodeExample title="Sortable List - Single Area" code={SingleAreaListRawCombined}>
-          <SingleAreaList/>
-        </CodeExample>
-        <CodeExample title="Sortable List - Multi Area" code={MultiAreaListRawCombined}>
-          <MultiAreaList/>
-        </CodeExample>
-        <Markdown source={TODO}/>
-      </div>
-    </DragDropContextProvider>
+      <Markdown source={SingleAreaListReadme}/>
+      <CodeExample title="Sortable List - Single Area" code={SingleAreaListRawCombined}>
+        <SingleAreaList/>
+      </CodeExample>
+      <CodeExample title="Sortable List - Multi Area" code={MultiAreaListRawCombined}>
+        <MultiAreaList/>
+      </CodeExample>
+      <Markdown source={TODO}/>
+    </div>
   ));
