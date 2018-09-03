@@ -37,11 +37,12 @@ export default class MultiAreaList extends React.Component {
 
   renderItem = ({isPlaceholder, isPreview, id, item, previewStyles}) => {
     const classes = classNames(
-      defaultDndStyles.item,
       {
-        [defaultDndStyles.itemPlaceholder]: isPlaceholder,
-        [defaultDndStyles.itemPreview]: isPreview
-      });
+        [classNames(defaultDndStyles.itemPlaceholder, styles.itemPlaceholder)]: isPlaceholder,
+        [classNames(defaultDndStyles.itemPreview, styles.itemPreview)]: isPreview
+      },
+      classNames(defaultDndStyles.item, styles.item)
+    );
 
     return (
       <div className={classes} style={previewStyles} data-hook={`item-${id}`}>
@@ -55,7 +56,7 @@ export default class MultiAreaList extends React.Component {
       <DragDropContextProvider>
         <div className={styles.root}>
           <SortableList
-            className={defaultDndStyles.list}
+            className={classNames(defaultDndStyles.list, styles.list)}
             dataHook="list-multi-area"
             groupName="multi-area"
             containerId="multiArea1"
@@ -64,7 +65,7 @@ export default class MultiAreaList extends React.Component {
             onDrop={this.handleDrop}
             />
           <SortableList
-            className={defaultDndStyles.list}
+            className={classNames(defaultDndStyles.list, styles.list)}
             dataHook="list-multi-area"
             groupName="multi-area"
             containerId="multiArea2"
