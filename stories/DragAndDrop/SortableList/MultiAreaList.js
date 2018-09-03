@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import SortableList from 'wix-style-react/SortableList';
+import defaultDndStyles from 'wix-style-react/DragAndDrop/dnd-styles';
 import styles from './MultiAreaList.scss';
 
 const generateStateForContainer = (length, startIndex) => {
@@ -35,10 +36,10 @@ export default class MultiAreaList extends React.Component {
 
   renderItem = ({isPlaceholder, isPreview, id, item, previewStyles}) => {
     const classes = classNames(
-      styles.item,
+      defaultDndStyles.item,
       {
-        [styles.itemPlaceholder]: isPlaceholder,
-        [styles.itemPreview]: isPreview
+        [defaultDndStyles.itemPlaceholder]: isPlaceholder,
+        [defaultDndStyles.itemPreview]: isPreview
       });
 
     return (
@@ -52,7 +53,7 @@ export default class MultiAreaList extends React.Component {
     return (
       <div className={styles.root}>
         <SortableList
-          className={styles.listRoot}
+          className={defaultDndStyles.list}
           dataHook="list-multi-area"
           groupName="multi-area"
           containerId="multiArea1"
@@ -61,7 +62,7 @@ export default class MultiAreaList extends React.Component {
           onDrop={this.handleDrop}
           />
         <SortableList
-          className={styles.listRoot}
+          className={defaultDndStyles.list}
           dataHook="list-multi-area"
           groupName="multi-area"
           containerId="multiArea2"
