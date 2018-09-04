@@ -23,19 +23,27 @@ const copy = value => JSON.parse(JSON.stringify(value));
  */
 export default class DraggableMultiAreaList extends React.Component {
   state = {
-    multiArea1: generateStateForContainer(4, 1),
-    multiArea2: generateStateForContainer(4, 5)
+    columns: [
+      {
+        id: 'multiArea1',
+        items: generateStateForContainer(4, 1)
+      },
+      {
+        id: 'multiArea2',
+        items: generateStateForContainer(4, 5)
+      }
+    ]
   }
 
   handleDrop = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
     const nextState = copy(this.state);
-    nextState[removedFromContainerId].splice(removedIndex, 1);
-    nextState[addedToContainerId].splice(addedIndex, 0, payload);
+    nextState.columns.find(li => li.id === removedFromContainerId).items.splice(removedIndex, 1);
+    nextState.columns.find(li => li.id === addedToContainerId).items.splice(addedIndex, 0, payload);
 
     this.setState({...nextState});
   };
 
-  renderItem = ({isPlaceholder, isPreview, id, item, previewStyles}) => {
+  renderCell = ({isPlaceholder, isPreview, id, item, previewStyles}) => {
     const classes = classNames(
       {
         [classNames(defaultDndStyles.itemPlaceholder, styles.itemPlaceholder)]: isPlaceholder,
@@ -51,26 +59,41 @@ export default class DraggableMultiAreaList extends React.Component {
     );
   };
 
+  renderColumn = ({isPlaceholder, isPreview, item, id, previewStyles}) => {
+    const classes = classNames(
+      {
+        [classNames(defaultDndStyles.itemPlaceholder, styles.columnPlaceholder)]: isPlaceholder,
+        [classNames(defaultDndStyles.itemPreview, styles.columnItemPreview)]: isPreview
+      },
+      classNames(defaultDndStyles.item, styles.columnItem)
+    );
+
+    return (
+      <div className={classes} style={previewStyles} data-hook={`column-${id}`}>
+        <SortableList
+          className={classNames(defaultDndStyles.list, styles.column)}
+          dataHook={`column-${id}`}
+          groupName="multi-area"
+          containerId={id}
+          items={item.items}
+          renderItem={this.renderCell}
+          onDrop={this.handleDrop}
+          />
+      </div>
+    );
+  }
+
   render() {
     return (
       <DragDropContextProvider>
         <div className={styles.root}>
           <SortableList
-            className={classNames(defaultDndStyles.list, styles.list)}
-            dataHook="list-multi-area"
-            groupName="multi-area"
-            containerId="multiArea1"
-            items={this.state.multiArea1}
-            renderItem={this.renderItem}
-            onDrop={this.handleDrop}
-            />
-          <SortableList
-            className={classNames(defaultDndStyles.list, styles.list)}
-            dataHook="list-multi-area"
-            groupName="multi-area"
-            containerId="multiArea2"
-            items={this.state.multiArea2}
-            renderItem={this.renderItem}
+            className={classNames(defaultDndStyles.list, styles.table)}
+            contentClassName={styles.content}
+            dataHook="draggable-column-multi-area"
+            containerId="multiArea"
+            items={this.state.columns}
+            renderItem={this.renderColumn}
             onDrop={this.handleDrop}
             />
         </div>

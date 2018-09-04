@@ -5,6 +5,25 @@
   width: 600px;
 }
 
+.table {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.columnPlaceholder {
+  background-color: #fff;
+  div div {
+    visibility: hidden;
+  }
+}
+
 .item {
   border-radius: 8px;
   min-width: 210px;
@@ -24,7 +43,7 @@
   background-color: #eaf7ff;
 }
 
-.list {
+.column {
   min-height: 800px;
   background: #f4fafe;
   border: 1px dashed #7a92a5;
