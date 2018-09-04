@@ -12,7 +12,8 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 
-## next
+
+## 5.1.0 - 2018-09-04
 ### Added
 - `<Input/>`, `<InputWithOptions/>` - support focus(options) [#2146](https://github.com/wix/wix-style-react/pull/2146)
 - `<Sidemenu/>` - allow custom className to be passed to Sidemenu components [#2179](https://github.com/wix/wix-style-react/pull/2179)
@@ -26,10 +27,6 @@ Types of changes:
 - `<InputWithOptions/>` - disable autocomplete by default [2177](https://github.com/wix/wix-style-react/pull/2177)
 - `<Card.Header/>` - fix title & subtitle datahooks [#2176](https://github.com/wix/wix-style-react/pull/2176)
 - `<Input/>` - Fix infinite recursion, when you trigger chrome autofill and you have more then 3 inputs in form on screen [#2180](https://github.com/wix/wix-style-react/pull/2180)
-
-## 5.1.0 - 2018-09-04
-### Added
-- `<AddItem/>` - new themes and functionality [#2074](https://github.com/wix/wix-style-react/pull/2136)
 
 ## 5.0.0 - 2018-08-29
 ### Breaking
