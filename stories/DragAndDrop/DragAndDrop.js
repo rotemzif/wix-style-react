@@ -15,9 +15,14 @@ import SingleAreaListReadme from './SortableList/README.md';
 import MultiAreaList from './SortableList/MultiAreaList';
 import MultiAreaListRaw from '!raw-loader!./SortableList/MultiAreaList';
 
+import DraggableMultiAreaList from './SortableList/DraggableMultiAreaList';
+import DraggableMultiAreaListRaw from '!raw-loader!./SortableList/DraggableMultiAreaList';
+
 import SingleAreaListScssRaw from '!raw-loader!./SortableList/SingleAreaList.scss';
 
 import MultiAreaListScssRaw from '!raw-loader!./SortableList/MultiAreaList.scss';
+
+import DraggableMultiAreaListScssRaw from '!raw-loader!./SortableList/DraggableMultiAreaList.scss';
 
 const SingleAreaListRawCombined = `
 //SingleAreaList.js
@@ -33,6 +38,14 @@ ${MultiAreaListRaw}
 
 //MultiAreaList.scss
 ${MultiAreaListScssRaw}
+`;
+
+const DraggableMultiAreaListRawCombined = `
+//DraggableMultiAreaList.js
+${DraggableMultiAreaListRaw}
+
+//DraggableMultiAreaList.scss
+${DraggableMultiAreaListScssRaw}
 `;
 
 const TODO = `
@@ -66,6 +79,9 @@ storiesOf('WIP', module)
       </CodeExample>
       <CodeExample title="Sortable List - Multi Area" code={MultiAreaListRawCombined}>
         <MultiAreaList/>
+      </CodeExample>
+      <CodeExample title="Sortable List - Draggable Multi Area" code={DraggableMultiAreaListRawCombined}>
+        <DraggableMultiAreaList/>
       </CodeExample>
       <Markdown source={TODO}/>
     </div>
