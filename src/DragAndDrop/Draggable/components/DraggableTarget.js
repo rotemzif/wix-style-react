@@ -33,15 +33,17 @@ const target = {
     if (!component || (hoverIndex === dragIndex && isSameContainer)) {
       return;
     }
-
     /** check that we hover at least half of item, if no - do nothing */
-    const {hoverClientY, hoverMiddleY} = dragCoordinates({monitor, component});
-    if (isSameContainer && dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
-    if (isSameContainer && dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-      return;
-    }
+    const {hoverClientY, hoverMiddleY, hoverMiddleX, hoverClientX} = dragCoordinates({monitor, component});
+    // TODO implement hoverMiddleX, hoverClientX
+    // if (isSameContainer && dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+    //   console.log('1');
+    //   return;
+    // }
+    // if (isSameContainer && dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+    //   console.log('2');
+    //   return;
+    // }
 
     /**
       if item is from same group but different container, thats mean that we move item

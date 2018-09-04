@@ -37,8 +37,13 @@ export default class DraggableMultiAreaList extends React.Component {
 
   handleDrop = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
     const nextState = copy(this.state);
-    nextState.columns.find(li => li.id === removedFromContainerId).items.splice(removedIndex, 1);
-    nextState.columns.find(li => li.id === addedToContainerId).items.splice(addedIndex, 0, payload);
+    if (removedFromContainerId === addedToContainerId && addedToContainerId === 'multiArea') {
+      nextState.columns.splice(removedIndex, 1);
+      nextState.columns.splice(addedIndex, 0, payload);
+    } else {
+      nextState.columns.find(li => li.id === removedFromContainerId).items.splice(removedIndex, 1);
+      nextState.columns.find(li => li.id === addedToContainerId).items.splice(addedIndex, 0, payload);
+    }
 
     this.setState({...nextState});
   };

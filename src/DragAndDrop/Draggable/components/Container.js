@@ -26,6 +26,9 @@ const target = {
     };
   },
   hover(props, monitor, component) {
+    if (true) {
+      return;
+    }
     /**
       in this block we check that user dragging item over container empty pars
       and not over other draggable(sortable items)
