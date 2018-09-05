@@ -50,7 +50,7 @@ export default class SortableList extends WixComponent {
   };
 
   render() {
-    const {className, groupName} = this.props;
+    const {className, contentClassName, groupName} = this.props;
     const common = {
       groupName,
       containerId: this.props.containerId,
@@ -63,7 +63,7 @@ export default class SortableList extends WixComponent {
         total={this.state.items.length}
         {...common}
         >
-        <div>
+        <div className={contentClassName}>
           {this.state.items.map((item, index) => (
             <Draggable
               {...common}
@@ -88,5 +88,6 @@ SortableList.propTypes = {
   ...Draggable.propTypes,
   /** list of items with {id: any} */
   items: PropTypes.array,
-  className: PropTypes.string
+  className: PropTypes.string,
+  contentClassName: PropTypes.string
 };
