@@ -30,7 +30,7 @@ const target = {
     };
   },
   hover(props, monitor, component) {
-    if (true) {
+    if (!component) {
       return;
     }
     /**
