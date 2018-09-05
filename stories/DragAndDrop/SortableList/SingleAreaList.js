@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import SortableList from 'wix-style-react/SortableList';
 import DragAndDropLarge from 'wix-style-react/new-icons/system/DragAndDropLarge';
-import DragDropContextProvider from 'wix-style-react/DragDropContextProvider';
 import styles from './SingleAreaList.scss';
 
 /**
@@ -62,16 +61,14 @@ export default class SingleAreaList extends React.Component {
 
   render() {
     return (
-      <DragDropContextProvider>
-        <SortableList
-          containerId="single-area-1"
-          dataHook="list-single-area"
-          withHandle
-          items={this.state.items}
-          renderItem={this.renderItem}
-          onDrop={this.handleDrop}
-          />
-      </DragDropContextProvider>
+      <SortableList
+        containerId="single-area-1"
+        dataHook="list-single-area"
+        withHandle
+        items={this.state.items}
+        renderItem={this.renderItem}
+        onDrop={this.handleDrop}
+        />
     );
   }
 }

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import {Draggable} from '../DragAndDrop/Draggable';
 import Container from '../DragAndDrop/Draggable/components/Container';
+import DragDropContextProvider from '../DragDropContextProvider';
 
 const copy = value => JSON.parse(JSON.stringify(value));
 
@@ -58,26 +59,28 @@ export default class SortableList extends WixComponent {
       onMoveOut: this.handleMoveOut
     };
     return (
-      <Container
-        className={className}
-        total={this.state.items.length}
-        {...common}
-        >
-        <div className={contentClassName}>
-          {this.state.items.map((item, index) => (
-            <Draggable
-              {...common}
-              key={`${item.id}-${index}-${this.props.containerId}`}
-              id={item.id}
-              index={index}
-              item={item}
-              renderItem={this.props.renderItem}
-              withHandle={this.props.withHandle}
-              onDrop={this.handleDrop}
-              />
-          ))}
-        </div>
-      </Container>
+      <DragDropContextProvider>
+        <Container
+          className={className}
+          total={this.state.items.length}
+          {...common}
+          >
+          <div className={contentClassName}>
+            {this.state.items.map((item, index) => (
+              <Draggable
+                {...common}
+                key={`${item.id}-${index}-${this.props.containerId}`}
+                id={item.id}
+                index={index}
+                item={item}
+                renderItem={this.props.renderItem}
+                withHandle={this.props.withHandle}
+                onDrop={this.handleDrop}
+                />
+            ))}
+          </div>
+        </Container>
+      </DragDropContextProvider>
     );
   }
 }
