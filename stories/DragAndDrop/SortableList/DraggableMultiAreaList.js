@@ -43,7 +43,7 @@ export default class DraggableMultiAreaList extends React.Component {
     this.setState({...nextState});
   };
 
-  handleDropColumn = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
+  handleDropColumn = ({removedIndex, addedIndex, payload}) => {
     const nextState = copy(this.state);
     nextState.columns.splice(removedIndex, 1);
     nextState.columns.splice(addedIndex, 0, payload);
