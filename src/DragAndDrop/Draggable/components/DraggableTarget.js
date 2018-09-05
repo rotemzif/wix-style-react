@@ -3,7 +3,6 @@ import WixComponent from '../../../BaseComponents/WixComponent';
 import PropTypes from 'prop-types';
 import {DropTarget} from 'react-dnd';
 
-import {dragCoordinates} from './../DragUtils';
 import {ItemTypes} from './../types';
 
 /* eslint-disable new-cap */
@@ -37,18 +36,6 @@ const target = {
     if (!component || (hoverIndex === dragIndex && isSameContainer)) {
       return;
     }
-    /** check that we hover at least half of item, if no - do nothing */
-    const {hoverClientY, hoverMiddleY, hoverMiddleX, hoverClientX} = dragCoordinates({monitor, component});
-    // TODO implement hoverMiddleX, hoverClientX
-    // if (isSameContainer && dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-    //   console.log('1');
-    //   return;
-    // }
-    // if (isSameContainer && dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-    //   console.log('2');
-    //   return;
-    // }
-
     /**
       if item is from same group but different container, thats mean that we move item
       from one container to another, and we need to move out item from previous container
