@@ -9,7 +9,7 @@ const generateStateForContainer = (length, startIndex) => {
   const res = [];
   for (let i = 0; i < length; i++) {
     res.push({
-      id: 'item' + (startIndex + i),
+      id: 'item-new' + (startIndex + i),
       text: `Drag object ${startIndex + i}`
     });
   }
@@ -35,15 +35,18 @@ export default class DraggableMultiAreaList extends React.Component {
     ]
   }
 
-  handleDrop = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
+  handleDropCell = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
     const nextState = copy(this.state);
-    if (removedFromContainerId === addedToContainerId && addedToContainerId === 'multiArea') {
-      nextState.columns.splice(removedIndex, 1);
-      nextState.columns.splice(addedIndex, 0, payload);
-    } else {
-      nextState.columns.find(li => li.id === removedFromContainerId).items.splice(removedIndex, 1);
-      nextState.columns.find(li => li.id === addedToContainerId).items.splice(addedIndex, 0, payload);
-    }
+    nextState.columns.find(li => li.id === removedFromContainerId).items.splice(removedIndex, 1);
+    nextState.columns.find(li => li.id === addedToContainerId).items.splice(addedIndex, 0, payload);
+
+    this.setState({...nextState});
+  };
+
+  handleDropColumn = ({removedIndex, addedIndex, removedFromContainerId, addedToContainerId, payload}) => {
+    const nextState = copy(this.state);
+    nextState.columns.splice(removedIndex, 1);
+    nextState.columns.splice(addedIndex, 0, payload);
 
     this.setState({...nextState});
   };
@@ -82,7 +85,7 @@ export default class DraggableMultiAreaList extends React.Component {
           containerId={id}
           items={item.items}
           renderItem={this.renderCell}
-          onDrop={this.handleDrop}
+          onDrop={this.handleDropCell}
           />
       </div>
     );
@@ -99,7 +102,7 @@ export default class DraggableMultiAreaList extends React.Component {
             containerId="multiArea"
             items={this.state.columns}
             renderItem={this.renderColumn}
-            onDrop={this.handleDrop}
+            onDrop={this.handleDropColumn}
             />
         </div>
       </DragDropContextProvider>

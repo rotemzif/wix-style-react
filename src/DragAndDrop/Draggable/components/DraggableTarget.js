@@ -9,7 +9,11 @@ import {ItemTypes} from './../types';
 /* eslint-disable new-cap */
 
 const target = {
-  drop(props) {
+  drop(props, monitor) {
+    /** if drop was already done(on child), we skip this drop call */
+    if (monitor.getDropResult()) {
+      return;
+    }
     /**
       after drop released we send containerId and index of dropped item to dropResult,
       so endDrag inside of drag source can use this data
