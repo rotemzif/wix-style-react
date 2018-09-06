@@ -11,14 +11,15 @@ import Typography from '../Typography';
   */
 class Tag extends WixComponent {
   render() {
-    const {id, children, thumb, removable, onClick, onRemove, size, wrap, disabled, theme, maxWidth} = this.props;
+    const {id, children, thumb, removable, onClick, onRemove, size, wrap, disabled, theme, maxWidth, className} = this.props;
 
-    const className = classNames({
+    const classes = classNames({
       [styles.tag]: true,
       [styles.large]: size === 'large',
       [styles.tagWrap]: wrap,
       [styles.disabled]: disabled,
-      [styles[`${theme}Theme`]]: true
+      [styles[`${theme}Theme`]]: true,
+      [className]: className
     });
 
     const innerClassName = classNames({
@@ -31,7 +32,7 @@ class Tag extends WixComponent {
     return (
       <span
         data-hook="tag"
-        className={className}
+        className={classes}
         disabled={disabled}
         id={id}
         title={title}
@@ -85,7 +86,16 @@ Tag.propTypes = {
   maxWidth: PropTypes.number,
 
   /** Whether to display ellipsis (...) for long content */
-  wrap: PropTypes.bool
+  wrap: PropTypes.bool,
+
+  /** Whether this tag is a placeholder for another  */
+  isPlaceholder: PropTypes.bool,
+
+  /** Whether this tag is being dragged  */
+  isPreview: PropTypes.bool,
+
+  /* Standard className which has preference over any other intrinsic classes  */
+  className: PropTypes.string
 };
 
 Tag.defaultProps = {

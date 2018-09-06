@@ -72,7 +72,10 @@ describe('MultiSelect', () => {
 
   it('should not lose Focus or close the list on selection with tab press', () => {
     const onSelect = jest.fn();
-    const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} onSelect={onSelect}/>);
+    const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect
+      options={options}
+      onSelect={onSelect}
+      />);
     driver.focus();
     driver.pressDownKey();
     driver.pressTabKey();
@@ -85,7 +88,10 @@ describe('MultiSelect', () => {
     const onSelect = jest.fn();
     const onChange = jest.fn();
     const {driver, inputDriver, dropdownLayoutDriver} = createDriver(
-      <MultiSelect value={options[0].value} options={options} delimiters={[',']} onSelect={onSelect} onChange={onChange}/>
+      <MultiSelect
+        value={options[0].value} options={options} delimiters={[',']} onSelect={onSelect}
+        onChange={onChange}
+        />
     );
     driver.focus();
     inputDriver.trigger('keyDown', {key: ','});
@@ -137,7 +143,10 @@ describe('MultiSelect', () => {
     const onSelect = jest.fn();
     const onChange = jest.fn();
     const {driver, inputDriver, dropdownLayoutDriver} = createDriver(
-      <MultiSelect value={options[0].value} options={options} delimiters={[';']} onSelect={onSelect} onChange={onChange}/>
+      <MultiSelect
+        value={options[0].value} options={options} delimiters={[';']} onSelect={onSelect}
+        onChange={onChange}
+        />
     );
     driver.focus();
     inputDriver.trigger('keyDown', {key: ';'});
@@ -234,7 +243,10 @@ describe('MultiSelect', () => {
   describe('onManuallyCalled', () => {
     it('should be called after Enter is pressed and input is not empty', () => {
       const onManuallyInput = jest.fn();
-      const {driver, inputDriver} = createDriver(<MultiSelect options={options} onManuallyInput={onManuallyInput} value="custom value"/>);
+      const {driver, inputDriver} = createDriver(<MultiSelect
+        options={options} onManuallyInput={onManuallyInput}
+        value="custom value"
+        />);
 
       driver.focus();
       inputDriver.enterText('custom value');
@@ -245,7 +257,10 @@ describe('MultiSelect', () => {
 
     it('should be called after delimiter is pressed and input is not empty', () => {
       const onManuallyInput = jest.fn();
-      const {driver, inputDriver} = createDriver(<MultiSelect options={options} onManuallyInput={onManuallyInput} value="custom value"/>);
+      const {driver, inputDriver} = createDriver(<MultiSelect
+        options={options} onManuallyInput={onManuallyInput}
+        value="custom value"
+        />);
 
       driver.focus();
       inputDriver.enterText('custom value');
@@ -329,12 +344,43 @@ describe('MultiSelect', () => {
     expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
   });
 
+  // TODO: dnd testkit is missing - once it's available, this test has to be completed and run
+  xit('should allow reordering the tags', () => {
+    const tags = [
+      {label: 'Alabama', id: 'Alabama'},
+      {label: 'California2', id: 'California2'},
+      {label: 'California3', id: 'California3'},
+      {label: 'California4', id: 'California4'}
+    ];
+    const onReorder = jest.fn();
+    const {driver: {getTagLabelAt, getTagDriverByTagId}} = createDriver(
+      <MultiSelect
+        draggable
+        options={options}
+        tags={tags}
+        onReorder={onReorder}
+        autoFocus
+        />
+    );
+    getTagDriverByTagId('Alabama').dragTo(getTagDriverByTagId('California3').element);
+    expect(onReorder).toBeCalled();
+
+    expect(getTagLabelAt(0)).toBe('California3');
+    expect(getTagLabelAt(2)).toBe('Alabama');
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
       const dataHook = 'myDataHook';
       const tags = [{id: 'Alabama', label: 'Alabama'}];
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><MultiSelect dataHook={dataHook} tags={tags}/></div>));
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+        <div>
+          <MultiSelect
+            dataHook={dataHook}
+            tags={tags}
+            />
+        </div>));
       const multiSelectTestkit = multiSelectTestkitFactory({wrapper, dataHook});
       expect(multiSelectTestkit.driver.exists()).toBeTruthy();
       expect(multiSelectTestkit.inputDriver.exists()).toBeTruthy();

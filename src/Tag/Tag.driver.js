@@ -10,6 +10,7 @@ const tagDriverFactory = ({element, wrapper, component}) => {
   const contentWithoutThumb = element.querySelector('span');
 
   return {
+    element: () => element,
     exists: () => !!element,
     isLarge: () => isClassExists(element, 'large'),
     isStandardTheme: () => isClassExists(element, 'standardTheme'),

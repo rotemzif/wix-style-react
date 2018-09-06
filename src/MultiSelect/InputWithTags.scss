@@ -44,7 +44,7 @@
   height: 0;
 }
 
-.tagsContainer {
+.inputWithTagsContainer {
   width: 100%;
   @include FontThin();
   border: 1px solid $B30;
@@ -85,4 +85,26 @@
 
 .hasHover:not(.hasFocus) {
   background: $B50;
+}
+
+.tagsContainer {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+
+  .draggedTag {
+    background-color: transparentize($B30, 0.2);
+  }
+
+  .draggedTagPlaceholder {
+    background-color: $D60;
+
+    &:hover {
+      background-color: $D60
+    }
+
+    * {
+      visibility: hidden;
+    }
+  }
 }

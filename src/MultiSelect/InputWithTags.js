@@ -7,6 +7,8 @@ import styles from './InputWithTags.scss';
 import omit from 'omit';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
+import SortableList from '../SortableList/SortableList';
+import defaultDndStyles from '../../dnd-styles';
 
 class InputWithTags extends React.Component {
   constructor(props) {
@@ -14,6 +16,8 @@ class InputWithTags extends React.Component {
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
     this.select = this.select.bind(this);
+    this.handleHover = this.handleHover.bind(this);
+    this.renderReorderableTag = this.renderReorderableTag.bind(this);
 
     this.state = {inputValue: '', inputHasFocus: false, hasHover: false};
   }
@@ -52,6 +56,7 @@ class InputWithTags extends React.Component {
     const {
       tags,
       onRemoveTag,
+      onReorder,
       placeholder,
       error,
       errorMessage,
@@ -65,7 +70,7 @@ class InputWithTags extends React.Component {
     const isSelectMode = mode === 'select';
 
     const className = classNames({
-      [styles.tagsContainer]: true,
+      [styles.inputWithTagsContainer]: true,
       [styles.disabled]: disabled,
       [styles.error]: error,
       [styles.empty]: !tags.length,
@@ -99,18 +104,28 @@ class InputWithTags extends React.Component {
       rowMultiplier = 35;
     }
     const maxHeight = this.props.maxHeight || this.props.maxNumRows * rowMultiplier || 'initial';
-
     return (
       <div
         className={className}
         style={{maxHeight}}
         onClick={() => this.handleClick()}
-        onMouseOver={() => this.handleHover()}
-        onMouseOut={() => this.handleHover()}
+        onMouseOver={onReorder ? null : this.handleHover}
+        onMouseOut={onReorder ? null : this.handleHover}
         data-hook={this.props.dataHook}
         >
-        {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
-        <span className={classNames(styles.input, {[styles.emptyInput]: !tags.length})} data-hook="inner-input-with-tags">
+        {onReorder ?
+          <SortableList
+            contentClassName={styles.tagsContainer}
+            items={tags}
+            onDrop={onReorder}
+            renderItem={this.renderReorderableTag}
+            /> : tags.map(({label, ...rest}) =>
+              <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)
+        }
+        <span
+          className={classNames(styles.input, {[styles.emptyInput]: !tags.length})}
+          data-hook="inner-input-with-tags"
+          >
           <div className={styles.hiddenDiv} style={{fontSize}}>
             {this.state.inputValue}
           </div>
@@ -150,6 +165,30 @@ class InputWithTags extends React.Component {
     );
   }
 
+  renderReorderableTag({item: {id, label, ...itemProps}, previewStyles, isPlaceholder, isPreview, ...rest}) {
+    const {onRemoveTag, disabled} = this.props;
+    const classes = classNames({
+      [defaultDndStyles.itemPlaceholder]: isPlaceholder,
+      [styles.draggedTagPlaceholder]: isPlaceholder,
+      [defaultDndStyles.itemPreview]: isPreview,
+      [styles.draggedTag]: isPreview
+    });
+
+    return (
+      <div style={previewStyles}>
+        <Tag
+          id={id} disabled={disabled}
+          className={classes}
+          isPlaceholder={isPlaceholder}
+          onRemove={onRemoveTag} {...itemProps}
+          {...rest}
+          >
+          {label}
+        </Tag>
+      </div>
+    );
+  }
+
   focus() {
     this.input.focus();
   }
@@ -172,6 +211,7 @@ class InputWithTags extends React.Component {
 InputWithTags.propTypes = {
   onRemoveTag: PropTypes.func,
   tags: PropTypes.array,
+  onReorder: PropTypes.func,
   maxHeight: PropTypes.string,
   maxNumRows: PropTypes.number,
   onKeyDown: PropTypes.func,
@@ -190,7 +230,8 @@ InputWithTags.propTypes = {
 };
 
 InputWithTags.defaultProps = {
-  onRemoveTag: () => {},
+  onRemoveTag: () => {
+  },
   tags: [],
   placeholder: '',
   delimiters: []

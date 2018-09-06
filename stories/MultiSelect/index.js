@@ -17,6 +17,8 @@ import ExampleReadOnly from './ExampleReadOnly';
 import ExampleReadOnlyRaw from '!raw-loader!./ExampleReadOnly';
 import ExampleReadOnlyWithError from './ExampleReadOnlyWithError';
 import ExampleReadOnlyWithErrorRaw from '!raw-loader!./ExampleReadOnlyWithError';
+import ExampleReorderable from './ExampleReorderable';
+import ExampleReorderableRaw from '!raw-loader!./ExampleReorderable';
 
 storiesOf('3. Inputs', module)
   .add('3.8 Tags', () => (
@@ -28,6 +30,12 @@ storiesOf('3. Inputs', module)
         <CodeExample title="Standard" code={ExampleStandardRaw}>
           <div style={{maxWidth: 720}}>
             <ExampleStandard/>
+          </div>
+        </CodeExample>
+
+        <CodeExample title="Reorderable" code={ExampleReorderableRaw}>
+          <div style={{maxWidth: 720}}>
+            <ExampleReorderable/>
           </div>
         </CodeExample>
 
