@@ -33,9 +33,9 @@ export class ActionCellPrimarySecondaryExample extends React.Component {
           showSelection
           onRowClick={primaryAction}
           columns={[
-            {title: 'Name', render: row => <span>{row.name}</span>, width: '30%', minWidth: '150px'},
-            {title: 'SKU', render: row => <span>{row.SKU}</span>, width: '20%', minWidth: '100px'},
-            {title: 'Price', render: row => <span>{row.price}</span>, width: '20%', minWidth: '100px'},
+            {title: 'Name', render: row => <span>{row.name}</span>, width: '20%', minWidth: '150px'},
+            {title: 'SKU', render: row => <span>{row.SKU}</span>, width: '10%', minWidth: '100px'},
+            {title: 'Price', render: row => <span>{row.price}</span>, width: '10%', minWidth: '100px'},
             {title: 'Inventory', render: row => <span>{row.inventory}</span>, width: '20%', minWidth: '100px'},
             {
               title: '',
