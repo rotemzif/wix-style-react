@@ -16,7 +16,8 @@ export default class TooltipForEyesOnly extends Component {
     super();
     this.state = {
       content: SHORT_CONTENT,
-      style: {}
+      style: {},
+      popover: false
     };
   }
 
@@ -30,16 +31,22 @@ export default class TooltipForEyesOnly extends Component {
           active
           shouldUpdatePosition
           showImmediately
+          popover={this.state.popover}
           showTrigger={'custom'}
           hideTrigger={'custom'}
           appendToParent
           content={<div data-hook="tooltip-e2e-tooltip">{content}</div>}
           >
-          <div style={style}>My Father is a Tooltip</div>
+          <div style={style} data-hook="tooltip-anchor">My Father is a Tooltip</div>
         </Tooltip>
-        <Button onClick={() => this._onClick()}>Change State</Button>
+        <Button dataHook="long-text-button" onClick={() => this._onClick()}>Change State</Button>
+        <Button dataHook="popover-button" onClick={() => this.togglePopover()}>Toggle popover</Button>
       </div>
     ) : null;
+  }
+
+  togglePopover() {
+    this.setState({popover: !this.state.popover});
   }
 
   _onClick() {
