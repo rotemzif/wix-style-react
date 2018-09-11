@@ -16,6 +16,7 @@ class ExampleTooltip extends Component {
     text: 'Tooltip appears on hover',
     size: 'normal',
     maxWidth: '',
+    popover: false,
     onShow: () => console.log('onShow triggered'),
     onHide: () => console.log('onHide triggered'),
     onShowText: 'onShow triggered',
@@ -134,6 +135,16 @@ class ExampleTooltip extends Component {
           </div>
 
           <div className={styles.option}>
+            <Label>popover</Label>
+            <div className={styles.flex}>
+              <ToggleSwitch
+                checked={this.state.popover}
+                onChange={() => this.setState({popover: !this.state.popover})}
+                />
+            </div>
+          </div>
+
+          <div className={styles.option}>
             <Label>Move By</Label>
             <div className={styles.flex}>
               <Label>x
@@ -164,6 +175,7 @@ class ExampleTooltip extends Component {
               type="tooltip"
               onChange={this.props.onChange}
               size={this.state.size}
+              popover={this.state.popover}
               maxWidth={this.state.maxWidth}
               onShow={() => console.log(this.state.onShowText)}
               onHide={() => console.log(this.state.onHideText)}

@@ -9,6 +9,7 @@ export class Template extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    popover: PropTypes.bool,
     theme: Tooltip.propTypes.theme,
     placement: Tooltip.propTypes.placement,
     tooltipContent: Tooltip.propTypes.content,
@@ -42,6 +43,7 @@ export class Template extends Component {
   getComponent() {
     return (
       <Tooltip
+        popover={this.props.popover}
         placement={this.props.placement}
         alignment="center"
         content={this.props.tooltipContent}
