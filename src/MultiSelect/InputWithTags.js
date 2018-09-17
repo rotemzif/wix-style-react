@@ -8,7 +8,7 @@ import omit from 'omit';
 import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import SortableList from '../SortableList/SortableList';
-import defaultDndStyles from '../../dnd-styles';
+import defaultDndStyles from '../dnd-styles';
 
 class InputWithTags extends React.Component {
   constructor(props) {
