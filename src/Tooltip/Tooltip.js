@@ -14,6 +14,7 @@ const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
 const createAThrottledOptimizedFunction = cb => () => window.requestAnimationFrame(throttle(cb, 16));
 
 const popoverConfig = {
+  showArrow: false,
   theme: 'light',
   padding: 0,
   overflow: 'hidden',
@@ -226,6 +227,7 @@ class Tooltip extends WixComponent {
       const overflow = this.props.popover ? popoverConfig.overflow : this.props.overflow;
       const padding = this.props.popover ? popoverConfig.padding : this.props.padding;
       const theme = this.props.popover ? popoverConfig.theme : this.props.theme;
+      const showArrow = this.props.popover ? popoverConfig.showArrow : this.props.showArrow;
 
       const arrowPlacement = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
       const position = this.props.relative ? 'relative' : 'absolute';
@@ -254,7 +256,7 @@ class Tooltip extends WixComponent {
           textAlign={this.props.textAlign}
           lineHeight={this.props.lineHeight}
           color={this.props.color}
-          showArrow={this.props.showArrow}
+          showArrow={showArrow}
           >
           {this.props.content}
         </TooltipContent>);
