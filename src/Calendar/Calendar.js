@@ -5,6 +5,7 @@ import DayPicker from 'react-day-picker/DayPicker';
 import addMonths from 'date-fns/add_months';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
+import classNames from 'classnames';
 
 import WixComponent from '../BaseComponents/WixComponent';
 import localeUtilsFactory from '../LocaleUtils';
@@ -137,7 +138,7 @@ export default class Calendar extends WixComponent {
 
   render() {
     return (
-      <div className={`${styles.calendar} ${this.props.className}`}>
+      <div className={classNames(styles.calendar, this.props.className)}>
         <DayPicker
           ref={this._focusSelectedDay}
           {...this._createDayPickerProps()}

@@ -7,15 +7,14 @@
 
 .tooltip {
   @include FontRoman;
+  @include popoverTheme;
 
   position: relative;
   display: inline-block;
-  border-radius: 8px;
   padding: 12px 24px;
   box-sizing: border-box;
   font-size: 14px;
   line-height: 1.29;
-  box-shadow: $Shadow30;
 
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased;

@@ -7,8 +7,7 @@
 .date-picker-calendar {
   z-index: 1;
   :global .DayPicker {
-    box-shadow: $Shadow30;
-    border-radius: 8px;
+    @include popoverTheme;
   }
 }
 
