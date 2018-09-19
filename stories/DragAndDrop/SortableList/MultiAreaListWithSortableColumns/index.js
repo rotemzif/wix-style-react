@@ -25,7 +25,7 @@ export default () => (
       MultiAreaListWithSortableColumns <Badge skin="danger">Under development</Badge>
     </Heading>
     <Markdown source={MultiAreaListWithSortableColumnsReadme}/>
-    <CodeExample title="Sortable List - Single Area" code={MultiAreaListWithSortableColumnsRawCombined}>
+    <CodeExample title="Sortable List - Draggable columns" code={MultiAreaListWithSortableColumnsRawCombined}>
       <MultiAreaListWithSortableColumns/>
     </CodeExample>
   </div>
