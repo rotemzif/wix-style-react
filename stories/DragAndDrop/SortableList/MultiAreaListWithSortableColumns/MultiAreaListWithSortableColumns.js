@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import SortableList from 'wix-style-react/SortableList';
 import defaultDndStyles from 'wix-style-react/dnd-styles';
 import DragDropContextProvider from 'wix-style-react/DragDropContextProvider';
-import styles from './DraggableMultiAreaList.scss';
+import styles from './MultiAreaListWithSortableColumns.scss';
 
 const generateStateForContainer = (length, startIndex) => {
   const res = [];
@@ -21,7 +21,7 @@ const copy = value => JSON.parse(JSON.stringify(value));
 /**
  * An example multi list dnd.
  */
-export default class DraggableMultiAreaList extends React.Component {
+export default class MultiAreaListWithSortableColumns extends React.Component {
   state = {
     columns: [
       {
