@@ -12,7 +12,6 @@ import SingleAreaListRaw from '!raw-loader!./SingleAreaList';
 import SingleAreaListScssRaw from '!raw-loader!./SingleAreaList.scss';
 
 const SingleAreaListRawCombined = `
-//IntroductionExample.js
 ${SingleAreaListRaw}
 
 //IntroductionExample.scss
@@ -25,8 +24,11 @@ export default () => (
       SingleAreaList <Badge skin="danger">Under development</Badge>
     </Heading>
     <Markdown source={SingleAreaListReadme}/>
-    <CodeExample title="Sortable List - Single Area" code={SingleAreaListRawCombined}>
+    <CodeExample title="SortableList" code={SingleAreaListRawCombined}>
       <SingleAreaList/>
+    </CodeExample>
+    <CodeExample title="SortableList with handle" code={SingleAreaListRawCombined}>
+      <SingleAreaList withHandle/>
     </CodeExample>
   </div>
 );

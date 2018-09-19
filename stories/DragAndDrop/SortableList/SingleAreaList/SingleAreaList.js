@@ -1,33 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import SortableList from 'wix-style-react/SortableList';
-import DragAndDropLarge from 'wix-style-react/new-icons/system/DragAndDropLarge';
+import defaultDndStyles from 'wix-style-react/dnd-styles';
+
 import styles from './SingleAreaList.scss';
 
-/**
- * An example for a simple drag and drop list component.
- */
+const generateId = () => Math.floor((Math.random() * 100000));
+
 export default class SingleAreaList extends React.Component {
-  constructor() {
-    super();
-    this.state = {items: [
+  static propTypes = {
+    withHandle: PropTypes.bool
+  }
+  state = {
+    items: [
       {
-        id: 'a',
+        id: generateId(),
         text: 'Item 1'
       },
       {
-        id: 'b',
+        id: generateId(),
         text: 'Item 2'
       },
       {
-        id: 'c',
+        id: generateId(),
         text: 'Item 3'
       },
       {
-        id: 'd',
+        id: generateId(),
         text: 'Item 4'
+      },
+      {
+        id: generateId(),
+        text: 'Item 5'
       }
-    ]};
+    ]
   }
 
   handleDrop = ({removedIndex, addedIndex}) => {
@@ -38,37 +46,47 @@ export default class SingleAreaList extends React.Component {
     });
   };
 
+  renderHandle({connectHandle, id, isPlaceholder}) {
+    return connectHandle(
+      <div className={styles.handle} style={{opacity: isPlaceholder ? 0 : 1}} data-hook={`card-${id}-handle`}>
+        Drag Handle
+      </div>
+    );
+  }
 
-  renderItem = ({isPlaceholder, isPreview, id, connectHandle, previewStyles, item}) => {
+
+  renderItem = ({isPlaceholder, isPreview, id, connectHandle, item}) => {
     const classes = classNames(
-      styles.card,
+      classNames(defaultDndStyles.item, styles.item),
       {
-        [styles.placeholder]: isPlaceholder,
-        [styles.preview]: isPreview
+        [classNames(defaultDndStyles.itemPlaceholder, styles.placeholder)]: isPlaceholder,
+        [classNames(defaultDndStyles.itemPreview, styles.preview)]: isPreview
       });
 
     return (
-      <div className={classes} style={previewStyles} data-hook={`item-${id}`}>
-        {connectHandle(
-          <div className={styles.handle} data-hook={`card-${id}-handle`}>
-            <DragAndDropLarge/>
-          </div>
-        )}
+      <div className={classes} data-hook={`item-${id}`}>
         {item.text}
+        {
+          this.props.withHandle ? this.renderHandle({connectHandle, id, isPlaceholder}) : null
+        }
       </div>
     );
   };
 
   render() {
     return (
-      <SortableList
-        containerId="single-area-1"
-        dataHook="list-single-area"
-        withHandle
-        items={this.state.items}
-        renderItem={this.renderItem}
-        onDrop={this.handleDrop}
-        />
+      <div className={styles.root}>
+        <h3 className={styles.title}>Draggable Area</h3>
+        <SortableList
+          withHandle={this.props.withHandle}
+          className={styles.sortableList}
+          containerId="single-area-1"
+          dataHook="list-single-area"
+          items={this.state.items}
+          renderItem={this.renderItem}
+          onDrop={this.handleDrop}
+          />
+      </div>
     );
   }
 }
