@@ -389,12 +389,14 @@ describe('Tooltip', () => {
       });
     });
 
-    it('should not have a padding and should have overflow: hidden', () => {
+    it('should display right theme', () => {
       const driver = createDriver(<Tooltip popover {..._props}>{children}</Tooltip>);
       driver.click();
       return resolveIn(30).then(() => {
-        expect(driver.getPadding()).toBe('0px');
-        expect(driver.getOverflow()).toBe('hidden');
+        const content = driver.getTooltipContent();
+        const styles = content.style._values;
+        expect(styles.padding).toBe('0px');
+        expect(styles.overflow).toBe('hidden');
       });
     });
   });
