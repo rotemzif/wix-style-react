@@ -25,4 +25,6 @@ You can read details [here](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory
 We provide some general styles. You can read more [here](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=Styles&full=0&addons=0&stories=1&panelRight=0)
 
 # TODO
+  * testkits
+  * guidelines about how to test
   * d&d for touch devices
