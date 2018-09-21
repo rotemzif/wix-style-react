@@ -16,7 +16,6 @@ const createAThrottledOptimizedFunction = cb => () => window.requestAnimationFra
 const popoverConfig = {
   contentClassName: styles.popoverTooltipContent,
   theme: 'light',
-  padding: 0,
   showTrigger: 'click',
   hideTrigger: 'click'
 };
@@ -221,9 +220,7 @@ class Tooltip extends WixComponent {
   renderTooltipIntoContainer = () => {
     if (this._mountNode && this.state.visible) {
       const contentClassName = this.props.popover ? popoverConfig.contentClassName : '';
-      const padding = this.props.popover ? this.props.padding || popoverConfig.padding : this.props.padding;
       const theme = this.props.popover ? popoverConfig.theme : this.props.theme;
-      const showArrow = this.props.popover ? popoverConfig.showArrow : this.props.showArrow;
 
       const arrowPlacement = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
       const position = this.props.relative ? 'relative' : 'absolute';
@@ -246,13 +243,13 @@ class Tooltip extends WixComponent {
           style={{zIndex: this.props.zIndex, position}}
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
-          padding={padding}
+          padding={this.props.padding}
           minWidth={this.props.minWidth}
           size={this.props.size}
           textAlign={this.props.textAlign}
           lineHeight={this.props.lineHeight}
           color={this.props.color}
-          showArrow={showArrow}
+          showArrow={this.props.showArrow}
           >
           {this.props.content}
         </TooltipContent>);
