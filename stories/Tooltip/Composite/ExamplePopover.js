@@ -63,7 +63,7 @@ class ExamplePopover extends Component {
           <div className={styles.exampleWrapper}>
             <Template
               type="popover"
-              padding={24}
+              padding={12}
               placement={this.state.placement}
               tooltipContent={this.state.text}
               maxWidth={this.state.maxWidth}
