@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import SortableList from 'wix-style-react/SortableList';
-import DragAndDropLarge from 'wix-style-react/new-icons/system/DragAndDropLarge';
 import styles from './IntroductionExample.scss';
 
 /**
@@ -39,7 +38,7 @@ export default class IntroductionExample extends React.Component {
   };
 
 
-  renderItem = ({isPlaceholder, isPreview, id, connectHandle, previewStyles, item}) => {
+  renderItem = ({isPlaceholder, isPreview, id, previewStyles, item}) => {
     const classes = classNames(
       styles.card,
       {
@@ -49,11 +48,6 @@ export default class IntroductionExample extends React.Component {
 
     return (
       <div className={classes} style={previewStyles} data-hook={`item-${id}`}>
-        {connectHandle(
-          <div className={styles.handle} data-hook={`card-${id}-handle`}>
-            <DragAndDropLarge/>
-          </div>
-        )}
         {item.text}
       </div>
     );
@@ -64,7 +58,6 @@ export default class IntroductionExample extends React.Component {
       <SortableList
         containerId="single-area-1"
         dataHook="list-single-area"
-        withHandle
         items={this.state.items}
         renderItem={this.renderItem}
         onDrop={this.handleDrop}

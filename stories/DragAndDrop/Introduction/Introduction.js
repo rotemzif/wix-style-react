@@ -24,9 +24,9 @@ export default () => (
     <Heading>
       Introduction <Badge skin="danger">Under development</Badge>
     </Heading>
-    <Markdown source={Introduction}/>
     <CodeExample title="Sortable List - Single Area" code={IntroductionExampleRawCombined}>
       <IntroductionExample/>
     </CodeExample>
+    <Markdown source={Introduction}/>
   </div>
 );

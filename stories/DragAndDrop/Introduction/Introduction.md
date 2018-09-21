@@ -1,33 +1,28 @@
+wix-style-react provide d&d components, basic styles for them and examples of how to use them.
+
+# Examples
+[Single list](/?selectedKind=WIP%2FDrag%20And%20Drop%2FSortableList&selectedStory=Single%20List&full=0&addons=0&stories=1&panelRight=0)
+
+[Multi list](/?selectedKind=WIP%2FDrag%20And%20Drop%2FSortableList&selectedStory=Multi%20List&full=0&addons=0&stories=1&panelRight=0)
+
+[Multi list with sortable columns](/?selectedKind=WIP%2FDrag%20And%20Drop%2FSortableList&selectedStory=Multi%20List%20with%20sortable%20columns&full=0&addons=0&stories=1&panelRight=0)
+
+[Styling](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=Styles&full=0&addons=0&stories=1&panelRight=0)
+
+[DragDropContextProvider](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=DragDropContextProvider&full=0&addons=0&stories=1&panelRight=0)
+
 # FAQ
-- How i can create trello like board?
-- `Please take a look to such example: Sortable List - Draggable Multi Area`
-- Does d&d works on mobile?
-- `No, it does not. If you want to have d&d on mobile, you need to override our HTML5Backend which we use for d&d`
-- How i can override HTML5Backend with MyBackend?
-- `example:`
-```js
-<DragDropContextProvider backend={MyBackend}>
-  <div className={styles.root}>
-    <SortableList
-      className={classNames(defaultDndStyles.list, styles.list)}
-      dataHook="list-multi-area"
-      groupName="multi-area"
-      containerId="multiArea1"
-      items={this.state.multiArea1}
-      renderItem={this.renderItem}
-      onDrop={this.handleDrop}
-      />
-    <SortableList
-      className={classNames(defaultDndStyles.list, styles.list)}
-      dataHook="list-multi-area"
-      groupName="multi-area"
-      containerId="multiArea2"
-      items={this.state.multiArea2}
-      renderItem={this.renderItem}
-      onDrop={this.handleDrop}
-      />
-  </div>
-</DragDropContextProvider>
-```
-- Do you provide some default styles?
-- `Yes, we do. But you able to override everything.`
+##### How i can create trello like board?
+[Check our example](/?selectedKind=WIP%2FDrag%20And%20Drop%2FSortableList&selectedStory=Multi%20List%20with%20sortable%20columns&full=0&addons=0&stories=1&panelRight=0)
+
+##### How i can use d&d on mobile?
+Currently we do not support d&d on touch devices
+
+##### What is DragDropContextProvider?
+You can read details [here](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=DragDropContextProvider&full=0&addons=0&stories=1&panelRight=0)
+
+##### Do you provide default styles?
+We provide some general styles. You can read more [here](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=Styles&full=0&addons=0&stories=1&panelRight=0)
+
+# TODO
+  * d&d for touch devices
