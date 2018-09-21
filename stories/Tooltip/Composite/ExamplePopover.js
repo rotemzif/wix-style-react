@@ -62,11 +62,8 @@ class ExamplePopover extends Component {
         <div className={styles.output}>
           <div className={styles.exampleWrapper}>
             <Template
-              theme="light"
               placement={this.state.placement}
               tooltipContent={this.state.text}
-              showTrigger="click"
-              hideTrigger="click"
               type="popover"
               maxWidth={this.state.maxWidth}
               onChange={this.props.onChange}

@@ -14,10 +14,9 @@ const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
 const createAThrottledOptimizedFunction = cb => () => window.requestAnimationFrame(throttle(cb, 16));
 
 const popoverConfig = {
-  showArrow: false,
+  contentClassName: styles.popoverTooltipContent,
   theme: 'light',
   padding: 0,
-  overflow: 'hidden',
   showTrigger: 'click',
   hideTrigger: 'click'
 };
@@ -44,9 +43,6 @@ class Tooltip extends WixComponent {
 
     /** Apply popover styles and even triggers */
     popover: PropTypes.bool,
-
-    /** The tooltip overflow */
-    overflow: PropTypes.string,
 
     /** The tooltip max width  */
     maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -224,7 +220,7 @@ class Tooltip extends WixComponent {
 
   renderTooltipIntoContainer = () => {
     if (this._mountNode && this.state.visible) {
-      const overflow = this.props.popover ? popoverConfig.overflow : this.props.overflow;
+      const contentClassName = this.props.popover ? popoverConfig.contentClassName : '';
       const padding = this.props.popover ? popoverConfig.padding : this.props.padding;
       const theme = this.props.popover ? popoverConfig.theme : this.props.theme;
       const showArrow = this.props.popover ? popoverConfig.showArrow : this.props.showArrow;
@@ -233,6 +229,7 @@ class Tooltip extends WixComponent {
       const position = this.props.relative ? 'relative' : 'absolute';
       const tooltip = (
         <TooltipContent
+          contentClassName={contentClassName}
           onMouseEnter={() => this._onTooltipContentEnter()}
           onMouseLeave={() => this._onTooltipContentLeave()}
           ref={ref => {
@@ -249,7 +246,6 @@ class Tooltip extends WixComponent {
           style={{zIndex: this.props.zIndex, position}}
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
-          overflow={overflow}
           padding={padding}
           minWidth={this.props.minWidth}
           size={this.props.size}

@@ -43,7 +43,7 @@ export class Template extends Component {
   getComponent() {
     return (
       <Tooltip
-        popover={this.props.popover}
+        popover={this.props.popover || this.props.type === 'popover'}
         placement={this.props.placement}
         alignment="center"
         content={this.props.tooltipContent}

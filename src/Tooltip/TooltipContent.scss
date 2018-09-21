@@ -48,6 +48,11 @@
   }
 }
 
+.popover-tooltip-content {
+  overflow: hidden;
+  word-wrap: normal;
+}
+
 .arrow {
   $arrow-size: 10px;
   $shadow-color-arrow: rgba(0, 0, 0, .1);
