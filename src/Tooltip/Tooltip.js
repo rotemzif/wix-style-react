@@ -221,7 +221,7 @@ class Tooltip extends WixComponent {
   renderTooltipIntoContainer = () => {
     if (this._mountNode && this.state.visible) {
       const contentClassName = this.props.popover ? popoverConfig.contentClassName : '';
-      const padding = this.props.popover ? popoverConfig.padding : this.props.padding;
+      const padding = this.props.popover ? this.props.padding || popoverConfig.padding : this.props.padding;
       const theme = this.props.popover ? popoverConfig.theme : this.props.theme;
       const showArrow = this.props.popover ? popoverConfig.showArrow : this.props.showArrow;
 

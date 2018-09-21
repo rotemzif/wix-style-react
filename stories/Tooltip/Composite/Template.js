@@ -8,6 +8,7 @@ import TooltipForEyesOnly from './TooltipForEyesOnly';
 export class Template extends Component {
 
   static propTypes = {
+    padding: PropTypes.any,
     onChange: PropTypes.func.isRequired,
     popover: PropTypes.bool,
     theme: Tooltip.propTypes.theme,
@@ -43,6 +44,7 @@ export class Template extends Component {
   getComponent() {
     return (
       <Tooltip
+        padding={this.props.padding}
         popover={this.props.popover || this.props.type === 'popover'}
         placement={this.props.placement}
         alignment="center"
