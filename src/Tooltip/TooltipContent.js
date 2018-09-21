@@ -118,15 +118,14 @@ class TooltipContent extends Component {
           <div className={classnames({[styles[`bounce-${arrowPlacement}`]]: bounce})}>
             <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size], contentClassName)} style={{maxWidth, minWidth, textAlign, padding, lineHeight, color}}>
               <div data-hook="tooltip-content">{children}</div>
-
-              {showArrow && (
-                <div
-                  data-hook="tooltip-arrow"
-                  className={classnames(styles.arrow, styles[arrowPlacement])}
-                  style={arrowStyle}
-                  />
-              )}
             </div>
+            {showArrow && (
+              <div
+                data-hook="tooltip-arrow"
+                className={classnames(styles.arrow, styles[theme], styles[arrowPlacement])}
+                style={arrowStyle}
+                />
+            )}
           </div>
         </div>
       </div>

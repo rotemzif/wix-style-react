@@ -1,25 +1,7 @@
 @import './common.scss';
 @import '../common.scss';
 
-.root {
-  position: absolute;
-  z-index: 2000;
-}
-
-.tooltip {
-  @include FontRoman;
-  @include popoverTheme;
-
-  position: relative;
-  display: inline-block;
-  padding: 12px 24px;
-  box-sizing: border-box;
-  font-size: 14px;
-  line-height: 1.29;
-
-  word-wrap: break-word;
-  -webkit-font-smoothing: antialiased;
-
+@mixin themes {
   &.light {
     color: $D10;
     background: $D80;
@@ -48,9 +30,32 @@
   }
 }
 
+.root {
+  position: absolute;
+  z-index: 2000;
+}
+
+.tooltip {
+  @include FontRoman;
+  @include popoverTheme;
+
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.29;
+
+  word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+
+  @include themes;
+}
+
 .popover-tooltip-content {
   overflow: hidden;
   word-wrap: normal;
+  vertical-align: top;
 }
 
 .arrow {
@@ -67,6 +72,8 @@
   transform: rotateZ(45deg);
   background: inherit;
 
+  @include themes;
+
   &.bottom,
   &.top {
     left: 50%;
@@ -74,12 +81,12 @@
   }
 
   &.bottom {
-    bottom: -4px;
+    bottom: -5px;
     box-shadow: $arrowBottomShadow;
   }
 
   &.top {
-    top: -4px;
+    top: -5px;
     box-shadow: $arrowTopShadow;
   }
 
