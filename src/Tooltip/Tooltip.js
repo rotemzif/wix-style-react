@@ -223,6 +223,7 @@ class Tooltip extends WixComponent {
       const theme = this.props.popover ? popoverConfig.theme : this.props.theme;
 
       const arrowPlacement = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
+      console.log(this.props.placement, 'what we send');
       const position = this.props.relative ? 'relative' : 'absolute';
       const tooltip = (
         <TooltipContent
