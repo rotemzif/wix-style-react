@@ -219,6 +219,9 @@ export const headingTestkitFactory = testkitFactoryCreator(headingDriverFactory)
 import textDriverFactory from '../src/Text/Text.driver';
 export const textTestkitFactory = testkitFactoryCreator(textDriverFactory);
 
+import sortableListDriverFactory from '../src/SortableList/SortableList.driver';
+export const sortableListTestkitFactory = testkitFactoryCreator(sortableListDriverFactory);
+
 // wix-ui-backoffice proxy
 
 export {
