@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {DragDropManager} from 'dnd-core';
-import HTML5Backend from 'react-dnd-html5-backend';
+import HTML5Backend from './HTML5Backend';
 
 let defaultManager;
-function getDefaultManager() {
+function getDefaultManager(backend) {
   if (!defaultManager) {
-    defaultManager = new DragDropManager(HTML5Backend);
+    defaultManager = new DragDropManager(backend);
   }
   return defaultManager;
 }
@@ -14,7 +14,11 @@ function getDefaultManager() {
 // https://github.com/react-dnd/react-dnd/issues/186#issuecomment-110333064
 class DragDropContextProvider extends React.Component {
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    backend: PropTypes.func
+  }
+  static defaultProps = {
+    backend: HTML5Backend
   }
   static contextTypes = {
     dragDropManager: PropTypes.object
@@ -25,8 +29,11 @@ class DragDropContextProvider extends React.Component {
   };
 
   getChildContext() {
+    // we add `manager` to instance to allow to manipulate d&d in tests
+    this.getManager = () => this.context.dragDropManager || getDefaultManager(this.props.backend);
+
     return {
-      dragDropManager: this.context.dragDropManager || getDefaultManager()
+      dragDropManager: this.getManager()
     };
   }
 

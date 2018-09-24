@@ -101,6 +101,7 @@ export default class SortableList extends WixComponent {
     return (
       <DragDropContextProvider>
         <Container
+          dataHook={this.props.dataHook}
           className={className}
           total={this.state.items.length}
           {...common}
