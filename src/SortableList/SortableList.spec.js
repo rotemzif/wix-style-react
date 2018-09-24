@@ -1,5 +1,5 @@
 import React from 'react';
-import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
+import ReactTestUtils from 'react-dom/test-utils';
 import {mount} from 'enzyme';
 
 import {isTestkitExists, isEnzymeTestkitExists} from '../../test/utils/testkit-sanity';
@@ -7,26 +7,27 @@ import {sortableListTestkitFactory} from '../../testkit';
 import {sortableListTestkitFactory as enzymeSortableListTestkitFactory} from '../../testkit/enzyme';
 
 import SortableList from './SortableList';
-import SortableListFactory from './SortableList.driver';
 
 describe('SortableList', () => {
-  const createDriver = createDriverFactory(SortableListFactory);
-  let driver;
-
   it('should exists', () => {
+    const dataHook = 'sortable-list';
     const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
     const onDrop = jest.fn();
     const renderItem = ({item}) => <div>{item.text}</div>; // eslint-disable-line react/prop-types
 
-    driver = createDriver(
-      <SortableList
-        dataHook="sortable-list"
-        containerId="sortable-list"
-        items={items}
-        renderItem={renderItem}
-        onDrop={onDrop}
-        />
+    const wrapper = ReactTestUtils.renderIntoDocument(
+      <div>
+        <SortableList
+          dataHook={dataHook}
+          containerId="sortable-list"
+          items={items}
+          renderItem={renderItem}
+          onDrop={onDrop}
+          />
+      </div>
     );
+
+    const driver = sortableListTestkitFactory({wrapper, dataHook});
 
     expect(driver.exists()).toBeTruthy();
   });
