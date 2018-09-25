@@ -88,12 +88,6 @@ Tag.propTypes = {
   /** Whether to display ellipsis (...) for long content */
   wrap: PropTypes.bool,
 
-  /** Whether this tag is a placeholder for another  */
-  isPlaceholder: PropTypes.bool,
-
-  /** Whether this tag is being dragged  */
-  isPreview: PropTypes.bool,
-
   /* Standard className which has preference over any other intrinsic classes  */
   className: PropTypes.string
 };
