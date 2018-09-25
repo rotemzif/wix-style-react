@@ -363,7 +363,7 @@ describe('MultiSelect', () => {
         />
     );
     getTagDriverByTagId('Alabama').dragTo(getTagDriverByTagId('California3').element);
-    expect(onReorder).toBeCalled();
+    expect(onReorder).toBeCalledWith({removedIndex: 0, addedIndex: 2});
 
     expect(getTagLabelAt(0)).toBe('California3');
     expect(getTagLabelAt(2)).toBe('Alabama');
