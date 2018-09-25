@@ -16,18 +16,21 @@ const getInstanceOfDraggableTarget = (wrapper, itemId) => ReactTestUtils.findAll
 })[0];
 
 const sortableListFactory = ({element, wrapper}) => {
-  const isCompositeComponent = ReactTestUtils.isCompositeComponent(wrapper);
+  // in case if wrapper is coming from enzyme, we want to get it instance
+  const vanillaWrapper = wrapper.instance ? wrapper.instance() : wrapper;
+  const isCompositeComponent = ReactTestUtils.isCompositeComponent(vanillaWrapper);
+
   if (!isCompositeComponent) {
     console.warn('SortableList factory expect to receive wrapper as composite component(react instance, and not a dom instance)');
   }
-  const backend = isCompositeComponent ? getInstanceOfDraggableProvider(wrapper).getManager().getBackend() : null;
+  const backend = isCompositeComponent ? getInstanceOfDraggableProvider(vanillaWrapper).getManager().getBackend() : null;
 
   return {
     exists: () => !!element,
-    beginDrag: itemId => backend && backend.simulateBeginDrag([getInstanceOfDraggableSource(wrapper, itemId).getHandlerId()]),
+    beginDrag: itemId => backend && backend.simulateBeginDrag([getInstanceOfDraggableSource(vanillaWrapper, itemId).getHandlerId()]),
     endDrag: () => backend && backend.simulateEndDrag(),
     drop: () => backend && backend.simulateDrop(),
-    hover: itemId => backend && backend.simulateHover([getInstanceOfDraggableTarget(wrapper, itemId).getHandlerId()])
+    hover: itemId => backend && backend.simulateHover([getInstanceOfDraggableTarget(vanillaWrapper, itemId).getHandlerId()])
   };
 };
 
