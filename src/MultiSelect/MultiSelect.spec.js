@@ -28,10 +28,10 @@ describe('MultiSelect', () => {
     {value: 'Two words', id: 'Two words'}
   ];
 
-  it('should show dropdown when autofocus is on', () => {
+  it('should NOT show dropdown when autofocus is on', () => {
     const {inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} autoFocus/>);
     expect(inputDriver.isFocus()).toBeTruthy();
-    expect(dropdownLayoutDriver.isShown()).toBeTruthy();
+    expect(dropdownLayoutDriver.isShown()).toBeFalsy();
   });
 
   it('should remove options that were selected and became tags', () => {
@@ -55,7 +55,7 @@ describe('MultiSelect', () => {
 
   it('should not lose Focus or close the list on selection with a mouse click', () => {
     const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options}/>);
-    driver.focus();
+    driver.pressDownKey();
     dropdownLayoutDriver.clickAtOption(0);
     expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     expect(inputDriver.isFocus());
@@ -76,7 +76,7 @@ describe('MultiSelect', () => {
       options={options}
       onSelect={onSelect}
       />);
-    driver.focus();
+    driver.pressDownKey();
     driver.pressDownKey();
     driver.pressTabKey();
     expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
@@ -93,7 +93,7 @@ describe('MultiSelect', () => {
         onChange={onChange}
         />
     );
-    driver.focus();
+    driver.pressDownKey();
     inputDriver.trigger('keyDown', {key: ','});
     expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
     expect(onChange).toBeCalledWith({target: {value: ''}});
@@ -126,7 +126,7 @@ describe('MultiSelect', () => {
     it('should call onChange on click-outside if options is open', () => {
       const onChange = jest.fn();
       const {driver} = createDriver(<MultiSelect value={''} onChange={onChange}/>);
-      driver.focus();
+      driver.pressDownKey();
       driver.outsideClick();
       expect(onChange.mock.calls.length).toBe(1);
     });
@@ -148,7 +148,7 @@ describe('MultiSelect', () => {
         onChange={onChange}
         />
     );
-    driver.focus();
+    driver.pressDownKey();
     inputDriver.trigger('keyDown', {key: ';'});
     expect(onSelect).toBeCalledWith([{id: options[0].id, label: options[0].value}]);
     expect(onChange).toBeCalledWith({target: {value: ''}});

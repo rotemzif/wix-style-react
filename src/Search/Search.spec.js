@@ -31,7 +31,7 @@ describe('Search', () => {
   describe('Controlled', () => {
     const ControlledSearch = makeControlled(Search);
 
-    it('should show search options if initial value passed and input focused', () => {
+    it('should show search options if initial value passed and down-key pressed', () => {
       const driver = createDriver(
         <ControlledSearch
           value="the"
@@ -40,7 +40,7 @@ describe('Search', () => {
       );
 
       expect(driver.dropdownLayoutDriver.isShown()).toBe(false);
-      driver.inputDriver.focus();
+      driver.driver.pressDownKey();
       expect(driver.dropdownLayoutDriver.isShown()).toBe(true);
     });
 

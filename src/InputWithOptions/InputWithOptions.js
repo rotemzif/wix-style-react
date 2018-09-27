@@ -220,7 +220,6 @@ class InputWithOptions extends WixComponent {
     }
     this._focused = true;
     this.setState({isEditing: false});
-    this.showOptions();
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
