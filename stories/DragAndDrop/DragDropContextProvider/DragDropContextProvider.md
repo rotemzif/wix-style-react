@@ -1,34 +1,28 @@
-##### DragDropContextProvider
-> component that provide all required context for application to support d&d
+# DragDropContextProvider
+With `<DragDropContextProvider/>` component you are able to define which parts of your application will support D&D. It provides all required context for your D&D component to work.
 
-With `<DragDropContextProvider/>` component you are able to define which parts of your application will support d&d.
-By default all wix-style-react d&d components has `<DragDropContextProvider/>` as parent(root element).
+## Basic usage
+In most cases, if you're just using a simple `wix-style-react` component that has D&D functionality, you will probably not need to use the provider at all.
+By default, all `wix-style-react`'s D&D components uses `<DragDropContextProvider/>` internally.
 
-So for most use cases, you should not use `DragDropContextProvider`, just use wix-style-react d&d components directly.
+## When should I use it?
 
-# When to use DragDropContextProvider
-Use case: product has several columns and user able two do a d&d between them.
+### Sharing context
+You should use it in cases when sharing the same D&D context is required. For example - Multiple sortable columns with D&D between them.
+For such use case, we wrap both components with the same `DragDropContextProvider` and provide shared D&D context.
 
-For such use case, developer of product need to define same context for both columns too allow d&d between them.
+```jsx
+import DragDropContextProvider from 'wix-style-react/DragDropContextProvider`
 
-Example
-```js
-  <DragDropContextProvider>
-    <Column1/>
-    <Column2/>
-  </DragDropContextProvider>
+<DragDropContextProvider>
+  <Column1/>
+  <Column2/>
+</DragDropContextProvider>
 ```
 
-now you have same context for `<Column1/>` and `<Column2/>` and it possible to implement d&d between them
+Now, both `<Column1/>` and `<Column2/>` shares the same context and support D&D between them.
 
-Anti-Example
-```js
-  <div>
-    <DragDropContextProvider>
-      <Column1/>
-    </DragDropContextProvider>
-    <Column2/>
-  </div>
-```
+### Testing
+TODO - explain how to use it in tests
 
-In such way, you will not be able to d&d from `<Column1/>` to `<Column2/>`
+### TODO - add props table (should sit next to the component)
