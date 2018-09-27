@@ -179,7 +179,6 @@ class InputWithTags extends React.Component {
         <Tag
           id={id} disabled={disabled}
           className={classes}
-          isPlaceholder={isPlaceholder}
           onRemove={onRemoveTag} {...itemProps}
           {...rest}
           >
