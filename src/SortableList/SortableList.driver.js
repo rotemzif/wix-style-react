@@ -7,7 +7,7 @@ const sortableListFactory = ({element, wrapper}) => {
   const isCompositeComponent = ReactTestUtils.isCompositeComponent(vanillaWrapper);
 
   if (!isCompositeComponent) {
-    console.warn('SortableList factory expect to receive wrapper as composite component(react instance, and not a dom instance)');
+    console.warn('SortableList factory expect to receive wrapper as composite component(react instance, and not a dom instance)'); // eslint-disable-line
   }
   const backend = isCompositeComponent ? getInstanceOfDraggableProvider(vanillaWrapper).getManager().getBackend() : null;
 
