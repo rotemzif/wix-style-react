@@ -1,32 +1,20 @@
 import React from 'react';
 
-import CodeExample from 'wix-storybook-utils/CodeExample';
 import Markdown from 'wix-storybook-utils/Markdown';
 
-import Heading from 'wix-style-react/Heading';
-import Badge from 'wix-style-react/Badge';
-
 import Introduction from './Introduction.md';
+import FAQ from './FAQ.md';
+import Roadmap from './Roadmap.md';
 import IntroductionExample from './IntroductionExample';
-import IntroductionExampleRaw from '!raw-loader!./IntroductionExample';
-import IntroductionExampleScssRaw from '!raw-loader!./IntroductionExample.scss';
-
-const IntroductionExampleRawCombined = `
-//IntroductionExample.js
-${IntroductionExampleRaw}
-
-//IntroductionExample.scss
-${IntroductionExampleScssRaw}
-`;
+import {linkTo} from '@storybook/addon-links';
+import TextLink from 'wix-style-react/TextLink';
 
 export default () => (
   <div>
-    <Heading>
-      Introduction <Badge skin="danger">Under development</Badge>
-    </Heading>
-    <CodeExample title="Sortable List - Single Area" code={IntroductionExampleRawCombined}>
-      <IntroductionExample/>
-    </CodeExample>
     <Markdown source={Introduction}/>
+    <IntroductionExample/>
+    <TextLink onClick={linkTo('WIP/Drag And Drop/SortableList', 'API')}>{`<SortableList/>`} Docs</TextLink>
+    <Markdown source={FAQ}/>
+    <Markdown source={Roadmap}/>
   </div>
 );

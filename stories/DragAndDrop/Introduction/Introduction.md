@@ -1,30 +1,14 @@
-wix-style-react provide d&d components, basic styles for them and examples of how to use them.
+# Drag and Drop Introduction
+## Drag and Drop in wix-style-react
+`wix-style-react` aims to provide following solutions:
+1. ADD the Drag and Drop functionality to existing components (Tags for example)
+2. Reusable D&D components and common stylesheets.
 
-# Examples
-[Single list](/?selectedKind=WIP%2FDrag%20And%20Drop%2FSortableList&selectedStory=Single%20List&full=0&addons=0&stories=1&panelRight=0)
+### How does it work
+Behind the scenes, `wix-style-react` uses [`react-dnd`](http://react-dnd.github.io/react-dnd/), a set of React higher-order components to help you build complex drag and drop interfaces. As `react-dnd` has a complex API, `wix-style-react` provides simple building blocks to solve common use case.
 
-[Multi list](/?selectedKind=WIP%2FDrag%20And%20Drop%2FSortableList&selectedStory=Multi%20List&full=0&addons=0&stories=1&panelRight=0)
+### Usage
+The most useful building block you should be aware of is the `<SortableList/>` component. It has a very simple sorting capability and is up to the consumer to style it according to different requirements.
 
-[Multi list with sortable columns](/?selectedKind=WIP%2FDrag%20And%20Drop%2FSortableList&selectedStory=Multi%20List%20with%20sortable%20columns&full=0&addons=0&stories=1&panelRight=0)
-
-[Styling](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=Styles&full=0&addons=0&stories=1&panelRight=0)
-
-[DragDropContextProvider](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=DragDropContextProvider&full=0&addons=0&stories=1&panelRight=0)
-
-# FAQ
-##### How i can create trello like board?
-[Check our example](/?selectedKind=WIP%2FDrag%20And%20Drop%2FSortableList&selectedStory=Multi%20List%20with%20sortable%20columns&full=0&addons=0&stories=1&panelRight=0)
-
-##### How i can use d&d on mobile?
-Currently we do not support d&d on touch devices
-
-##### What is DragDropContextProvider?
-You can read details [here](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=DragDropContextProvider&full=0&addons=0&stories=1&panelRight=0)
-
-##### Do you provide default styles?
-We provide some general styles. You can read more [here](/?selectedKind=WIP%2FDrag%20And%20Drop&selectedStory=Styles&full=0&addons=0&stories=1&panelRight=0)
-
-# TODO
-  * testkits
-  * guidelines about how to test
-  * d&d for touch devices
+### Example
+Here is a simple usage of the `<SortableList/>` component with basic styles (Give it a try)!
