@@ -1,4 +1,4 @@
----------------------
+# Styles
 SortableList accept such style props:
  * `className` - will be applied to the root div of `<SortableList/>` component
  * `contentClassName` - will be applied to the first parent of items, that `<SortableList/>` received

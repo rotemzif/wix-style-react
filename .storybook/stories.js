@@ -119,6 +119,7 @@ import '../stories/Layout/index.story.js';
 import '../stories/Layout';
 
 //WIP
+import '../stories/WIP';
 import '../stories/DragAndDrop/DragAndDrop.js';
 
 // TPA

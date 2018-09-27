@@ -20,15 +20,15 @@ storiesOf('WIP/Drag And Drop', module)
   .add('DragDropContextProvider', () => <DragDropContextProvider/>);
 
 storiesOf('WIP/Drag And Drop/SortableList', module)
-.add('API', () => (
-  <div>
-    <Heading>
-      SortableList API <Badge skin="danger">Under development</Badge>
-    </Heading>
-    <Markdown source={SortableListReadme}/>
-    <Markdown source={SortableListReadmeAPI}/>
-  </div>
-))
-.add('Single List', () => <SingleAreaList/>)
-.add('Multi List', () => <MultiAreaList/>)
-.add('Multi List with sortable columns', () => <MultiAreaListWithSortableColumns/>);
+  .add('API', () => (
+    <div>
+      <Heading>
+        SortableList API <Badge skin="danger">Under development</Badge>
+      </Heading>
+      <Markdown source={SortableListReadme}/>
+      <Markdown source={SortableListReadmeAPI}/>
+    </div>
+  ))
+  .add('Single Area List', () => <SingleAreaList/>)
+  .add('Multi Area List', () => <MultiAreaList/>)
+  .add('Multi Area List with sortable columns', () => <MultiAreaListWithSortableColumns/>);
