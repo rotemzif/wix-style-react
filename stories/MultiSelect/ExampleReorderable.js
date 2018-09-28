@@ -58,10 +58,9 @@ class ExampleReorderable extends React.Component {
               this.setState({
                 tags: nextTags
               });
-              console.log(`Dragged tag ${removedIndex} to ${addedIndex}`);
             }}
             onChange={this.handleOnChange}
-            onManuallyInput={() => console.log('NOW')}
+            onManuallyInput={() => {}}
             options={this.state.options}
             value={this.state.inputValue}
             predicate={this.predicate}
