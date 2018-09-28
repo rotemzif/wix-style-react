@@ -11,8 +11,9 @@ export const getInstanceOfDraggableProvider = wrapper => ReactTestUtils.findAllI
 const findInstance = (wrapper, cb) => {
   let itemInstance = null;
   ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
-    if (ins.portal && ReactTestUtils.isCompositeComponent(ins.portal)) {
-      return ReactTestUtils.findAllInRenderedTree(ins.portal, insInPortal => {
+    const portalRoot = ins && (ins.portal || ins.tooltipContent);
+    if (portalRoot && ReactTestUtils.isCompositeComponent(portalRoot)) {
+      return ReactTestUtils.findAllInRenderedTree(portalRoot, insInPortal => {
         if (cb(insInPortal)) {
           itemInstance = insInPortal;
         }
