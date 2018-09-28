@@ -8,17 +8,24 @@ export const getInstanceOfDraggableProvider = wrapper => ReactTestUtils.findAllI
   return ins instanceof DragDropContextProvider;
 })[0];
 
-export const getInstanceOfDraggableSource = (wrapper, itemId) => {
-  return ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
-    if (ins.portal) {
-      return ReactTestUtils.findAllInRenderedTree(ins.portal, i => {
-        return ins instanceof DraggableSource && ins.props.id === itemId;
+const findInstance = (wrapper, cb) => {
+  let itemInstance = null;
+  ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
+    if (ins.portal && ReactTestUtils.isCompositeComponent(ins.portal)) {
+      return ReactTestUtils.findAllInRenderedTree(ins.portal, insInPortal => {
+        if (cb(insInPortal)) {
+          itemInstance = insInPortal;
+        }
+        return Boolean(itemInstance);
       });
+    } else if (cb(ins)) {
+      itemInstance = ins;
     }
-    return ins instanceof DraggableSource && ins.props.id === itemId;
-  })[0];
+    return Boolean(itemInstance);
+  });
+  return itemInstance;
 };
 
-export const getInstanceOfDraggableTarget = (wrapper, itemId) => ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
-  return ins instanceof DraggableTarget && ins.props.id === itemId;
-})[0];
+export const getInstanceOfDraggableSource = (wrapper, itemId) => findInstance(wrapper, ins => ins instanceof DraggableSource && ins.props.id === itemId);
+
+export const getInstanceOfDraggableTarget = (wrapper, itemId) => findInstance(wrapper, ins => ins instanceof DraggableTarget && ins.props.id === itemId);

@@ -135,7 +135,7 @@ describe('SortableList', () => {
     });
   });
 
-  it.only('should call onDrop(inside of the modal)', () => {
+  it('should call onDrop(inside of the modal)', () => {
     const dataHook = 'sortable-list';
     const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
     const onDrop = jest.fn();
