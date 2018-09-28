@@ -213,6 +213,49 @@ describe('SortableList', () => {
     }, 100);
   });
 
+  it('should call onDrop(inside of the tooltip with portal)', done => {
+    const dataHook = 'sortable-list';
+    const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
+    const onDrop = jest.fn();
+    const renderItem = ({item}) => <div>{item.text}</div>; // eslint-disable-line react/prop-types
+
+    const wrapper = ReactTestUtils.renderIntoDocument(
+      <DragDropContextProvider backend={TestBackend}>
+        <Tooltip
+          appendTo={document.body}
+          active
+          showImmediately
+          content={
+            <SortableList
+              contentClassName="cl"
+              dataHook={dataHook}
+              containerId="sortable-list"
+              items={items}
+              renderItem={renderItem}
+              onDrop={onDrop}
+              />
+          }
+          >
+          <Button>
+            Click me
+          </Button>
+        </Tooltip>
+      </DragDropContextProvider>
+    );
+    const driver = sortableListTestkitFactory({wrapper, dataHook});
+    setTimeout(() => {
+      driver.reorder({removedId: '1', addedId: '2'});
+      expect(onDrop).toBeCalledWith({
+        addedIndex: 1,
+        addedToContainerId: 'sortable-list',
+        payload: {id: '1', text: 'item 1'},
+        removedFromContainerId: 'sortable-list',
+        removedIndex: 0
+      });
+      done();
+    }, 100);
+  });
+
   it('should call onDrop(inside of the modal with nested DragDropContextProvider)', () => {
     const dataHook = 'sortable-list';
     const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
