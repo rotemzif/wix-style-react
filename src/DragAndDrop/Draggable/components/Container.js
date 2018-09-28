@@ -104,7 +104,7 @@ class Container extends WixComponent {
       return null;
     }
     return this.props.connectDropTarget(
-      <div className={this.props.className} ref={this.setRootRef} data-hook={this.props.dataHook}>
+      <div className={this.props.className} ref={this.setRootRef}>
         {React.cloneElement(this.props.children, {ref: this.setChildRef})}
       </div>
     );
@@ -112,7 +112,6 @@ class Container extends WixComponent {
 }
 
 Container.propTypes = {
-  dataHook: PropTypes.string,
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
   containerId: PropTypes.string,
