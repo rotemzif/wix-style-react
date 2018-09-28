@@ -214,7 +214,7 @@ describe('SortableList', () => {
   });
 
   it('should call onDrop(inside of the tooltip with portal)', done => {
-    const dataHook = 'sortable-list';
+    const dataHook = 'sortable-list-inside-of-a-tooltip';
     const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
     const onDrop = jest.fn();
     const renderItem = ({item}) => <div>{item.text}</div>; // eslint-disable-line react/prop-types
