@@ -146,6 +146,7 @@
     "wix-ui-test-utils": "^1.0.115"
   },
   "jest": {
+    "testRegex": "./src/SortableList/SortableList.spec.js",
     "setupFiles": [
       "<rootDir>/node_modules/babel-polyfill",
       "<rootDir>/test/jest-setup.js"

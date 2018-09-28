@@ -8,9 +8,16 @@ export const getInstanceOfDraggableProvider = wrapper => ReactTestUtils.findAllI
   return ins instanceof DragDropContextProvider;
 })[0];
 
-export const getInstanceOfDraggableSource = (wrapper, itemId) => ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
-  return ins instanceof DraggableSource && ins.props.id === itemId;
-})[0];
+export const getInstanceOfDraggableSource = (wrapper, itemId) => {
+  return ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
+    if (ins.portal) {
+      return ReactTestUtils.findAllInRenderedTree(ins.portal, i => {
+        return ins instanceof DraggableSource && ins.props.id === itemId;
+      });
+    }
+    return ins instanceof DraggableSource && ins.props.id === itemId;
+  })[0];
+};
 
 export const getInstanceOfDraggableTarget = (wrapper, itemId) => ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
   return ins instanceof DraggableTarget && ins.props.id === itemId;
