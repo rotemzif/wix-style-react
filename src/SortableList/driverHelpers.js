@@ -4,10 +4,6 @@ import DragDropContextProvider from '../DragDropContextProvider';
 import DraggableSource from '../DragAndDrop/Draggable/components/DraggableSource';
 import DraggableTarget from '../DragAndDrop/Draggable/components/DraggableTarget';
 
-export const getInstanceOfDraggableProvider = wrapper => ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
-  return ins instanceof DragDropContextProvider;
-})[0];
-
 const findInstance = (wrapper, cb) => {
   let itemInstance = null;
   ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
@@ -26,6 +22,8 @@ const findInstance = (wrapper, cb) => {
   });
   return itemInstance;
 };
+
+export const getInstanceOfDraggableProvider = wrapper => findInstance(wrapper, ins => ins instanceof DragDropContextProvider);
 
 export const getInstanceOfDraggableSource = (wrapper, itemId) => findInstance(wrapper, ins => ins instanceof DraggableSource && ins.props.id === itemId);
 

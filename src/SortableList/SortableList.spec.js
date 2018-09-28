@@ -170,7 +170,7 @@ describe('SortableList', () => {
     });
   });
 
-  it('should call onDrop(inside of the modal)', done => {
+  it('should call onDrop(inside of the tooltip)', done => {
     const dataHook = 'sortable-list';
     const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
     const onDrop = jest.fn();
@@ -211,6 +211,38 @@ describe('SortableList', () => {
       });
       done();
     }, 100);
+  });
+
+  it('should call onDrop(inside of the modal with nested DragDropContextProvider)', () => {
+    const dataHook = 'sortable-list';
+    const items = [{id: '1', text: 'item 1'}, {id: '2', text: 'item 2'}];
+    const onDrop = jest.fn();
+    const renderItem = ({item}) => <div>{item.text}</div>; // eslint-disable-line react/prop-types
+
+    const wrapper = ReactTestUtils.renderIntoDocument(
+      <Modal isOpen contentLabel="">
+        <DragDropContextProvider backend={TestBackend}>
+          <SortableList
+            contentClassName="cl"
+            dataHook={dataHook}
+            containerId="sortable-list"
+            items={items}
+            renderItem={renderItem}
+            onDrop={onDrop}
+            />
+        </DragDropContextProvider>
+      </Modal>
+    );
+    const driver = sortableListTestkitFactory({wrapper, dataHook});
+    driver.reorder({removedId: '1', addedId: '2'});
+
+    expect(onDrop).toBeCalledWith({
+      addedIndex: 1,
+      addedToContainerId: 'sortable-list',
+      payload: {id: '1', text: 'item 1'},
+      removedFromContainerId: 'sortable-list',
+      removedIndex: 0
+    });
   });
 });
 
