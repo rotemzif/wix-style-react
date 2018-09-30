@@ -1,90 +1,24 @@
 # Styles
-SortableList accept such style props:
- * `className` - will be applied to the root div of `<SortableList/>` component
- * `contentClassName` - will be applied to the first parent of items, that `<SortableList/>` received
 
-Also, with renderItem callback you are able to do render and style `<SortableList/>` items as you want
+As `wix-style-react` provides the building block for creating draggable lists, it also provide the common useful styles.
 
-##### Example
+
+## Importing
 ```js
-  <SortableList
-    className="my-class-for-sortable-list"
-    contentClassName="my-class-for-sortable-list-content"
-    renderItem={({isPlaceholder, isPreview, id, previewStyles, item}) => (
-      const classes = classNames(
-        'my-class-for-item',
-        {
-          'my-class-for-item-in-placeholder-state': isPlaceholder,
-          'my-class-for-item-in-preview-state': isPreview
-        }
-      );
-      return (
-        <div className={classes} style={previewStyles}>
-          {item.text}
-        </div>
-      )
-    )}
-    {...otherProps}
-  />
+import dndStyles from 'wix-style-react/dnd-styles';
 ```
 
-# Default styles
-We propose always to use default styles which you can import in such way
-```js
-  import dndStyles from 'wix-style-react/dnd-styles';
-```
-dndStyles has:
- - `dndStyles.list` - class that should be send to `<SortableList/>` root
- - `dndStyles.item` - class that should be applied to the root of your item
- - `dndStyles.itemPlaceholder` - class that should be applied to the root of your item in placeholder mode
- - `dndStyles.itemPreview` - class that should be applied to the root of your item in preview mode
+`dndStyles` is an object containing the default class names.
 
- ##### Example
-```js
-  ...
-  import dndStyles from 'wix-style-react/dnd-styles';
-  ...
+Your component should use these styles and extend with any custom styles if needed.
 
-  <SortableList
-    className={`my-class-for-sortable-list ${dndStyles.list}`}
-    contentClassName="my-class-for-sortable-list-content"
-    renderItem={({isPlaceholder, isPreview, id, previewStyles, item}) => (
-      const classes = classNames(
-        `my-class-for-item ${dndStyles.item}`,
-        {
-          [`my-class-for-item-in-placeholder-state ${dndStyles.itemPlaceholder}`]: isPlaceholder,
-          [`my-class-for-item-in-preview-state ${dndStyles.itemPreview}`]: isPreview
-        }
-      );
-      return (
-        <div className={classes} style={previewStyles}>
-          {item.text}
-        </div>
-      )
-    )}
-    {...otherProps}
-  />
-```
+## Styles API
 
-# Inline styles for item
-```js
-renderItem={({isPlaceholder, isPreview, id, previewStyles, item}) => (
-  const classes = classNames(
-    `my-class-for-item ${dndStyles.item}`,
-    {
-      [`my-class-for-item-in-placeholder-state ${dndStyles.itemPlaceholder}`]: isPlaceholder,
-      [`my-class-for-item-in-preview-state ${dndStyles.itemPreview}`]: isPreview
-    }
-  );
-  return (
-    <div className={classes} style={previewStyles}>
-      {item.text}
-    </div>
-  )
-)}
-```
+`dndStyles` is consists of:
 
-renderItem accept `previewStyles` as one of the parameters, `previewStyles`
-need to be applied to the root of your item, it required to allow d&d engine to set correct position for item that you drag.
+ - `list` - defines the structure of items list.
+ - `item` - defines a single item resets. should be applied to the root of your item
+ - `itemPlaceholder` - defines how an item placeholder should look when raised. should be applied to the root of your item in placeholder mode
+ - `itemPreview` - defines how an item should look when is dragged (fly). should be applied to the root of your item in preview mode
 
-We do not recommend to modify this object or to merge it with another inline styles.
+## Examples

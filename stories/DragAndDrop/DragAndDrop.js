@@ -8,7 +8,7 @@ import Badge from 'wix-style-react/Badge';
 
 import SortableListReadme from './../../src/SortableList/README.md';
 import SortableListReadmeAPI from './../../src/SortableList/API.md';
-import {SingleAreaList, MultiAreaList, MultiAreaListWithSortableColumns} from './SortableList';
+import {SingleAreaList, MultiAreaList, MultiAreaListWithSortableColumns, Styles as SortableListStyles} from './SortableList';
 
 import Introduction from './Introduction';
 import Styles from './Styles';
@@ -29,6 +29,7 @@ storiesOf('WIP/Drag And Drop/SortableList', module)
       <Markdown source={SortableListReadmeAPI}/>
     </div>
   ))
+  .add('Styles', () => <SortableListStyles/>)
   .add('Single Area List', () => <SingleAreaList/>)
   .add('Multi Area List', () => <MultiAreaList/>)
   .add('Multi Area List with sortable columns', () => <MultiAreaListWithSortableColumns/>);

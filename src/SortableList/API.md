@@ -86,7 +86,7 @@ Some details about complex props
   state(maybe we want to rotate it a little, or hide something),
   so you able to style your item by cheking isPreview.
   - `id` - an id from item that you render
-  - `previewStyles` - styles that coming from SotableList, `you always need to apply` them on your root div, inside of renderItem
+  - `previewStyles` - styles that coming from SortableList, `you always need to apply` them on your root div, inside of renderItem
   - `item` - item that you are render
 
   Example without handle:
