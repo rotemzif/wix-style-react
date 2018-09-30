@@ -21,4 +21,8 @@ Your component should use these styles and extend with any custom styles if need
  - `itemPlaceholder` - defines how an item placeholder should look when raised. should be applied to the root of your item in placeholder mode
  - `itemPreview` - defines how an item should look when is dragged (fly). should be applied to the root of your item in preview mode
 
+
+## Still missing (TODO)
+- `handle`
+
 ## Examples

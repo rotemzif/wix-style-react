@@ -12,7 +12,8 @@ const generateId = () => Math.floor((Math.random() * 100000));
 export default class SingleAreaList extends React.Component {
   static propTypes = {
     withHandle: PropTypes.bool
-  }
+  };
+
   state = {
     items: [
       {
@@ -36,7 +37,7 @@ export default class SingleAreaList extends React.Component {
         text: 'Item 5'
       }
     ]
-  }
+  };
 
   handleDrop = ({removedIndex, addedIndex}) => {
     const nextItems = [...this.state.items];
