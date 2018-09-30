@@ -18,8 +18,8 @@ Your component should use these styles and extend with any custom styles if need
 
  - `list` - defines the structure of items list.
  - `item` - defines a single item resets. should be applied to the root of your item
- - `itemPlaceholder` - defines how an item placeholder should look when raised. should be applied to the root of your item in placeholder mode
- - `itemPreview` - defines how an item should look when is dragged (fly). should be applied to the root of your item in preview mode
+ - `itemPlaceholder` - defines how an item's placeholder (the empty section after dragging) looks like. should be applied to the root of your item in placeholder mode
+ - `itemPreview` - defines how an item should look while it is dragged. should be applied to the root of your item in preview mode
 
 
 ## Still missing (TODO)
