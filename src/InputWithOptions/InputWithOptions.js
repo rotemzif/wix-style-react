@@ -205,8 +205,12 @@ class InputWithOptions extends WixComponent {
   }
 
   _onInputClicked(event) {
-    if (this.state.showOptions && (Date.now() - this.state.lastOptionsShow > 2000)) {
-      this.hideOptions();
+    if (this.state.showOptions) {
+      if ((Date.now() - this.state.lastOptionsShow > 2000)) {
+        this.hideOptions();
+      }
+    } else {
+      this.showOptions();
     }
 
     if (this.props.onInputClicked) {

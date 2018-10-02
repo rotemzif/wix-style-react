@@ -229,6 +229,43 @@ const runInputWithOptionsTest = driverFactory => {
       expect(dropdownLayoutDriver.isShown()).toBe(false);
     });
 
+    it('should open options when clicked', () => {
+      const {inputDriver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
+      expect(dropdownLayoutDriver.isShown()).toBe(false);
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
+    });
+
+    it('should NOT close options when input clicked before 2 seconds passed from last opening', () => {
+      const {inputDriver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
+      const originalNow = Date.now;
+
+      Date.now = () => 0;
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
+
+      Date.now = () => 1500;
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
+
+      Date.now = originalNow;
+    });
+
+    it('should close options when input clicked after 2 seconds from last opening', () => {
+      const {inputDriver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options}/>);
+      const originalNow = Date.now;
+
+      Date.now = () => 0;
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(true);
+
+      Date.now = () => 2500;
+      inputDriver.click();
+      expect(dropdownLayoutDriver.isShown()).toBe(false);
+
+      Date.now = originalNow;
+    });
+
     it('should stay focused on tab key press with closeOnSelect=false', () => {
       const onManuallyInput = jest.fn();
       const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options} onManuallyInput={onManuallyInput} closeOnSelect={false}/>);
