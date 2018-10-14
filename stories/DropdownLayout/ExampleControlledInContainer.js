@@ -27,7 +27,7 @@ class ControlledExample extends Component {
         <DropdownLayout
           visible
           options={options}
-          isInContainer
+          inContainer
           selectedId={2}
           />
       </div>
