@@ -614,9 +614,4 @@ $base-transition: all 100ms linear;
     background: $D55;
     border-color: $D55;
   }
-
-  &.heightsmall,
-  &.heightx-small  {
-    @include TextColor($secondary: true);
-  }
 }
