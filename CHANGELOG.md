@@ -19,6 +19,8 @@ Types of changes:
 
 - `<Tag/>` - add tiny and medium sizes [#2322](https://github.com/wix/wix-style-react/pull/2322)
 - `<SortableList/>` - Add draggable item to onDragStart and onDragEnd [#2343](https://github.com/wix/wix-style-react/pull/2343)
+- `<DropdownLayout/>` - update the scroll behaviour [#2327](https://github.com/wix/wix-style-react/pull/2327)
+- `<Page/>` - make the page's contents expand to full size [#2342](https://github.com/wix/wix-style-react/pull/2342)
 
 ### Docs
 

@@ -35,6 +35,12 @@ $FontBold: "HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW
   font-family: $FontBold;
 }
 
+@mixin withRTL() {
+  :global(.rtl), :global([dir='rtl']) {
+    @content
+  }
+}
+
 /*********************************************
 *              DEPRECATED SECTION - END!!
 ***********************************************/

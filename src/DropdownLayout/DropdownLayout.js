@@ -42,7 +42,7 @@ class DropdownLayout extends WixComponent {
 
   focusOnSelectedOption() {
     if (this.selectedOption) {
-      this.options.scrollTop = Math.max(this.selectedOption.offsetTop - this.selectedOption.offsetHeight, 0);
+      this.selectedOption.focus();
     }
   }
 
@@ -121,7 +121,9 @@ class DropdownLayout extends WixComponent {
     } while (!this.isSelectableOption(options[newHovered]));
 
     this.setState({hovered: newHovered});
-    this.options.scrollTop = (newHovered - 2) * 35;
+
+    const hoveredElement = this.options.childNodes[newHovered];
+    hoveredElement.focus();
   }
 
   /**
@@ -229,6 +231,8 @@ class DropdownLayout extends WixComponent {
       return this.renderDivider(idx, `dropdown-divider-${id || idx}`);
     }
 
+    const tabIndex = idx === this.state.hovered ? 0 : -1;
+
     const content = this.renderItem({
       option,
       idx,
@@ -237,17 +241,20 @@ class DropdownLayout extends WixComponent {
       disabled: disabled || title,
       title,
       overrideStyle,
-      dataHook: `dropdown-item-${id}`
+      dataHook: `dropdown-item-${id}`,
+      tabIndex
     });
 
-    return linkTo ? <a key={idx} data-hook="link-item" href={linkTo}>{content}</a> : content;
+    return linkTo ? (
+      <a key={idx} data-hook="link-item" href={linkTo} tabIndex={tabIndex}>{content}</a>
+    ) : content;
   }
 
   renderDivider(idx, dataHook) {
     return (<div key={idx} className={styles.divider} data-hook={dataHook}/>);
   }
 
-  renderItem({option, idx, selected, hovered, disabled, title, overrideStyle, dataHook}) {
+  renderItem({option, idx, selected, hovered, disabled, title, overrideStyle, dataHook, tabIndex}) {
     const {itemHeight, selectedHighlight} = this.props;
 
     const optionClassName = classNames({
@@ -271,6 +278,7 @@ class DropdownLayout extends WixComponent {
         onMouseEnter={() => this._onMouseEnter(idx)}
         onMouseLeave={this._onMouseLeave}
         data-hook={dataHook}
+        tabIndex={tabIndex}
         >
         {option.value}
       </div>
