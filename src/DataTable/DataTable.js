@@ -10,6 +10,7 @@ import InfoCircle from 'wix-ui-icons-common/InfoCircle';
 import Tooltip from '../Tooltip/Tooltip';
 import InfoIcon from '../common/InfoIcon';
 import omit from 'lodash/omit';
+import deprecationLog from '../utils/deprecationLog';
 
 export const DataTableHeader = props => (
   <div>
@@ -314,6 +315,15 @@ class TableHeader extends Component {
   };
 
   renderHeaderCell = (column, colNum) => {
+    let infoTooltipProps = column.infoTooltipProps;
+
+    // Deprecate `infoTooltip` in favor of `infoTooltipProps`
+    if (!infoTooltipProps && column.infoTooltip) {
+      infoTooltipProps = column.infoTooltip;
+
+      deprecationLog('Property `infoTooltip` of Table\'s `columns` prop is deprecated; use `infoTooltipProps` instead.');
+    }
+
     const style = {
       width: column.width,
       padding: this.props.thPadding,
@@ -352,11 +362,11 @@ class TableHeader extends Component {
             // Vertical alignment if the head cell contains a node: a title
             // which is a React node, or icons
             [this.style.withNodes]: (
-              React.isValidElement(column.title) || column.sortable || column.sortDescending || column.infoTooltip
+              React.isValidElement(column.title) || column.sortable || column.sortDescending || infoTooltipProps
             )
           })}
           >
-          {column.title}{this.renderSortingArrow(column.sortDescending, colNum)}{this.renderInfoTooltip(column.infoTooltip, colNum)}
+          {column.title}{this.renderSortingArrow(column.sortDescending, colNum)}{this.renderInfoTooltip(infoTooltipProps, colNum)}
         </div>
       </th>);
   };
