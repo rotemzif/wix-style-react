@@ -321,7 +321,10 @@ class TableHeader extends Component {
     if (!infoTooltipProps && column.infoTooltip) {
       infoTooltipProps = column.infoTooltip;
 
-      deprecationLog('Property `infoTooltip` of Table\'s `columns` prop is deprecated; use `infoTooltipProps` instead.');
+      deprecationLog(
+        'Property `infoTooltip` of Table\'s `columns` prop is deprecated; use `infoTooltipProps` instead.',
+        'infoTooltipDeprecation'
+      );
     }
 
     const style = {
