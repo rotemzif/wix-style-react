@@ -399,7 +399,7 @@ describe('Table', () => {
         ...defaultProps,
         columns: [
           {title: 'Row Num', render: (row, rowNum) => rowNum},
-          {title: 'A', infoTooltip: {content: 'Vary informative tooltip text'}, render: row => row.a},
+          {title: 'A', infoTooltipProps: {content: 'Vary informative tooltip text'}, render: row => row.a},
           {title: 'B', render: row => row.b}
         ]
       };
