@@ -4,7 +4,7 @@ A compound component for any content to be displayed in styled block.
 
 Most often used with `<Card.Header/>`, `<Card.Content/>` and `<Card.Divider/>`.
 
-Use [`<Row/>` and `<Col/>`](https://wix-wix-style-react.surge.sh/?selectedKind=Common&selectedStory=Grid&full=0&addons=0&stories=1&panelRight=0) to lay out content inside `<Card.Content/>`
+Use [`<Row/>` and `<Col/>`](https://wix-wix-style-react.surge.sh/?selectedKind=2.%20Layout&selectedStory=Grid&full=0&addons=0&stories=1&panelRight=0) to lay out content inside `<Card.Content/>`
 
 
 ```js

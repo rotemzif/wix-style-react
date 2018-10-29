@@ -33,7 +33,7 @@ class CollapsedHeader extends WixComponent {
 
   componentDidMount() {
     deprecationLog(
-      'Card.CollapsedHeader is deprecated, please use standalone <Collapse/> component instead.'
+      'Card.CollapsedHeader is deprecated. Instead please use <Card><Collapse><Card.Content/></Collapse></Card> instead.'
     );
   }
 
