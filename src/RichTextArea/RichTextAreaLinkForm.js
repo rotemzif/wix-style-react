@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import TextField from '../TextField';
+import FormField from '../FormField';
 import Button from '../Button';
 import X from '../new-icons/X';
 import Check from '../new-icons/Check';
@@ -28,7 +28,7 @@ class RichTextAreaLinkForm extends Component {
       <form onSubmit={this.handleSubmit}>
         {this.renderTextInput()}
         <div className={styles.input}>
-          <TextField>
+          <FormField>
             <Input
               dataHook="rich-text-area-link-url"
               onChange={this.getChangeHandler('href')}
@@ -36,7 +36,7 @@ class RichTextAreaLinkForm extends Component {
               size="small"
               width="190px"
               />
-          </TextField>
+          </FormField>
         </div>
         <div className={styles.buttons}>
           <span className={styles.button}>
@@ -57,7 +57,7 @@ class RichTextAreaLinkForm extends Component {
   renderTextInput() {
     return (
       <div className={styles.input}>
-        <TextField>
+        <FormField>
           <Input
             dataHook="rich-text-area-link-text"
             defaultValue={this.props.selection}
@@ -66,7 +66,7 @@ class RichTextAreaLinkForm extends Component {
             size="small"
             width="190px"
             />
-        </TextField>
+        </FormField>
       </div>
     );
   }
