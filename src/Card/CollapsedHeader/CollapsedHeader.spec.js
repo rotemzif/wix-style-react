@@ -6,6 +6,10 @@ import CollapsedHeader from './CollapsedHeader';
 import {collapsedHeaderTestkitFactory} from '../../../testkit';
 import {collapsedHeaderTestkitFactory as enzymeCollapsedHeaderTestkitFactory} from '../../../testkit/enzyme';
 import {mount} from 'enzyme';
+import {
+  isTestkitExists,
+  isEnzymeTestkitExists
+} from '../../../test/utils/testkit-sanity';
 
 import {requestAnimationFramePolyfill} from '../../../testkit/polyfills';
 
@@ -35,7 +39,9 @@ describe('CollapsedHeader', () => {
   });
 
   it('should show content', () => {
-    const driver = createDriver(<CollapsedHeader title="Header Title">{content}</CollapsedHeader>);
+    const driver = createDriver(
+      <CollapsedHeader title="Header Title">{content}</CollapsedHeader>
+    );
 
     expect(driver.findByDatahook('content').innerHTML).toBe('Some Content');
   });
@@ -53,7 +59,10 @@ describe('CollapsedHeader', () => {
   it('should call with collapse status', () => {
     const onCollapsedChange = jest.fn();
     const driver = createDriver(
-      <CollapsedHeader title="Header Title" onCollapsedChange={onCollapsedChange}>
+      <CollapsedHeader
+        title="Header Title"
+        onCollapsedChange={onCollapsedChange}
+        >
         {content}
       </CollapsedHeader>
     );
@@ -66,7 +75,9 @@ describe('CollapsedHeader', () => {
   });
 
   it('should hide content on collapse', () => {
-    const driver = createDriver(<CollapsedHeader title="Header Title">{content}</CollapsedHeader>);
+    const driver = createDriver(
+      <CollapsedHeader title="Header Title">{content}</CollapsedHeader>
+    );
 
     driver.click();
 
@@ -89,7 +100,11 @@ describe('CollapsedHeader', () => {
     it('should call with collapsed status', () => {
       const onCollapsedChange = jest.fn();
       const driver = createDriver(
-        <CollapsedHeader title="Header Title" controlled onCollapsedChange={onCollapsedChange}>
+        <CollapsedHeader
+          title="Header Title"
+          controlled
+          onCollapsedChange={onCollapsedChange}
+          >
           {content}
         </CollapsedHeader>
       );
@@ -100,7 +115,11 @@ describe('CollapsedHeader', () => {
 
     it('should not hide content when controlled', () => {
       const driver = createDriver(
-        <CollapsedHeader title="Header Title" controlled onCollapsedChange={jest.fn()}>
+        <CollapsedHeader
+          title="Header Title"
+          controlled
+          onCollapsedChange={jest.fn()}
+          >
           {content}
         </CollapsedHeader>
       );
@@ -112,33 +131,27 @@ describe('CollapsedHeader', () => {
   });
 });
 
-describe('testkit', () => {
+describe('testkits', () => {
   it('should exist', () => {
-    const div = document.createElement('div');
-    const dataHook = 'myDataHook';
-    const wrapper = div.appendChild(
-      ReactTestUtils.renderIntoDocument(
-        <div>
-          <CollapsedHeader title="Header Title" subtitle="Header Subtitle" dataHook={dataHook}>
-            <div/>
-          </CollapsedHeader>
-        </div>
+    expect(
+      isTestkitExists(
+        <CollapsedHeader title="Header">
+          <div/>
+        </CollapsedHeader>,
+        collapsedHeaderTestkitFactory
       )
-    );
-    const collapsedHeaderTestkit = collapsedHeaderTestkitFactory({wrapper, dataHook});
-    expect(collapsedHeaderTestkit.exists()).toBeTruthy();
+    ).toBe(true);
   });
-});
 
-describe('enzyme testkit', () => {
-  it('should exist', () => {
-    const dataHook = 'myDataHook';
-    const wrapper = mount(
-      <CollapsedHeader title="Header Title" subtitle="Header Subtitle" dataHook={dataHook}>
-        <div/>
-      </CollapsedHeader>
-    );
-    const collapsedDriverTestkit = enzymeCollapsedHeaderTestkitFactory({wrapper, dataHook});
-    expect(collapsedDriverTestkit.exists()).toBeTruthy();
+  it('should exist for enzyme', () => {
+    expect(
+      isEnzymeTestkitExists(
+        <CollapsedHeader title="Header">
+          <div/>
+        </CollapsedHeader>,
+        enzymeCollapsedHeaderTestkitFactory,
+        mount
+      )
+    ).toBe(true);
   });
 });

@@ -20,7 +20,8 @@ class CollapsedHeader extends WixComponent {
     onCollapsedChange: func,
     buttonCollapseText: string,
     buttonExpandText: string,
-    controlled: bool
+    controlled: bool,
+    dataHook: string
   };
 
   static defaultProps = {
@@ -33,7 +34,7 @@ class CollapsedHeader extends WixComponent {
 
   componentDidMount() {
     deprecationLog(
-      'Card.CollapsedHeader is deprecated. Instead please use <Card><Collapse><Card.Content/></Collapse></Card> instead.'
+      'Card.CollapsedHeader is deprecated. Instead please use <Card><Collapse><Card.Content/></Collapse></Card>'
     );
   }
 
@@ -105,12 +106,19 @@ class CollapsedHeader extends WixComponent {
   );
 
   render() {
-    const {title, subtitle, children, withoutDivider, toggleStyle} = this.props;
+    const {
+      title,
+      subtitle,
+      children,
+      withoutDivider,
+      toggleStyle,
+      dataHook
+    } = this.props;
 
     const {isCollapsed} = this.state;
 
     return (
-      <div>
+      <div data-hook={dataHook}>
         <div onClick={this.onToggleChange}>
           <Header
             title={title}
