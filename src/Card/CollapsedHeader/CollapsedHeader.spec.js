@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
 import collapsedHeaderDriverFactory from './CollapsedHeader.driver';
 import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import CollapsedHeader from './CollapsedHeader';
