@@ -1,0 +1,17 @@
+.row-container {
+  display: flex;
+  align-items: center;
+}
+
+.right-aligned-items {
+  flex: 1;
+  display: flex;
+  min-width: -webkit-min-content;
+  justify-content: flex-end;
+}
+
+.left-aligned-items {
+  flex: 1;
+  display: flex;
+  min-width: -webkit-min-content;
+}
