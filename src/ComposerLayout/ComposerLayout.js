@@ -1,10 +1,7 @@
 import React, {PropTypes} from 'react';
-
 import {GenericLayout} from '../GenericLayout';
-import {FooterLayout} from '../MessageBox';
-
 import {HeaderLayout} from './HeaderLayout';
-
+import FooterLayout from './FooterLayout';
 
 export const ComposerLayout = props => {
 
