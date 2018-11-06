@@ -14,10 +14,12 @@ class GenericModal extends Component {
   }
 
   renderComposerLayout() {
+    /* eslint-disable */
     const onCloseButtonClick = () => console.log('close button clicked');
     const onQuestionMarkButtonClick = () => console.log('question mark button clicked');
     const onConfirmButtonClick = () => console.log('confirm button clicked');
     const onCancelButtonClick = () => console.log('cancel button clicked');
+    /* eslint-enable */
 
     const confirmButtonContent = 'Cancel';
     const cancelButtonContent = 'Save';
@@ -25,7 +27,6 @@ class GenericModal extends Component {
     return (<ComposerLayout
       content={<div >Hello</div>}
       title="title"
-      fullscreen
       sideActions={<div>Some Side Actions</div>}
       onCloseButtonClick={onCloseButtonClick}
       onQuestionMarkButtonClick={onQuestionMarkButtonClick}

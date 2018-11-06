@@ -1,7 +1,9 @@
 import React, {PropTypes} from 'react';
-import {Row} from './Row';
-import XIcon from 'wix-style-react/new-icons/X';
 import InfoIcon from 'wix-style-react/new-icons/Info';
+import XIcon from 'wix-style-react/new-icons/X';
+
+import {Row} from './Row';
+
 
 export const HeaderLayout = props => {
   const rightAlignedItems = (<div>
@@ -15,9 +17,7 @@ export const HeaderLayout = props => {
       leftAlignedItems={props.secondaryItems}
       />
   );
-}
-;
-
+};
 
 HeaderLayout.propTypes = {
   showCloseButton: PropTypes.bool,
@@ -31,5 +31,4 @@ HeaderLayout.propTypes = {
 HeaderLayout.defaultProps = {
   showCloseButton: true,
   showQuestionMarkButton: true
-}
-;
+};
