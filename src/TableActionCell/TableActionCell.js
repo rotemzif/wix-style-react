@@ -49,9 +49,14 @@ function renderVisibleActions(actions) {
   ));
 }
 
-function renderHiddenActions(actions) {
+function renderHiddenActions(actions, popoverMenuProps) {
   return (
-    <PopoverMenu buttonTheme="icon-greybackground" dataHook="table-action-cell-popover-menu" appendToParent>
+    <PopoverMenu
+      buttonTheme="icon-greybackground"
+      dataHook="table-action-cell-popover-menu"
+      appendToParent
+      {...popoverMenuProps}
+      >
       {actions.map(({text, icon, onClick, disabled}, index) => (
         <PopoverMenuItem
           key={index}
@@ -80,7 +85,8 @@ const TableActionCell = props => {
     primaryAction,
     secondaryActions,
     numOfVisibleSecondaryActions,
-    alwaysShowSecondaryActions
+    alwaysShowSecondaryActions,
+    popoverMenuProps
   } = props;
 
   const visibleActions = secondaryActions.slice(0, numOfVisibleSecondaryActions);
@@ -104,7 +110,7 @@ const TableActionCell = props => {
       {hiddenActions.length > 0 && (
         <div onClick={e => e.stopPropagation()}>
           <HoverSlot display="always">
-            {renderHiddenActions(hiddenActions)}
+            {renderHiddenActions(hiddenActions, popoverMenuProps)}
           </HoverSlot>
         </div>
       )}
@@ -153,7 +159,10 @@ TableActionCell.propTypes = {
   numOfVisibleSecondaryActions: PropTypes.number,
 
    /** Whether to show the secondary action also when not hovering the row */
-  alwaysShowSecondaryActions: PropTypes.bool
+  alwaysShowSecondaryActions: PropTypes.bool,
+
+  /** Props being passed to the secondary actions' <PopoverMenu/> */
+  popoverMenuProps: PropTypes.shape(PopoverMenu.propTypes)
 };
 
 TableActionCell.defaultProps = {

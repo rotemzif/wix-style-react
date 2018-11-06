@@ -19,6 +19,9 @@ import PrimarySecondaryExampleRaw from '!raw-loader!./examples/PrimarySecondaryE
 import PrimarySecondaryHiddenExample from './examples/PrimarySecondaryHiddenExample';
 import PrimarySecondaryHiddenExampleRaw from '!raw-loader!./examples/PrimarySecondaryHiddenExample';
 
+import PopoverMenuPropsExample from './examples/PopoverMenuPropsExample';
+import PopoverMenuPropsExampleRaw from '!raw-loader!./examples/PopoverMenuPropsExample';
+
 import AlwaysVisibleSecondaryExample from './examples/AlwaysVisibleSecondaryExample';
 import AlwaysVisibleSecondaryExampleRaw from '!raw-loader!./examples/AlwaysVisibleSecondaryExample';
 
@@ -115,6 +118,12 @@ export default {
       <div className={style.example}>
         <CodeExample title="Primary action and hidden secondary action" code={PrimarySecondaryHiddenExampleRaw}>
           <PrimarySecondaryHiddenExample/>
+        </CodeExample>
+      </div>
+
+      <div className={style.example}>
+        <CodeExample title="With custom PopoverMenu props" code={PopoverMenuPropsExampleRaw}>
+          <PopoverMenuPropsExample/>
         </CodeExample>
       </div>
 
