@@ -3,6 +3,7 @@ import Button from 'wix-style-react/Button';
 import Modal from 'wix-style-react/Modal';
 
 import {ComposerLayout} from '../../../src/ComposerLayout';
+import {GenericLayout} from '../../../src/GenericLayout';
 
 
 class GenericModal extends Component {
@@ -16,24 +17,33 @@ class GenericModal extends Component {
   renderComposerLayout() {
     /* eslint-disable */
     const onCloseButtonClick = () => console.log('close button clicked');
-    const onQuestionMarkButtonClick = () => console.log('question mark button clicked');
+    const onInfoButtonClick = () => console.log('question mark button clicked');
     const onConfirmButtonClick = () => console.log('confirm button clicked');
     const onCancelButtonClick = () => console.log('cancel button clicked');
     /* eslint-enable */
 
-    const confirmButtonContent = 'Cancel';
-    const cancelButtonContent = 'Save';
+    const confirmButtonContent = 'Save test';
+    const cancelButtonContent = 'Cancel test';
 
     return (<ComposerLayout
       content={<div >Hello</div>}
       title="title"
       sideActions={<div>Some Side Actions</div>}
       onCloseButtonClick={onCloseButtonClick}
-      onQuestionMarkButtonClick={onQuestionMarkButtonClick}
+      onInfoButtonClick={onInfoButtonClick}
       onConfirmButtonClick={onConfirmButtonClick}
       onCancelButtonClick={onCancelButtonClick}
       confirmButtonContent={confirmButtonContent}
       cancelButtonContent={cancelButtonContent}
+      />);
+  }
+
+  renderGenericLayout() {
+    const x = new Array(100).fill(<div>hello</div>);
+    return (<GenericLayout
+      header="header"
+      content={x}
+      footer="footer"
       />);
   }
 

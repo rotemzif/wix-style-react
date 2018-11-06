@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {GenericLayout} from '../GenericLayout';
 import {HeaderLayout} from './HeaderLayout';
 import FooterLayout from './FooterLayout';
@@ -10,17 +11,19 @@ export const ComposerLayout = props => {
     showCloseButton={props.showCloseButton}
     showQuestionMarkButton={props.showQuestionMarkButton}
     onCloseButtonClick={props.onCloseButtonClick}
-    onQuestionMarkButtonClick={props.onQuestionMarkButtonClick}
+    onInfoButtonClick={props.onInfoButtonClick}
     secondaryItems={props.secondaryItems}
     />);
 
   const footer = (<FooterLayout
-    confirmText={props.confirmButtonContent}
-    cancelText={props.cancelButtonContent}
-    enableOk={props.showConfirmButton}
-    enableCancel={props.showCancelButton}
-    onOk={props.onConfirmButtonClick}
-    onCancel={props.onCancelButtonClick}
+    confirmButtonContent={props.confirmButtonContent}
+    cancelButtonContent={props.cancelButtonContent}
+    showConfirmButton={props.showConfirmButton}
+    showCancelButton={props.showCancelButton}
+    isConfirmButtonEnabled={props.isConfirmButtonEnabled}
+    isCancelButtonEnabled={props.isCancelButtonEnabled}
+    onConfirmButtonClick={props.onConfirmButtonClick}
+    onCancelButtonClick={props.onCancelButtonClick}
     sideActions={props.sideActions}
     />);
 
@@ -40,13 +43,15 @@ ComposerLayout.propTypes = {
   showCloseButton: PropTypes.bool,
   showQuestionMarkButton: PropTypes.bool,
   onCloseButtonClick: PropTypes.func,
-  onQuestionMarkButtonClick: PropTypes.func,
+  onInfoButtonClick: PropTypes.func,
   secondaryItems: PropTypes.node,
   fullscreen: PropTypes.bool,
   confirmButtonContent: PropTypes.node,
   cancelButtonContent: PropTypes.node,
   showConfirmButton: PropTypes.bool,
   showCancelButton: PropTypes.bool,
+  isConfirmButtonEnabled: PropTypes.bool,
+  isCancelButtonEnabled: PropTypes.bool,
   onConfirmButtonClick: PropTypes.func,
   onCancelButtonClick: PropTypes.func,
   sideActions: PropTypes.node,
@@ -55,13 +60,7 @@ ComposerLayout.propTypes = {
 };
 
 ComposerLayout.defaultProps = {
-  showCloseButton: true,
-  showQuestionMarkButton: true,
-  showConfirmButton: true,
-  showCancelButton: true,
   fullscreen: false,
-  confirmButtonContent: 'Save',
-  cancelButtonContent: 'Cancel',
   showHeader: true,
   showFooter: true
 };

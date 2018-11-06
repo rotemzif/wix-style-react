@@ -27,7 +27,7 @@ export class GenericLayout extends WixComponent {
       <div className={containerClassNames}>
         <div>{header}</div>
 
-        <div className={styles.content}>{content}</div>
+        <div className={styles.content} data-hook="content">{content}</div>
 
         <div>{footer}</div>
       </div>

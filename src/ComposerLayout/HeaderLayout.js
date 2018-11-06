@@ -7,14 +7,15 @@ import {Row} from './Row';
 
 export const HeaderLayout = props => {
   const rightAlignedItems = (<div>
-    {props.showQuestionMarkButton && <InfoIcon data-hook="info-icon" onClick={props.onQuestionMarkButtonClick}/>}
+    {props.showQuestionMarkButton && <InfoIcon data-hook="info-icon" onClick={props.onInfoButtonClick}/>}
     {props.showCloseButton && <XIcon data-hook="x-icon" onClick={props.onCloseButtonClick}/>}
   </div>);
   return (
     <Row
+      data-hook="header-layout"
       rightAlignedItems={rightAlignedItems}
       centerAlignedItems={props.title}
-      leftAlignedItems={props.secondaryItems}
+      leftAlignedItems={props.sideActions}
       />
   );
 };
@@ -23,9 +24,9 @@ HeaderLayout.propTypes = {
   showCloseButton: PropTypes.bool,
   showQuestionMarkButton: PropTypes.bool,
   onCloseButtonClick: PropTypes.func,
-  onQuestionMarkButtonClick: PropTypes.func,
+  onInfoButtonClick: PropTypes.func,
   title: PropTypes.string,
-  secondaryItems: PropTypes.node
+  sideActions: PropTypes.node
 };
 
 HeaderLayout.defaultProps = {

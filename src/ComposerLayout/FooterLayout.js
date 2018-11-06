@@ -1,87 +1,66 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {PropTypes} from 'react';
+import {Row} from './Row';
 import Button from '../Backoffice/Button';
-import * as styles from './FooterLayout.scss';
-import classNames from 'classnames';
+import TextLink from '../TextLink';
 
-const FooterLayout = ({
-  bottomChildren,
-  children,
-  theme,
-  cancelText,
-  onCancel,
-  onOk,
-  confirmText,
-  buttonsHeight,
-  enableOk,
-  enableCancel,
-  sideActions
-}) => {
-  const footerButtonsClassNames = classNames(
-    styles.footerbuttons,
-    {
-      [styles.withSideActions]: sideActions && (cancelText || confirmText)
-    }
-  );
-  return (
-    <div>
-      <div className={styles.footer} data-hook="message-box-footer">
-        {sideActions}
-        {children}
-        <div className={footerButtonsClassNames}>
-          {cancelText && (
-            <Button
-              disabled={!enableCancel}
-              height={buttonsHeight}
-              theme={'empty' + theme}
-              onClick={onCancel}
-              dataHook="cancellation-button"
-              children={cancelText}
-              />
-          )}
-          {confirmText && (
-            <Button
-              disabled={!enableOk}
-              height={buttonsHeight}
-              theme={'full' + theme}
-              onClick={onOk}
-              dataHook="confirmation-button"
-              children={confirmText}
-              />
-          )}
-        </div>
-      </div>
 
-      {bottomChildren && (
-        <div
-          data-hook="footer-layout-bottom-children"
-          className={styles.bottomChildren}
-          children={bottomChildren}
-          />
-      )}
+const FooterLayout = props => {
+
+  const rightAlignedItems = (<div>
+    {props.showCancelButton &&
+    <div
+      style={{display: 'inline'}}
+      onClick={props.isCancelButtonEnabled && props.onCancelButtonClick}
+      >
+      <TextLink
+        data-hook="cancel-button"
+        disabled={props.isCancelButtonEnabled}
+        >
+        {props.cancelButtonContent}
+      </TextLink>
     </div>
+    }
+
+    {props.showConfirmButton &&
+      <Button
+        dataHook="confirm-button"
+        disabled={!props.isConfirmButtonEnabled}
+        onClick={props.onConfirmButtonClick}
+        children={props.confirmButtonContent}
+        />
+    }
+  </div>);
+  return (
+    <Row
+      rightAlignedItems={rightAlignedItems}
+      leftAlignedItems={props.sideActions}
+      />
   );
-};
+}
+;
+
 
 FooterLayout.propTypes = {
-  confirmText: PropTypes.node,
-  cancelText: PropTypes.node,
-  onCancel: PropTypes.func,
-  onOk: PropTypes.func,
-  enableOk: PropTypes.bool,
-  enableCancel: PropTypes.bool,
-  theme: PropTypes.string,
-  buttonsHeight: PropTypes.string,
-  children: PropTypes.any,
-  bottomChildren: PropTypes.node,
+  confirmButtonContent: PropTypes.node,
+  cancelButtonContent: PropTypes.node,
+  onConfirmButtonClick: PropTypes.func,
+  onCancelButtonClick: PropTypes.func,
+  isConfirmButtonEnabled: PropTypes.bool,
+  isCancelButtonEnabled: PropTypes.bool,
+  showConfirmButton: PropTypes.bool,
+  showCancelButton: PropTypes.bool,
   sideActions: PropTypes.node
 };
 
 FooterLayout.defaultProps = {
-  theme: 'blue',
-  buttonsHeight: 'small',
-  enableOk: true,
-  enableCancel: true
-};
+  showConfirmButton: true,
+  showCancelButton: true,
+  isConfirmButtonEnabled: true,
+  isCancelButtonEnabled: true,
+  confirmButtonContent: 'Save',
+  Button: 'Cancel'
+}
+;
+
 
 export default FooterLayout;
