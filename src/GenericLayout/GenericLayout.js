@@ -7,7 +7,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import styles from './GenericLayout.scss';
 
 
-class GenericLayout extends WixComponent {
+export class GenericLayout extends WixComponent {
   render() {
     const {
       fullscreen,
@@ -41,5 +41,3 @@ GenericLayout.propTypes = {
   footer: PropTypes.node,
   fullscreen: PropTypes.bool
 };
-
-export default GenericLayout;

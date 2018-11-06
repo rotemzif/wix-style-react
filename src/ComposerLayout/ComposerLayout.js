@@ -1,7 +1,9 @@
 import React, {PropTypes} from 'react';
-import GenericLayout from '../GenericLayout/GenericLayout';
+
+import {GenericLayout} from '../GenericLayout';
+import {FooterLayout} from '../MessageBox';
+
 import {HeaderLayout} from './HeaderLayout';
-import FooterLayout from '../MessageBox/FooterLayout';
 
 
 export const ComposerLayout = props => {
@@ -13,7 +15,7 @@ export const ComposerLayout = props => {
     onCloseButtonClick={props.onCloseButtonClick}
     onQuestionMarkButtonClick={props.onQuestionMarkButtonClick}
     secondaryItems={props.secondaryItems}
-    />);
+  />);
 
   const footer = (<FooterLayout
     confirmText={props.confirmButtonContent}
@@ -23,7 +25,7 @@ export const ComposerLayout = props => {
     onOk={props.onConfirmButtonClick}
     onCancel={props.onCancelButtonClick}
     sideActions={props.sideActions}
-    />);
+  />);
 
   return (
     <GenericLayout
@@ -31,7 +33,7 @@ export const ComposerLayout = props => {
       content={props.content}
       footer={props.showFooter && footer}
       fullscreen={props.fullscreen}
-      />
+    />
   );
 };
 

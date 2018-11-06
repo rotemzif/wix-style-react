@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Button from 'wix-style-react/Button';
 import Modal from 'wix-style-react/Modal';
 
-import {ComposerLayout} from '../../../src/ComposerLayout/ComposerLayout';
+import {ComposerLayout} from '../../../src/ComposerLayout';
 
 
 class GenericModal extends Component {
@@ -19,8 +19,8 @@ class GenericModal extends Component {
     const onConfirmButtonClick = () => console.log('confirm button clicked');
     const onCancelButtonClick = () => console.log('cancel button clicked');
 
-    const confirmButtonContent = 'confirm test';
-    const cancelButtonContent = 'cancel test';
+    const confirmButtonContent = 'Cancel';
+    const cancelButtonContent = 'Save';
 
     return (<ComposerLayout
       content={<div >Hello</div>}

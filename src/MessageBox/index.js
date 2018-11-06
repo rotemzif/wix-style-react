@@ -10,4 +10,3 @@ export {
   FooterLayout, FooterLayout as FooterLayout1,
   MessageBoxFunctionalLayout, MessageBoxFunctionalLayout as MessageBoxLayout2
 };
-
