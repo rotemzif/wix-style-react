@@ -15,14 +15,21 @@ export const ComposerLayout = props => {
     secondaryItems={props.secondaryItems}
     />);
 
+  const footer = (<FooterLayout
+    confirmText={props.confirmButtonContent}
+    cancelText={props.cancelButtonContent}
+    enableOk={props.showConfirmButton}
+    enableCancel={props.showCancelButton}
+    onOk={props.onConfirmButtonClick}
+    onCancel={props.onCancelButtonClick}
+    sideActions={props.sideActions}
+    />);
+
   return (
     <GenericLayout
-      header={header}
+      header={props.showHeader && header}
       content={props.content}
-      footer={<FooterLayout
-        confirmText="text"
-        cancelText="{cancelText}"
-        />}
+      footer={props.showFooter && footer}
       fullscreen={props.fullscreen}
       />
   );
@@ -36,11 +43,26 @@ ComposerLayout.propTypes = {
   onCloseButtonClick: PropTypes.func,
   onQuestionMarkButtonClick: PropTypes.func,
   secondaryItems: PropTypes.node,
-  fullscreen: PropTypes.bool
+  fullscreen: PropTypes.bool,
+  confirmButtonContent: PropTypes.node,
+  cancelButtonContent: PropTypes.node,
+  showConfirmButton: PropTypes.bool,
+  showCancelButton: PropTypes.bool,
+  onConfirmButtonClick: PropTypes.func,
+  onCancelButtonClick: PropTypes.func,
+  sideActions: PropTypes.node,
+  showHeader: PropTypes.bool,
+  showFooter: PropTypes.bool
 };
 
 ComposerLayout.defaultProps = {
   showCloseButton: true,
   showQuestionMarkButton: true,
-  fullscreen: false
+  showConfirmButton: true,
+  showCancelButton: true,
+  fullscreen: false,
+  confirmButtonContent: 'Save',
+  cancelButtonContent: 'Cancel',
+  showHeader: true,
+  showFooter: true
 };

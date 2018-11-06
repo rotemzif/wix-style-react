@@ -13,6 +13,16 @@ class GenericModal extends Component {
     };
   }
 
+  renderComposerLayout() {
+
+    return (<ComposerLayout
+      content={<div >Hello</div>}
+      title="title"
+      fullscreen
+      sideActions={<div>Some Side Actions</div>}
+      />);
+  }
+
   render() {
     const setState = state => () => this.setState(state);
     const closeGenericModal = setState({isOpenGenericModal: false});
@@ -31,11 +41,7 @@ class GenericModal extends Component {
           onRequestClose={closeGenericModal}
           shouldDisplayCloseButton
           >
-          <ComposerLayout
-            content={<div >Hello</div>}
-            title="title"
-            fullscreen
-            />
+          {this.renderComposerLayout()}
         </Modal>
       </div>
     );
