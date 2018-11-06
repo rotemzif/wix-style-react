@@ -1,5 +1,6 @@
-import React from 'react';
 import {mount} from 'enzyme';
+import React from 'react';
+
 import {Row} from './Row';
 
 describe('Row', () => {
@@ -24,4 +25,3 @@ describe('Row', () => {
     expect(component.find('[data-hook="center-aligned-items"]').hasClass('centerAlignedItems')).toBeTruthy();
   });
 });
-

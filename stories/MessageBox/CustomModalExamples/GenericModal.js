@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Button} from 'wix-style-react/Backoffice';
-import GenericLayout from 'wix-style-react/GenericLayout/GenericLayout';
+import Button from 'wix-style-react/Button';
 import Modal from 'wix-style-react/Modal';
+
 import {ComposerLayout} from '../../../src/ComposerLayout/ComposerLayout';
 
 
@@ -26,9 +26,10 @@ class GenericModal extends Component {
           >Open Generic Modal</Button>
 
         <Modal
+          contentLabel="Generic modal example"
           isOpen={this.state.isOpenGenericModal}
           onRequestClose={closeGenericModal}
-          contentLabel="Generic modal example"
+          shouldDisplayCloseButton
           >
           <ComposerLayout
             content={<div >Hello</div>}

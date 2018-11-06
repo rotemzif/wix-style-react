@@ -20,4 +20,3 @@ Row.propTypes = {
   rightAlignedItems: PropTypes.node,
   centerAlignedItems: PropTypes.node
 };
-
