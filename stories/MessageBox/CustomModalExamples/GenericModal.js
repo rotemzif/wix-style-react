@@ -14,12 +14,25 @@ class GenericModal extends Component {
   }
 
   renderComposerLayout() {
+    const onCloseButtonClick = () => console.log('close button clicked');
+    const onQuestionMarkButtonClick = () => console.log('question mark button clicked');
+    const onConfirmButtonClick = () => console.log('confirm button clicked');
+    const onCancelButtonClick = () => console.log('cancel button clicked');
+
+    const confirmButtonContent = 'confirm test';
+    const cancelButtonContent = 'cancel test';
 
     return (<ComposerLayout
       content={<div >Hello</div>}
       title="title"
       fullscreen
       sideActions={<div>Some Side Actions</div>}
+      onCloseButtonClick={onCloseButtonClick}
+      onQuestionMarkButtonClick={onQuestionMarkButtonClick}
+      onConfirmButtonClick={onConfirmButtonClick}
+      onCancelButtonClick={onCancelButtonClick}
+      confirmButtonContent={confirmButtonContent}
+      cancelButtonContent={cancelButtonContent}
       />);
   }
 
@@ -39,7 +52,6 @@ class GenericModal extends Component {
           contentLabel="Generic modal example"
           isOpen={this.state.isOpenGenericModal}
           onRequestClose={closeGenericModal}
-          shouldDisplayCloseButton
           >
           {this.renderComposerLayout()}
         </Modal>
