@@ -77,6 +77,16 @@ describe('MessageBox', () => {
     });
   });
 
+  describe('Fullscreen Generic Modal', () => {
+    eyes.it('should open full screen generic modal', async () => {
+      const storyUrl = createStoryUrl({kind: '9. Modals', story: '9.3 Custom Modal'});
+      await browser.get(storyUrl);
+      const button = buttonTestkitFactory({dataHook: 'open-fullscreen-generic-modal-button'});
+      button.click();
+      await verifyItem('fullscreen-generic-modal');
+    });
+  });
+
   describe('Announcement', () => {
     eyes.it('should not break design', async () => {
       const storyUrl = createStoryUrl({kind: '9. Modals', story: '9.4 Announcement'});

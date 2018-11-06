@@ -7,7 +7,9 @@ import ReadmeTestKit from '../../src/MessageBox/README.TESTKIT.md';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import FullScreenModal from './CustomModalExamples/FullScreenModal';
+import GenericModal from './CustomModalExamples/GenericModal';
 import FullScreenModalRaw from '!raw-loader!./CustomModalExamples/FullScreenModal';
+import GenericModalRaw from '!raw-loader!./CustomModalExamples/GenericModal';
 
 const introduction = `# Custom modal (\`<MessageBoxFunctionalLayout/>\`)`;
 
@@ -24,6 +26,12 @@ export default () => (
           title="fullscreen"
           code={FullScreenModalRaw}
           children={<FullScreenModal/>}
+          />
+
+        <CodeExample
+          title="fullscreen generic"
+          code={GenericModalRaw}
+          children={<GenericModal/>}
           />
       </div>
     </div>
