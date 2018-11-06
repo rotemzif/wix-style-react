@@ -5,8 +5,8 @@ import InfoIcon from 'wix-style-react/new-icons/Info';
 
 export const HeaderLayout = props => {
   const rightAlignedItems = (<div>
-    {props.showQuestionMarkButton && <InfoIcon data-hook="info-icon" onClick={props.onClickQuestionMark}/>}
-    {props.showCloseButton && <XIcon data-hook="x-icon" onClick={props.onClickX}/>}
+    {props.showQuestionMarkButton && <InfoIcon data-hook="info-icon" onClick={props.onQuestionMarkButtonClick}/>}
+    {props.showCloseButton && <XIcon data-hook="x-icon" onClick={props.onCloseButtonClick}/>}
   </div>);
   return (
     <Row
@@ -22,8 +22,8 @@ export const HeaderLayout = props => {
 HeaderLayout.propTypes = {
   showCloseButton: PropTypes.bool,
   showQuestionMarkButton: PropTypes.bool,
-  onClickX: PropTypes.func,
-  onClickQuestionMark: PropTypes.func,
+  onCloseButtonClick: PropTypes.func,
+  onQuestionMarkButtonClick: PropTypes.func,
   title: PropTypes.string,
   secondaryItems: PropTypes.node
 };

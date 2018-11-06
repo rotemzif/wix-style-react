@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'wix-style-react/Backoffice';
 import GenericLayout from 'wix-style-react/GenericLayout/GenericLayout';
 import Modal from 'wix-style-react/Modal';
+import {ComposerLayout} from '../../../src/ComposerLayout/ComposerLayout';
 
 
 class GenericModal extends Component {
@@ -29,12 +30,10 @@ class GenericModal extends Component {
           onRequestClose={closeGenericModal}
           contentLabel="Generic modal example"
           >
-          <GenericLayout
-            dataHook="fullscreen-generic-modal"
+          <ComposerLayout
+            content={<div >Hello</div>}
+            title="title"
             fullscreen
-            header={<div>header</div>}
-            content={<div>content</div>}
-            footer={<div>footer</div>}
             />
         </Modal>
       </div>
