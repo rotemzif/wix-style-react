@@ -10,18 +10,19 @@ describe('deprecationLog', () => {
     global.console.warn = cachedConsoleWarn;
   });
 
-  it('should log warning in dev mode', () => {
+  it('should log the appropriate message content', () => {
     deprecationLog('Some message');
-    expect(global.console.warn).toBeCalledWith('Wix-Style-React: [WARNING] Some message');
+    expect(global.console.warn).toBeCalledWith(
+      'Wix-Style-React: [WARNING] Some message'
+    );
   });
 
-  it('should log only once per class', () => {
-    deprecationLog('message', 'keyA');
+  it('should log only once per message', () => {
+    deprecationLog('message');
     expect(global.console.warn.mock.calls.length).toEqual(1);
-    deprecationLog('message', 'keyA');
+    deprecationLog('message');
     expect(global.console.warn.mock.calls.length).toEqual(1);
-    deprecationLog('message', 'keyB');
+    deprecationLog('message2');
     expect(global.console.warn.mock.calls.length).toEqual(2);
   });
-
 });

@@ -3,25 +3,24 @@ let deprecationLog = function () {};
 
 if (process.env.NODE_ENV !== 'production') {
   class DeprecationLogger {
-    reportedKeys = new Set();
+    reportedMessages = new Set();
 
     /**
      * Log a warning message, once per key. (Calling `log` twice with same key would result in one log)
      *
      * @param {*} message
-     * @param {*} key
      * @memberof DeprecationLogger
      */
-    log(message, key) {
-      if (!this.reportedKeys.has(key)) {
-        this.reportedKeys.add(key);
+    log(message) {
+      if (!this.reportedMessages.has(message)) {
+        console.log(message);
+        this.reportedMessages.add(message);
         this.printWarning(message);
       }
     }
-
     printWarning = msg => {
       const message = `Wix-Style-React: [WARNING] ${msg}`;
-      if (typeof console !== 'undefined') {
+      if (console) {
         console.warn(message);
       }
       try {
@@ -35,7 +34,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   const logger = new DeprecationLogger();
 
-  deprecationLog = (msg, key) => logger.log(msg, key);
+  deprecationLog = msg => logger.log(msg);
 }
 
 export default deprecationLog;

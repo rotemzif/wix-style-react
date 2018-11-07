@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Label from '../../src/Label';
-import TextField from '../../src/TextField';
+import FormField from '../../src/FormField';
 import TextArea from '../../src/TextArea';
 import Input from '../../src/Input';
 import InputArea from '../../src/InputArea';
@@ -105,8 +105,7 @@ class RichTextAreaExample extends Component {
 
     return (
       <div className={styles.output}>
-        <TextField>
-          <Label for="errorMessageInput">Error message</Label>
+        <FormField label="Error message">
           <Input
             id="errorMessageInput"
             size="normal"
@@ -114,7 +113,7 @@ class RichTextAreaExample extends Component {
             value={errorMessage}
             onChange={event => this.setState({errorMessage: event.target.value})}
             />
-        </TextField>
+        </FormField>
       </div>
     );
   }

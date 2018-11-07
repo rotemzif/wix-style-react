@@ -1,5 +1,3 @@
-import './assets/helvetica.scss';
-
 import {MessageBoxMarketerialLayout, MessageBoxFunctionalLayout, HeaderLayout, FooterLayout} from './MessageBox';
 
 export {default as AddItem} from './AddItem';

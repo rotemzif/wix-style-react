@@ -6,7 +6,7 @@ import Input from '../../src/Input';
 import TabsTemplate from './TabsTemplate';
 import Button from '../../src/Button';
 import styles from './TabsExample.scss';
-import TextField from '../../src/TextField';
+import FormField from '../../src/FormField';
 
 
 const SideContentExample = () => (
@@ -48,13 +48,7 @@ class TabsExample extends Component {
             <div className={styles.option}>
               <div className={styles.column} style={{width: '100px'}}>
                 <br/>
-                <TextField>
-                  <Label
-                    appearance="T1.1"
-                    for="firstName"
-                    >
-                    Tab Width
-                  </Label>
+                <FormField label="Tab Width">
                   <Input
                     errorMessage=""
                     id="firstName"
@@ -77,7 +71,7 @@ class TabsExample extends Component {
                     theme="normal"
                     type="number"
                     />
-                </TextField>
+                </FormField>
                 <br/>
               </div>
             </div> :

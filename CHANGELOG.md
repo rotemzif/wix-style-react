@@ -15,9 +15,12 @@ Types of changes:
 
 ## Next
 
+### Deprecated
+- `fonts` - Removed fonts from main index file [#2419](https://github.com/wix/wix-style-react/pull/2419)
+
 ## 5.9.0 - 2018-11-05
 ### Added
-- Added tree shaking - [2407](https://github.com/wix/wix-style-react/pull/2407)
+- Added tree shaking - [#2407](https://github.com/wix/wix-style-react/pull/2407)
 
 ### Fixed
 

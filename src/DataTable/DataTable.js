@@ -322,8 +322,7 @@ class TableHeader extends Component {
       infoTooltipProps = column.infoTooltip;
 
       deprecationLog(
-        'Property `infoTooltip` of Table\'s `columns` prop is deprecated; use `infoTooltipProps` instead.',
-        'infoTooltipDeprecation'
+        'Property `infoTooltip` of Table\'s `columns` prop is deprecated; use `infoTooltipProps` instead.'
       );
     }
 
