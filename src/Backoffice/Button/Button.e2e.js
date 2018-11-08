@@ -56,8 +56,8 @@ describe('Backoffice Button', () => {
 
     eyes.it('should render prefix & sufix', async () => {
       await autoExampleDriver.setProps({
-        prefixIcon: <AddChannel />,
-        suffixIcon: <AddChannel />
+        prefixIcon: <AddChannel/>,
+        suffixIcon: <AddChannel/>
       });
 
       expect(await driver.isPrefixIconExists()).toBe(true);
