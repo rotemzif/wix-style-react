@@ -1,18 +1,11 @@
 import React from 'react';
 import {func, node, string} from 'prop-types';
-import styles from './Button.scss';
+import styles from '../../ButtonLayout/ButtonLayout.scss';
 import WixComponent from '../../BaseComponents/WixComponent';
 import ButtonLayout from '../../ButtonLayout/ButtonLayout';
 import omit from 'omit';
 import {withFocusable, focusableStates} from '../../common/Focusable';
 import {pickAccessibilityProps} from '../../common/accessibility';
-
-const ICON_SIZES = {
-  large: '24px',
-  medium: '24px',
-  small: '18px',
-  tiny: '18px'
-};
 
 class Button extends WixComponent {
   static displayName = 'Button';
@@ -27,25 +20,18 @@ class Button extends WixComponent {
     onClick: func,
     onMouseEnter: func,
     onMouseLeave: func
-  }
+  };
 
   static defaultProps = {
     ...ButtonLayout.defaultProps
   };
 
-  addIcon = (className, icon, height) => {
-    const fallbackSize = ICON_SIZES.medium || '16px';
-    const iconSize = ICON_SIZES[height] || fallbackSize;
+  addIcon = (className, icon) => {
     const dataHook = className === styles.prefix ? 'btn-prefix' : 'btn-suffix';
-
-    return (
-      icon ?
-        <div className={className} data-hook={dataHook}>
-          {React.cloneElement(icon, {size: iconSize})}
-        </div> :
-        null
-    );
-  }
+    return icon ?
+      React.cloneElement(icon, {className, 'data-hook': {dataHook}}) :
+      null;
+  };
 
   addPrefix = () =>
     this.addIcon(styles.prefix, this.props.prefixIcon, this.props.height);
@@ -63,7 +49,10 @@ class Button extends WixComponent {
       onMouseLeave
     } = this.props;
 
-    const buttonLayoutProps = omit(['id', 'onClick', 'prefixIcon', 'suffixIcon', 'type'], this.props);
+    const buttonLayoutProps = omit(
+      ['id', 'onClick', 'prefixIcon', 'suffixIcon', 'type'],
+      this.props
+    );
     return (
       <ButtonLayout {...buttonLayoutProps}>
         <button
@@ -87,4 +76,3 @@ class Button extends WixComponent {
 }
 
 export default withFocusable(Button);
-
