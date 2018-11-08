@@ -8,7 +8,7 @@ import {withFocusable, focusableStates} from '../../common/Focusable';
 import {pickAccessibilityProps} from '../../common/accessibility';
 
 class Button extends WixComponent {
-  static displayName = 'Button';
+  static displayName = 'Button'
 
   static propTypes = {
     ...ButtonLayout.propTypes,
@@ -20,24 +20,24 @@ class Button extends WixComponent {
     onClick: func,
     onMouseEnter: func,
     onMouseLeave: func
-  };
+  }
 
   static defaultProps = {
     ...ButtonLayout.defaultProps
-  };
+  }
 
   addIcon = (className, icon) => {
     const dataHook = className === styles.prefix ? 'btn-prefix' : 'btn-suffix';
-    return icon ?
-      React.cloneElement(icon, {className, 'data-hook': {dataHook}}) :
-      null;
-  };
+    return icon ? (
+      <div data-hook={dataHook}>{React.cloneElement(icon, {className})}</div>
+    ) : null;
+  }
 
   addPrefix = () =>
-    this.addIcon(styles.prefix, this.props.prefixIcon, this.props.height);
+    this.addIcon(styles.prefix, this.props.prefixIcon, this.props.height)
 
   addSuffix = () =>
-    this.addIcon(styles.suffix, this.props.suffixIcon, this.props.height);
+    this.addIcon(styles.suffix, this.props.suffixIcon, this.props.height)
 
   render() {
     const {
