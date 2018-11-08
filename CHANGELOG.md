@@ -15,8 +15,13 @@ Types of changes:
 
 ## Next
 
+## 5.9.1 - 2018-11-07
+
 ### Deprecated
 - `fonts` - Removed fonts from main index file [#2419](https://github.com/wix/wix-style-react/pull/2419)
+
+### Changed
+- `<Input>` - change placeholder color for the Input component [#2402](https://github.com/wix/wix-style-react/pull/2402)
 
 ## 5.9.0 - 2018-11-05
 ### Added

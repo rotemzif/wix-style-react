@@ -6,7 +6,7 @@
 
 `wix-style-react` is a collection of [React](https://facebook.github.io/react/) components that conform to Wix Style created by Wix UX guild.
 
-#### [Demo](https://wix-wix-style-react.surge.sh/) | [Source](https://github.com/wix/wix-style-react) | [Playground](https://codesandbox.io/s/mymk2zn1mp)
+#### [Demo](https://wix-wix-style-react.surge.sh/) | [Source](https://github.com/wix/wix-style-react) | [Playground](https://codesandbox.io/s/7w8m804o5j)
 
 ## Setup
 
