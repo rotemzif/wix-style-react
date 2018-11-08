@@ -28,6 +28,9 @@ describe('Table Action Cell', () => {
     try {
       await driver.getHiddenActionsPopoverMenu().click();
       await eyes.checkWindow(`${name} PopoverMenu opened`);
+
+      // Click it again to close it
+      await driver.getHiddenActionsPopoverMenu().click();
     } catch (e) {
       // ignored
     }
