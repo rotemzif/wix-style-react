@@ -7,7 +7,7 @@ import {getStoryUrl} from '../../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {runFocusTests} from '../../common/Focusable/FocusableTestsE2E';
 import {TESTS_PREFIX} from '../../../stories/storiesHierarchy';
-import AddChannel from 'wix-style-react/new-icons/AddChannel';
+import AddChannel from 'wix-ui-icons-common/AddChannel';
 
 const NO_DESCRIPTION = '';
 
