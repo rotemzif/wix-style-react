@@ -128,89 +128,7 @@ $base-transition: all 100ms linear;
     padding: 0;
   }
 }
-/** Affixes **/
 
-.suffix {
-  margin: 0 -12px 0 6px;
-  line-height: 0;
-  width: 24px;
-  height: 24px;
-}
-
-.prefix {
-  margin: 0 6px 0 -12px;
-  line-height: 0;
-  width: 24px;
-  height: 24px;
-}
-
-.heightx-small .suffix {
-  margin: 0 -6px 0 0;
-  line-height: 0;
-  width: 18px;
-  height: 18px;
-}
-
-.heightx-small .prefix {
-  margin: 0 0 0 -6px;
-  line-height: 0;
-  width: 18px;
-  height: 18px;
-}
-
-.heightsmall .suffix {
-  margin: 0 -6px 0 6px;
-  line-height: 0;
-  width: 18px;
-  height: 18px;
-}
-
-.heightsmall .prefix {
-  margin: 0 6px 0 -6px;
-  line-height: 0;
-  width: 18px;
-  height: 18px;
-}
-
-.heightlarge .suffix {
-  margin: 0 -12px 0 12px;
-  line-height: 0;
-  width: 24px;
-  height: 24px;
-}
-
-.heightlarge .prefix {
-  margin: 0 12px 0 -12px;
-  line-height: 0;
-  width: 24px;
-  height: 24px;
-}
-
-.heightx-large .suffix {
-  margin: 0 -12px 0 12px;
-  line-height: 0;
-  width: 24px;
-  height: 24px;
-}
-
-.heightx-large .prefix {
-  margin: 0 12px 0 -12px;
-  line-height: 0;
-  width: 24px;
-  height: 24px;
-}
-
-:global(.rtl) .prefix {
-  padding: 0 0 0 10px;
-  line-height: 0 !important;
-}
-
-:global(.rtl) .suffix {
-  padding: 0 10px 0 0;
-  line-height: 0 !important;
-}
-
-/* sizes */
 .heightlarge {
   $height: 42px;
   height: $height;
@@ -697,4 +615,89 @@ $base-transition: all 100ms linear;
     background: $D55;
     border-color: $D55;
   }
+}
+
+/** Affixes **/
+
+.button .inner .affixIcon {
+  line-height: 0;
+}
+
+.suffix {
+  margin: 0 -12px 0 6px;
+  width: 24px;
+  height: 24px;
+}
+
+.prefix {
+  margin: 0 6px 0 -12px;
+  line-height: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.heightx-small .suffix {
+  margin: 0 -6px 0 0;
+  line-height: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.heightx-small .prefix {
+  margin: 0 0 0 -6px;
+  line-height: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.heightsmall .suffix {
+  margin: 0 -6px 0 6px;
+  line-height: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.heightsmall .prefix {
+  margin: 0 6px 0 -6px;
+  line-height: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.heightlarge .suffix {
+  margin: 0 -12px 0 12px;
+  line-height: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.heightlarge .prefix {
+  margin: 0 12px 0 -12px;
+  line-height: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.heightx-large .suffix {
+  margin: 0 -12px 0 12px;
+  line-height: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.heightx-large .prefix {
+  margin: 0 12px 0 -12px;
+  line-height: 0;
+  width: 24px;
+  height: 24px;
+}
+
+:global(.rtl) .prefix {
+  padding: 0 0 0 10px;
+  line-height: 0 !important;
+}
+
+:global(.rtl) .suffix {
+  padding: 0 10px 0 0;
+  line-height: 0 !important;
 }

@@ -7,7 +7,6 @@ import {getStoryUrl} from '../../../test/utils/storybook-helpers';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import {runFocusTests} from '../../common/Focusable/FocusableTestsE2E';
 import {TESTS_PREFIX} from '../../../stories/storiesHierarchy';
-import AddChannel from 'wix-ui-icons-common/AddChannel';
 
 const NO_DESCRIPTION = '';
 
@@ -27,7 +26,6 @@ describe('Backoffice Button', () => {
     });
 
     afterEach(() => autoExampleDriver.reset());
-
     eyes.it(
       'should be in initial state when renders with default',
       async () => {
@@ -56,10 +54,9 @@ describe('Backoffice Button', () => {
 
     eyes.it('should render prefix & sufix', async () => {
       await autoExampleDriver.setProps({
-        prefixIcon: <AddChannel/>,
-        suffixIcon: <AddChannel/>
+        prefixIcon: <div>prefix</div>,
+        suffixIcon: <div>suffix</div>
       });
-
       expect(await driver.isPrefixIconExists()).toBe(true);
       expect(await driver.isSuffixIconExists()).toBe(true);
     });
