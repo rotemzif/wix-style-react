@@ -26,11 +26,12 @@ class Button extends WixComponent {
     ...ButtonLayout.defaultProps
   };
 
-  addIcon = (affix, icon) => (
-    <div data-hook={`btn-${affix}`} className={styles.affixIcon}>
-      {icon && React.cloneElement(icon, {className: styles[affix]})}
-    </div>
-  );
+  addIcon = (affix, icon) =>
+    icon && (
+      <div data-hook={`btn-${affix}`} className={styles.affixIcon}>
+        {React.cloneElement(icon, {className: styles[affix]})}
+      </div>
+    );
 
   addPrefix = () => this.addIcon('prefix', this.props.prefixIcon);
 
