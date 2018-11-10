@@ -10,6 +10,10 @@ import Button from '../../../src/Button';
 import ChevronDown from '../../new-icons/ChevronDown';
 import ChevronUp from '../../new-icons/ChevronUp';
 
+deprecationLog(
+  'Card.CollapsedHeader is deprecated. Instead please use <Card><Collapse><Card.Content/></Collapse></Card>'
+);
+
 class CollapsedHeader extends WixComponent {
   static displayName = 'Card.CollapsedHeader';
   static propTypes = {
@@ -31,12 +35,6 @@ class CollapsedHeader extends WixComponent {
     buttonExpandText: 'More',
     controlled: false
   };
-
-  componentDidMount() {
-    deprecationLog(
-      'Card.CollapsedHeader is deprecated. Instead please use <Card><Collapse><Card.Content/></Collapse></Card>'
-    );
-  }
 
   constructor(props) {
     super(props);
