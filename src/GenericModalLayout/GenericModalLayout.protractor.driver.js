@@ -6,7 +6,6 @@ const GenericModalLayoutDriverFactory = component => {
     );
 
   return {
-    exists: () => !!component,
     getElement: () => component,
     isFullscreen: () => hasClass('fullscreenContainer')
   };

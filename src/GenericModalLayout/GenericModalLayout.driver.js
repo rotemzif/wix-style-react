@@ -1,9 +1,10 @@
-export default ({element}) => {
-  const classExists = className => element.classList.contains(className);
+import {isClassExists} from '../../test/utils';
 
+
+export default ({element}) => {
   return {
     getElement: () => element,
     exists: () => !!element,
-    isFullscreen: () => classExists('fullscreenContainer')
+    isFullscreen: () => isClassExists(element, 'fullscreenContainer')
   };
 };
