@@ -8,12 +8,14 @@ import {genericModalLayoutTestkitFactory as enzymeGenericModalLayoutTestkitFacto
 
 import GenericModalLayout from './';
 import genericModalLayoutDriverFactory from './GenericModalLayout.driver';
+import genericModalLayoutPrivateDriverFactory from './GenericModalLayout.driver.private';
 
 
 const renderWithProps = (properties = {}) => <GenericModalLayout {...properties}/>;
 
 describe('GenericModalLayout', () => {
   const createDriver = createDriverFactory(genericModalLayoutDriverFactory);
+  const createPrivateDriver = createDriverFactory(genericModalLayoutPrivateDriverFactory);
 
   it('should render', () => {
     const driver = createDriver(renderWithProps());
@@ -21,42 +23,27 @@ describe('GenericModalLayout', () => {
   });
 
   it('should render header', () => {
-    const driver = createDriver(renderWithProps({
+    const driver = createPrivateDriver(renderWithProps({
       header: <div data-hook="generic-modal-layout-header">Header</div>
     }));
 
-    const headerTextContent = driver
-      .getElement()
-      .querySelector('[data-hook="generic-modal-layout-header"]')
-      .textContent;
-
-    expect(headerTextContent).toEqual('Header');
+    expect(driver.getHeaderTextContent()).toEqual('Header');
   });
 
   it('should render content', () => {
-    const driver = createDriver(renderWithProps({
+    const driver = createPrivateDriver(renderWithProps({
       content: <div data-hook="generic-modal-layout-content">Content</div>
     }));
 
-    const contentTextContent = driver
-      .getElement()
-      .querySelector('[data-hook="generic-modal-layout-content"]')
-      .textContent;
-
-    expect(contentTextContent).toEqual('Content');
+    expect(driver.getContentTextContent()).toEqual('Content');
   });
 
   it('should render footer', () => {
-    const driver = createDriver(renderWithProps({
+    const driver = createPrivateDriver(renderWithProps({
       footer: <div data-hook="generic-modal-layout-footer">Footer</div>
     }));
 
-    const footerTextContent = driver
-      .getElement()
-      .querySelector('[data-hook="generic-modal-layout-footer"]')
-      .textContent;
-
-    expect(footerTextContent).toEqual('Footer');
+    expect(driver.getFooterTextContent()).toEqual('Footer');
   });
 
   describe('fullscreen', () => {
