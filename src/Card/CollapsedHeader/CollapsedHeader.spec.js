@@ -2,22 +2,20 @@ import React from 'react';
 import collapsedHeaderDriverFactory from './CollapsedHeader.driver';
 import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import CollapsedHeader from './CollapsedHeader';
-import {collapsedHeaderTestkitFactory} from '../../../testkit';
-import {collapsedHeaderTestkitFactory as enzymeCollapsedHeaderTestkitFactory} from '../../../testkit/enzyme';
 
 import {requestAnimationFramePolyfill} from '../../../testkit/polyfills';
 
 const dataHook = 'content';
 const content = <div data-hook={dataHook}>Some Content</div>;
 
-describe.only('CollapsedHeader', () => {
+describe('CollapsedHeader', () => {
   const createDriver = createDriverFactory(collapsedHeaderDriverFactory);
   requestAnimationFramePolyfill.install();
 
   it('should have a title', () => {
     const driver = createDriver(
       <CollapsedHeader title="Header Title">
-        <div />
+        <div/>
       </CollapsedHeader>
     );
     expect(driver.title()).toBe('Header Title');
@@ -26,7 +24,7 @@ describe.only('CollapsedHeader', () => {
   it('should have a subtitle', () => {
     const driver = createDriver(
       <CollapsedHeader title="Header Title" subtitle="Header Subtitle">
-        <div />
+        <div/>
       </CollapsedHeader>
     );
     expect(driver.subtitle()).toBe('Header Subtitle');
@@ -56,7 +54,7 @@ describe.only('CollapsedHeader', () => {
       <CollapsedHeader
         title="Header Title"
         onCollapsedChange={onCollapsedChange}
-      >
+        >
         {content}
       </CollapsedHeader>
     );
@@ -98,7 +96,7 @@ describe.only('CollapsedHeader', () => {
           title="Header Title"
           controlled
           onCollapsedChange={onCollapsedChange}
-        >
+          >
           {content}
         </CollapsedHeader>
       );
@@ -113,7 +111,7 @@ describe.only('CollapsedHeader', () => {
           title="Header Title"
           controlled
           onCollapsedChange={jest.fn()}
-        >
+          >
           {content}
         </CollapsedHeader>
       );

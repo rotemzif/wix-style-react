@@ -31,7 +31,7 @@ describe('vanilla testkits', () => {
 
   it('ImageViewer exist', () => {
     expect(
-      isTestkitExists(<ImageViewer imageUrl="" />, imageViewerTestkitFactory)
+      isTestkitExists(<ImageViewer imageUrl=""/>, imageViewerTestkitFactory)
     ).toBe(true);
   });
 
@@ -39,7 +39,7 @@ describe('vanilla testkits', () => {
     expect(
       isTestkitExists(
         <FormField>
-          <div />
+          <div/>
         </FormField>,
         formFieldTestkitFactory
       )
@@ -47,7 +47,7 @@ describe('vanilla testkits', () => {
   });
 
   it('AddItem exist', () => {
-    expect(isTestkitExists(<AddItem />, addItemTestkitFactory)).toBe(true);
+    expect(isTestkitExists(<AddItem/>, addItemTestkitFactory)).toBe(true);
   });
 
   it('BadgeSelect exist', () => {
@@ -56,7 +56,7 @@ describe('vanilla testkits', () => {
         <BadgeSelect
           options={[{id: '0', skin: 'general', text: 'general'}]}
           selectedId={'0'}
-        />,
+          />,
         badgeSelectTestkitFactory
       )
     ).toBe(true);
@@ -66,7 +66,7 @@ describe('vanilla testkits', () => {
     expect(
       isTestkitExists(
         <CollapsedHeader title="Header">
-          <div />
+          <div/>
         </CollapsedHeader>,
         collapsedHeaderTestkitFactory
       )

@@ -35,14 +35,14 @@ describe('enzyme testkits', () => {
 
   it('AddItem exist', () => {
     expect(
-      isEnzymeTestkitExists(<AddItem />, addItemTestkitFactory, mount)
+      isEnzymeTestkitExists(<AddItem/>, addItemTestkitFactory, mount)
     ).toBe(true);
   });
 
   it('ImageViewer exist', () => {
     expect(
       isEnzymeTestkitExists(
-        <ImageViewer imageUrl="" />,
+        <ImageViewer imageUrl=""/>,
         imageViewerTestkitFactory,
         mount
       )
@@ -53,7 +53,7 @@ describe('enzyme testkits', () => {
     expect(
       isEnzymeTestkitExists(
         <FormField>
-          <div />
+          <div/>
         </FormField>,
         formFieldTestkitFactory,
         mount
@@ -67,7 +67,7 @@ describe('enzyme testkits', () => {
         <BadgeSelect
           options={[{id: '0', skin: 'general', text: 'general'}]}
           selectedId={'0'}
-        />,
+          />,
         badgeSelectTestkitFactory,
         mount
       )
@@ -78,7 +78,7 @@ describe('enzyme testkits', () => {
     expect(
       isEnzymeTestkitExists(
         <CollapsedHeader title="Header">
-          <div />
+          <div/>
         </CollapsedHeader>,
         collapsedHeaderTestkitFactory,
         mount

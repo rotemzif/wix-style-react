@@ -80,7 +80,7 @@ class CollapsedHeader extends WixComponent {
         dataHook="switch"
         onChange={this.onToggleChange}
         checked={!this.state.isCollapsed}
-      />
+        />
     </div>
   );
 
@@ -90,14 +90,14 @@ class CollapsedHeader extends WixComponent {
         withNewIcons
         dataHook="button"
         height="medium"
-        prefixIcon={this.state.isCollapsed ? <ChevronDown /> : <ChevronUp />}
+        prefixIcon={this.state.isCollapsed ? <ChevronDown/> : <ChevronUp/>}
         onClick={this.onToggleChange}
         theme="whiteblueprimary"
         type="button"
-      >
-        {this.state.isCollapsed
-          ? this.props.buttonExpandText
-          : this.props.buttonCollapseText}
+        >
+        {this.state.isCollapsed ?
+          this.props.buttonExpandText :
+          this.props.buttonCollapseText}
       </Button>
     </div>
   );
@@ -114,15 +114,15 @@ class CollapsedHeader extends WixComponent {
             title={title}
             subtitle={subtitle}
             suffix={
-              toggleStyle === 'switch'
-                ? this._toggleSwitchElement()
-                : this._buttonElement()
+              toggleStyle === 'switch' ?
+                this._toggleSwitchElement() :
+                this._buttonElement()
             }
             withoutDivider={withoutDivider || isCollapsed}
-          />
+            />
         </div>
 
-        <Collapse isOpened={!isCollapsed} children={children} />
+        <Collapse isOpened={!isCollapsed} children={children}/>
       </div>
     );
   }
