@@ -18,8 +18,6 @@ import {
   collapsedHeaderTestkitFactory
 } from './enzyme';
 
-import {} from './';
-
 describe('enzyme testkits', () => {
   it('Tag exist', () => {
     expect(
