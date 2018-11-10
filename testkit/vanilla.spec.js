@@ -6,39 +6,70 @@ import ImageViewer from '../src/ImageViewer';
 import FormField from '../src/FormField';
 import AddItem from '../src/AddItem';
 import BadgeSelect from '../src/BadgeSelect';
+import CollapsedHeader from '../src/Card/CollapsedHeader';
 
 import {
   addItemTestkitFactory,
   badgeSelectTestkitFactory,
   formFieldTestkitFactory,
   imageViewerTestkitFactory,
-  tagTestkitFactory
+  tagTestkitFactory,
+  collapsedHeaderTestkitFactory
 } from './index';
 
 describe('vanilla testkits', () => {
   it('Tag exist', () => {
-    expect(isTestkitExists(<Tag useOldMargins={false} id={'hello'}>a</Tag>, tagTestkitFactory)).toBe(true);
+    expect(
+      isTestkitExists(
+        <Tag useOldMargins={false} id={'hello'}>
+          a
+        </Tag>,
+        tagTestkitFactory
+      )
+    ).toBe(true);
   });
 
   it('ImageViewer exist', () => {
-    expect(isTestkitExists(<ImageViewer imageUrl=""/>, imageViewerTestkitFactory)).toBe(true);
+    expect(
+      isTestkitExists(<ImageViewer imageUrl="" />, imageViewerTestkitFactory)
+    ).toBe(true);
   });
 
   it('FormField exist', () => {
-    expect(isTestkitExists(<FormField><div/></FormField>, formFieldTestkitFactory)).toBe(true);
+    expect(
+      isTestkitExists(
+        <FormField>
+          <div />
+        </FormField>,
+        formFieldTestkitFactory
+      )
+    ).toBe(true);
   });
 
   it('AddItem exist', () => {
-    expect(isTestkitExists(<AddItem/>, addItemTestkitFactory)).toBe(true);
+    expect(isTestkitExists(<AddItem />, addItemTestkitFactory)).toBe(true);
   });
 
   it('BadgeSelect exist', () => {
-    expect(isTestkitExists(
-      <BadgeSelect
-        options={[{id: '0', skin: 'general', text: 'general'}]}
-        selectedId={'0'}
+    expect(
+      isTestkitExists(
+        <BadgeSelect
+          options={[{id: '0', skin: 'general', text: 'general'}]}
+          selectedId={'0'}
         />,
-      badgeSelectTestkitFactory,
-    )).toBe(true);
+        badgeSelectTestkitFactory
+      )
+    ).toBe(true);
+  });
+
+  it('CollapsedHeader exist', () => {
+    expect(
+      isTestkitExists(
+        <CollapsedHeader title="Header">
+          <div />
+        </CollapsedHeader>,
+        collapsedHeaderTestkitFactory
+      )
+    ).toBe(true);
   });
 });

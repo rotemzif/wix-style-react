@@ -4,25 +4,20 @@ import {createDriverFactory} from 'wix-ui-test-utils/driver-factory';
 import CollapsedHeader from './CollapsedHeader';
 import {collapsedHeaderTestkitFactory} from '../../../testkit';
 import {collapsedHeaderTestkitFactory as enzymeCollapsedHeaderTestkitFactory} from '../../../testkit/enzyme';
-import {mount} from 'enzyme';
-import {
-  isTestkitExists,
-  isEnzymeTestkitExists
-} from '../../../test/utils/testkit-sanity';
 
 import {requestAnimationFramePolyfill} from '../../../testkit/polyfills';
 
 const dataHook = 'content';
 const content = <div data-hook={dataHook}>Some Content</div>;
 
-describe('CollapsedHeader', () => {
+describe.only('CollapsedHeader', () => {
   const createDriver = createDriverFactory(collapsedHeaderDriverFactory);
   requestAnimationFramePolyfill.install();
 
   it('should have a title', () => {
     const driver = createDriver(
       <CollapsedHeader title="Header Title">
-        <div/>
+        <div />
       </CollapsedHeader>
     );
     expect(driver.title()).toBe('Header Title');
@@ -31,7 +26,7 @@ describe('CollapsedHeader', () => {
   it('should have a subtitle', () => {
     const driver = createDriver(
       <CollapsedHeader title="Header Title" subtitle="Header Subtitle">
-        <div/>
+        <div />
       </CollapsedHeader>
     );
     expect(driver.subtitle()).toBe('Header Subtitle');
@@ -61,7 +56,7 @@ describe('CollapsedHeader', () => {
       <CollapsedHeader
         title="Header Title"
         onCollapsedChange={onCollapsedChange}
-        >
+      >
         {content}
       </CollapsedHeader>
     );
@@ -103,7 +98,7 @@ describe('CollapsedHeader', () => {
           title="Header Title"
           controlled
           onCollapsedChange={onCollapsedChange}
-          >
+        >
           {content}
         </CollapsedHeader>
       );
@@ -118,7 +113,7 @@ describe('CollapsedHeader', () => {
           title="Header Title"
           controlled
           onCollapsedChange={jest.fn()}
-          >
+        >
           {content}
         </CollapsedHeader>
       );
@@ -127,30 +122,5 @@ describe('CollapsedHeader', () => {
 
       expect(driver.findByDatahook(dataHook).innerHTML).toBe('Some Content');
     });
-  });
-});
-
-describe('testkits', () => {
-  it('should exist', () => {
-    expect(
-      isTestkitExists(
-        <CollapsedHeader title="Header">
-          <div/>
-        </CollapsedHeader>,
-        collapsedHeaderTestkitFactory
-      )
-    ).toBe(true);
-  });
-
-  it('should exist for enzyme', () => {
-    expect(
-      isEnzymeTestkitExists(
-        <CollapsedHeader title="Header">
-          <div/>
-        </CollapsedHeader>,
-        enzymeCollapsedHeaderTestkitFactory,
-        mount
-      )
-    ).toBe(true);
   });
 });
