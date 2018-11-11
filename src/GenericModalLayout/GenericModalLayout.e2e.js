@@ -2,7 +2,7 @@ import eyes from 'eyes.it';
 import {scrollToElement, waitForVisibilityOf} from 'wix-ui-test-utils/protractor';
 
 import {createStoryUrl} from '../../test/utils/storybook-helpers';
-import {buttonTestkitFactory} from '../../testkit/protractor';
+import {buttonTestkitFactory, genericModalLayoutTestkitFactory} from '../../testkit/protractor';
 
 const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
 
@@ -23,6 +23,12 @@ describe('GenericModalLayout', () => {
 
       await button.click();
       await verifyItem('default-generic-modal-layout');
+
+      const driver = genericModalLayoutTestkitFactory({
+        dataHook: 'default-generic-modal-layout'
+      });
+
+      expect(await driver.isFullscreen()).toBeFalsy();
     });
   });
 
@@ -35,6 +41,12 @@ describe('GenericModalLayout', () => {
 
       await button.click();
       await verifyItem('fullscreen-generic-modal-layout');
+
+      const driver = genericModalLayoutTestkitFactory({
+        dataHook: 'fullscreen-generic-modal-layout'
+      });
+
+      expect(await driver.isFullscreen()).toBeTruthy();
     });
   });
 });

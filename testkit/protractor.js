@@ -167,6 +167,9 @@ export const tagTestkitFactory = protractorTestkitFactoryCreator(tagDriverFactor
 import badgeSelectDriverFactory from '../src/BadgeSelect/BadgeSelect.protractor.driver';
 export const badgeSelectTestkitFactory = protractorTestkitFactoryCreator(badgeSelectDriverFactory);
 
+import genericModalLayoutDriverFactory from '../src/GenericModalLayout/GenericModalLayout.protractor.driver';
+export const genericModalLayoutTestkitFactory = protractorTestkitFactoryCreator(genericModalLayoutDriverFactory);
+
 // wix-ui-backoffice proxy
 
 export {

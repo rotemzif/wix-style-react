@@ -6,7 +6,6 @@ import WixComponent from '../BaseComponents/WixComponent';
 
 import styles from './GenericModalLayout.scss';
 
-// TODO: add protractor driver to fullscreen test
 
 export default class GenericModalLayout extends WixComponent {
   render() {
@@ -25,7 +24,10 @@ export default class GenericModalLayout extends WixComponent {
     );
 
     return (
-      <div className={containerClassNames}>
+      <div
+        className={containerClassNames}
+        data-fullscreen={Boolean(fullscreen)}
+        >
         <div>{header}</div>
 
         <div className={styles.content}>{content}</div>
