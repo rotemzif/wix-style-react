@@ -105,6 +105,15 @@ describe('InputArea', () => {
     });
   });
 
+  describe('name attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const name = 'someName';
+
+      const driver = createDriver(<InputAreaForTesting name={name}/>);
+      expect(driver.getName()).toEqual(name);
+    });
+  });
+
   describe('readOnly attribute', () => {
     it('should pass down to the wrapped input', () => {
       const driver = createDriver(<InputAreaForTesting readOnly/>);

@@ -39,6 +39,7 @@ class InputArea extends WixComponent {
       forceFocus,
       forceHover,
       id,
+      name,
       onKeyUp,
       placeholder,
       readOnly,
@@ -88,6 +89,7 @@ class InputArea extends WixComponent {
             ref={ref => this.textArea = ref}
             className={styles.inputArea}
             id={id}
+            name={name}
             style={inlineStyle}
             defaultValue={defaultValue}
             value={value}
@@ -190,6 +192,9 @@ InputArea.propTypes = {
   /** When true a letters counter will appear */
   hasCounter: PropTypes.bool,
   id: PropTypes.string,
+
+  /** Name Attribute */
+  name: PropTypes.string,
 
   /** i.e. '12px' */
   maxHeight: PropTypes.string,

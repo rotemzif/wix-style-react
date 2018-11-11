@@ -12,6 +12,7 @@ const inputAreaDriverFactory = ({element, wrapper, component}) => {
     focus: () => textArea.focus(),
     enterText: text => ReactTestUtils.Simulate.change(textArea, {target: {value: text}}),
     getValue: () => textArea.value,
+    getName: () => textArea.name,
     getPlaceholder: () => textArea.placeholder,
     getDefaultValue: () => textArea.defaultValue,
     getRowsCount: () => textArea.rows,
