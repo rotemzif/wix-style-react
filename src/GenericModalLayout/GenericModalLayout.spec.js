@@ -7,18 +7,16 @@ import {genericModalLayoutTestkitFactory} from '../../testkit';
 import {genericModalLayoutTestkitFactory as enzymeGenericModalLayoutTestkitFactory} from '../../testkit/enzyme';
 
 import GenericModalLayout from './';
-import genericModalLayoutDriverFactory from './GenericModalLayout.driver';
 import genericModalLayoutPrivateDriverFactory from './GenericModalLayout.driver.private';
 
 
 const renderWithProps = (properties = {}) => <GenericModalLayout {...properties}/>;
 
 describe('GenericModalLayout', () => {
-  const createDriver = createDriverFactory(genericModalLayoutDriverFactory);
   const createPrivateDriver = createDriverFactory(genericModalLayoutPrivateDriverFactory);
 
   it('should render', () => {
-    const driver = createDriver(renderWithProps());
+    const driver = createPrivateDriver(renderWithProps());
     expect(driver.exists()).toBeTruthy();
   });
 
@@ -48,13 +46,13 @@ describe('GenericModalLayout', () => {
 
   describe('fullscreen', () => {
     it('should render not fullscreen as default', () => {
-      const driver = createDriver(renderWithProps());
+      const driver = createPrivateDriver(renderWithProps());
 
       expect(driver.isFullscreen()).toBeFalsy();
     });
 
     it('should render fullscreen layout', () => {
-      const driver = createDriver(renderWithProps({
+      const driver = createPrivateDriver(renderWithProps({
         fullscreen: true
       }));
 
@@ -62,7 +60,7 @@ describe('GenericModalLayout', () => {
     });
 
     it('should render not fullscreen layout', () => {
-      const driver = createDriver(renderWithProps({
+      const driver = createPrivateDriver(renderWithProps({
         fullscreen: false
       }));
 

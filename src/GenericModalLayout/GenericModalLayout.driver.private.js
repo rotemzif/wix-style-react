@@ -1,5 +1,10 @@
+import genericModalLayoutDriverFactory from './GenericModalLayout.driver';
+
+
 export default ({element}) => {
   return {
+    ...genericModalLayoutDriverFactory({element}),
+
     getHeaderTextContent: () => element
       .querySelector('[data-hook="generic-modal-layout-header"]')
       .textContent,
